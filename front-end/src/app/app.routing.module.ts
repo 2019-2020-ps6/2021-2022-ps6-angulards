@@ -8,6 +8,7 @@ import {LoginComponent} from './login/login';
 import {RegisterComponent} from './registerpage/registerpage';
 import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
+import {QuizFormComponent} from './quizzes/quiz-form/quiz-form.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'userquiz', component: UserQuizListComponent},
+  {path: 'quiz-form', component: QuizFormComponent},
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-quiz-form',
@@ -20,7 +21,7 @@ export class QuizFormComponent implements OnInit {
    */
   public quizForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
+  constructor(public formBuilder: FormBuilder, public quizService: QuizService, private router: Router) {
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: ['']
@@ -38,6 +39,11 @@ export class QuizFormComponent implements OnInit {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
 
     this.quizService.addQuiz(quizToCreate);
+  }
+
+  // tslint:disable-next-line:typedef
+  redirectedToQuizList() {
+    this.router.navigateByUrl('/quiz-list');
   }
 
 }

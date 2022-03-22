@@ -3,4 +3,8 @@
     <div class="quiz" *ngFor="let quiz of quizList">
         <app-quiz [quiz]="quiz" (quizPlayed)="playQuiz($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
     </div>
+  </div>
+<div>
+  Créer un quiz
+  <button class="btn-rond" (click)="redirectToQuizForm()">+</button>
 </div>

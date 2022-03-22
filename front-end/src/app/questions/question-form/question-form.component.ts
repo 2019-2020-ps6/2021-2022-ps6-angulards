@@ -14,6 +14,9 @@ export class QuestionFormComponent implements OnInit {
   @Input()
   quiz: Quiz;
 
+  @Input()
+  uploadType: string;
+
   public questionForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, private quizService: QuizService) {

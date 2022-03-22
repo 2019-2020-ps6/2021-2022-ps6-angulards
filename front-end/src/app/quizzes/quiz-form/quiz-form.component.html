@@ -1,8 +1,8 @@
 <div class="card">
-  <h2>Create a new Quiz</h2>
+  <h2>Créer un nouveau quiz</h2>
   <form class="quiz-form" [formGroup]="quizForm">
-    <label for="title">
-      Title <br>
+    <label>
+      Titre <br>
       <input class="input-custom" type="text" id="name" [formControlName]="'name'">
     </label>
     <br>
@@ -11,7 +11,7 @@
       <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">
     </label>
     <br>
-    <button type="submit" class="button-card" (click)="addQuiz()">Create</button>
+    <button type="submit" class="button-card" (click)="addQuiz()">Créer</button>
   </form>
 </div>
 <!-- Uncomment below to see your form structure and how it changes-->

@@ -1,8 +1,9 @@
 <div class="card">
-  <h2>Create a new question</h2>
+  <h2>Créer une nouvelle question</h2>
+  <app-question-upload [uploadType]="uploadType"></app-question-upload>
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
-      Title <br>
+      Titre <br>
       <input class="input-custom" type="text" id="label" [formControlName]="'label'">
     </label>
     <br>
@@ -11,10 +12,10 @@
       <div *ngFor="let address of answers.controls; let i=index">
         <div class="answer-form" [formGroupName]="i">
           <label>
-            Answer
+            Réponse
             <input type="text" [formControlName]="'value'">
             <br>
-            Correct
+            correcte ?
             <input type="checkbox" [formControlName]="'isCorrect'">
           </label>
         </div>

@@ -9,6 +9,7 @@ import { QuizComponent } from './quizzes/quiz/quiz.component';
 import { HeaderComponent } from './header/header.component';
 import { QuizFormComponent } from './quizzes/quiz-form/quiz-form.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
+import { QuestionUploadComponent} from './questions/question-upload/question-upload.component';
 import { AppRoutingModule } from './app.routing.module';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
@@ -19,8 +20,8 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import {WelcomePageComponent} from './welcomepage/welcomepage';
 import {LoginComponent} from './login/login';
 import {RegisterComponent} from './registerpage/registerpage';
-import {UserQuizComponent} from "./homepage-user/userquiz/userquiz.component";
-import {UserQuizListComponent} from "./homepage-user/userquiz-list/userquiz-list.component";
+import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
+import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {UserQuizListComponent} from "./homepage-user/userquiz-list/userquiz-list
     HeaderComponent,
     QuizFormComponent,
     EditQuizComponent,
+    QuestionUploadComponent,
     QuestionListComponent,
     QuestionFormComponent,
     QuestionComponent,

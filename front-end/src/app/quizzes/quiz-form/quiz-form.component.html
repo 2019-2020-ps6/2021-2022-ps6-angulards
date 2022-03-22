@@ -4,7 +4,7 @@
     <h2 class="active"> Créer un nouveau quiz </h2>
 
     <form class="quiz-form" [formGroup]="quizForm">
-    <label for="title">
+    <label>
       <input [formControlName]="'name'" class="fadeIn second" id="name" placeholder=" Nom " type="text">
     </label>
     <br>
@@ -12,6 +12,7 @@
       <input [formControlName]="'theme'" class="fadeIn second" id="theme" placeholder=" Thème " type="text">
     </label>
     <br>
-    <input (click)="addQuiz()" (click)="redirectedToQuizList()"  class="fadeIn fourth" type="submit" value="Créer">
+    <input (click)="addQuiz(); redirectedToQuizList()"  class="fadeIn fourth" type="submit" value="Créer">
     </form>
+  </div>
 </div>

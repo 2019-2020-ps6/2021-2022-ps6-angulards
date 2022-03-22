@@ -33,10 +33,11 @@ export class QuizListComponent implements OnInit {
 
   deleteQuiz(quiz: Quiz): void {
     this.quizToDelete = quiz;
+    this.quizService.deleteQuiz(this.quizToDelete);
   }
 
   // tslint:disable-next-line:typedef
   redirectToQuizForm(){
-    this.router.navigateByUrl('/quiz-form');
+    this.router.navigateByUrl('/quiz-form').then();
   }
 }

@@ -19,8 +19,9 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import {WelcomePageComponent} from './welcomepage/welcomepage';
 import {LoginComponent} from './login/login';
 import {RegisterComponent} from './registerpage/registerpage';
-import {UserQuizComponent} from "./homepage-user/userquiz/userquiz.component";
-import {UserQuizListComponent} from "./homepage-user/userquiz-list/userquiz-list.component";
+import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
+import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
+import { QuizPageComponent } from './quiz-page/quiz-page.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {UserQuizListComponent} from "./homepage-user/userquiz-list/userquiz-list
     RegisterComponent,
     UserQuizComponent,
     UserQuizListComponent,
+    QuizPageComponent,
   ],
   imports: [
     BrowserModule,

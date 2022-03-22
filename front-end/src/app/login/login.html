@@ -1,0 +1,26 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Page de connexion </h2>
+
+
+    <!-- Login Form -->
+    <form>
+      <input class="fadeIn second" id="login" name="login" placeholder="Email" type="text">
+      <input class="fadeIn third" id="password" name="login" placeholder="Mot de passe" type="password">
+      <input (click)="redirectHome()" class="fadeIn fourth" type="submit2" value="Log In">
+      <!-- edit the router link to the right one when done -->
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Mot de passe oublié?</a>
+    </div>
+
+  </div>
+  <div>
+    Vous n'avez pas encore de compte ?
+    <h2 class="inactive underlineHover" routerLink='/register'>S'inscrire </h2>
+  </div>
+</div>
+

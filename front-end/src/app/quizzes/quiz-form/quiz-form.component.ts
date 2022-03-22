@@ -43,7 +43,7 @@ export class QuizFormComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   redirectedToQuizList() {
-    this.router.navigateByUrl('/quiz-list');
+    this.router.navigateByUrl('/quiz-list').then();
   }
 
 }

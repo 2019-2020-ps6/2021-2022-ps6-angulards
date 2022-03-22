@@ -19,7 +19,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'userquiz', component: UserQuizListComponent},
-  {path: 'quiz-form', component: QuizFormComponent},
+    {path: 'quiz-form', component: QuizFormComponent},
 ];
 
 @NgModule({

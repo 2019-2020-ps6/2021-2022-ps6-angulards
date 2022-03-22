@@ -16,6 +16,11 @@ import { QuestionComponent } from './questions/question/question.component';
 import { UserComponent } from './users/user/user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import {WelcomePageComponent} from './welcomepage/welcomepage';
+import {LoginComponent} from './login/login';
+import {RegisterComponent} from './registerpage/registerpage';
+import {UserQuizComponent} from "./homepage-user/userquiz/userquiz.component";
+import {UserQuizListComponent} from "./homepage-user/userquiz-list/userquiz-list.component";
 
 @NgModule({
   declarations: [
@@ -31,6 +36,11 @@ import { UserListComponent } from './users/user-list/user-list.component';
     UserComponent,
     UserFormComponent,
     UserListComponent,
+    WelcomePageComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserQuizComponent,
+    UserQuizListComponent,
   ],
   imports: [
     BrowserModule,

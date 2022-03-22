@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { QuizService } from '../../../services/quiz.service';
-import { Quiz } from '../../../models/quiz.model';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {QuizService} from '../../../services/quiz.service';
+import {Quiz} from '../../../models/quiz.model';
 
 @Component({
   selector: 'app-quiz-list',
@@ -12,6 +12,8 @@ export class QuizListComponent implements OnInit {
 
   public quizList: Quiz[] = [];
 
+  quizToDelete: Quiz;
+
   constructor(private router: Router, public quizService: QuizService) {
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
@@ -21,15 +23,15 @@ export class QuizListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  quizSelected(selected: boolean): void {
-    console.log('event received from child:', selected);
+  playQuiz(quiz: Quiz): void {
+    this.router.navigate(['/quizzes/' + quiz.name]).then();
   }
 
   editQuiz(quiz: Quiz): void {
-    this.router.navigate(['/edit-quiz/' + quiz.name]);
+    this.router.navigate(['/edit-quiz/' + quiz.name]).then();
   }
 
   deleteQuiz(quiz: Quiz): void {
-    this.quizService.deleteQuiz(quiz);
+    this.quizToDelete = quiz;
   }
 }

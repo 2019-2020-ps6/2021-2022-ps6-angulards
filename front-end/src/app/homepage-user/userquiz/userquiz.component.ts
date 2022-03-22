@@ -19,7 +19,7 @@ export class UserQuizComponent implements OnInit {
   quiz: Quiz | undefined;
 
   @Output()
-  quizSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+  quizPlayed: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
 
   constructor(private router: Router) {
@@ -29,9 +29,8 @@ export class UserQuizComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectQuiz(): void {
-    console.log('clicked');
-    this.quizSelected.emit(true); // va renvoyer l'information au parent
+  playQuiz(): void {
+    this.quizPlayed.emit(this.quiz);
   }
 
   redirectToQuiz(url: string): void {

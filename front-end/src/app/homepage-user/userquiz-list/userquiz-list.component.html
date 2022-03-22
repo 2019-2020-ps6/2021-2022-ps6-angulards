@@ -6,6 +6,6 @@
 
 <div class="quiz-list">
   <div *ngFor="let quiz of quizList" class="quiz">
-    <app-userquiz (quizSelected)="quizSelected($event)" [quiz]="quiz"></app-userquiz>
+    <app-userquiz (quizPlayed)="quizPlay($event)" [quiz]="quiz"></app-userquiz>
   </div>
 </div>

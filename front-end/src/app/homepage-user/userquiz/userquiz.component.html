@@ -1,0 +1,11 @@
+<div *ngIf="quiz" class="card">
+  <h2>
+    Nom : {{quiz.name}}
+  </h2>
+  <span>
+    <br>Theme: {{quiz.theme}}
+  </span>
+  <br/>
+  <button routerLink="quiz-page/{{quiz.id}}" (click)="selectQuiz()" class="button-card">Lancer le Quiz</button>
+  <router-outlet></router-outlet>
+</div>

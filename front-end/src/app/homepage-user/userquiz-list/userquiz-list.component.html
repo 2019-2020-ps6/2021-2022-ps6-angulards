@@ -1,0 +1,11 @@
+<h3 class="title-lstquiz">
+  <br><br>
+  Liste des quiz
+  <br><br>
+</h3>
+
+<div class="quiz-list">
+  <div *ngFor="let quiz of quizList" class="quiz">
+    <app-userquiz (quizSelected)="quizSelected($event)" [quiz]="quiz"></app-userquiz>
+  </div>
+</div>

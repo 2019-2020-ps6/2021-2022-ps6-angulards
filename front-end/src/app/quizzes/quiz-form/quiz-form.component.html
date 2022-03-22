@@ -1,18 +1,17 @@
-<div class="card">
-  <h2>Créer un nouveau quiz</h2>
-  <form class="quiz-form" [formGroup]="quizForm">
-    <label>
-      Titre <br>
-      <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Créer un nouveau quiz </h2>
+
+    <form class="quiz-form" [formGroup]="quizForm">
+    <label for="title">
+      <input [formControlName]="'name'" class="fadeIn second" id="name" placeholder=" Nom " type="text">
     </label>
     <br>
     <label for="theme">
-      Theme <br>
-      <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">
+      <input [formControlName]="'theme'" class="fadeIn second" id="theme" placeholder=" Thème " type="text">
     </label>
     <br>
-    <button type="submit" class="button-card" (click)="addQuiz()">Créer</button>
-  </form>
+    <input (click)="addQuiz()" (click)="redirectedToQuizList()"  class="fadeIn fourth" type="submit" value="Créer">
+    </form>
 </div>
-<!-- Uncomment below to see your form structure and how it changes-->
-<!-- <br><br>{{quizForm.getRawValue() | json}} -->

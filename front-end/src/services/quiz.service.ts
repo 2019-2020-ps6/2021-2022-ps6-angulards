@@ -4,7 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
-import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { serverUrl, httpOptionsBase, httpOptionsFormData } from '../configs/server.config';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,7 @@ export class QuizService {
   private questionsPath = 'questions';
 
   private httpOptions = httpOptionsBase;
+  private httpOptionsFormData = httpOptionsFormData;
 
   constructor(private http: HttpClient) {
     this.retrieveQuizzes();
@@ -48,6 +49,22 @@ export class QuizService {
 
   addQuiz(quiz: Quiz): void {
     this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
+  }
+
+  addImage(fd: FormData): void {
+    console.log("I AM INSIDE")
+    const urlWithId = this.quizUrl + '/persistimage';
+    console.log(this.http.post(urlWithId, fd).subscribe(
+      (val) => {
+          console.log("POST call successful value returned in body", 
+                      val);
+      },
+      response => {
+          console.log("POST call in error", response);
+      },
+      () => {
+          console.log("The POST observable is now completed.");
+      }));
   }
 
   setSelectedQuiz(quizId: string): void {

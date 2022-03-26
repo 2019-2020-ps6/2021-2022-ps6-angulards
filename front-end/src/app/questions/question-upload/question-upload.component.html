@@ -1,6 +1,6 @@
 <ng-container class="upload-box" *ngIf="uploadType==='image'">
   <p>Selectionner une image</p>
-  <input type="file" accept="image/*" src="./assets/upload.svg">
+  <input type="file" accept="image/*" src="./assets/upload.svg" (change)="onFileSelected($event)" #fileUpload>
 </ng-container>
 <ng-container class="upload-box" *ngIf="uploadType==='audio'">
   <p>Selectionner un fichier audio</p>

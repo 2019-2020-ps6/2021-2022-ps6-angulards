@@ -5,5 +5,4 @@ export interface Quiz {
     name: string;
     theme?: string;
     questions: Question[];
-    file: object;
 }

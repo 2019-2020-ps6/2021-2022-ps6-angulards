@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
   templateUrl: './registerpage.html',
   styleUrls: ['./registerpage.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   constructor(private router: Router) {
   }
 
@@ -14,7 +14,7 @@ export class RegisterComponent {
   }
 
   redirectLogin(): void {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/login').then();
   }
 
 

@@ -45,6 +45,7 @@ import { QuizPageComponent } from './quiz-page/quiz-page.component';
     UserQuizListComponent,
     QuizPageComponent,
     QuestionUploadComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

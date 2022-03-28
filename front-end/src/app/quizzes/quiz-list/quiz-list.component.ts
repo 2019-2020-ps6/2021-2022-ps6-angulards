@@ -21,9 +21,11 @@ export class QuizListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   playQuiz(quiz: Quiz): void {
+    this.quizService.setSelectedQuiz(quiz.id);
     this.router.navigate(['/quizzes/' + quiz.id]).then();
   }
 

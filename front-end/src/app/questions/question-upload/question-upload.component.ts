@@ -15,9 +15,16 @@ export class QuestionUploadComponent implements OnInit {
   uploadType: string;
   IMAGE = 'image';
   AUDIO = 'audio';
+  imageVisible = false;
+  path: string;
 
 
   constructor(public quizService: QuizService) {
+  }
+
+  showImage(): string {
+    this.imageVisible = true;
+    return this.path;
   }
 
   onFileSelected(event): void {

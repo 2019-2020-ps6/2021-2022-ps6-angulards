@@ -1,6 +1,11 @@
 <ng-container class="upload-box" *ngIf="uploadType==='image'">
-  <p>Selectionner une image</p>
-  <input type="file" accept="image/*" src="./assets/upload.svg" (change)="onFileSelected($event)" #fileUpload>
+  <p>Lien vers l'image :</p>
+<!--  <input type="file" accept="image/*" src="./assets/upload.svg" (change)="onFileSelected($event)" #fileUpload>-->
+<form (submit)="showImage()">
+  <input type="text" [(ngModel)]="path" name="image_path">
+  <input type="submit" value="OK">
+</form>
+  <img src="{{path}}" alt="image" *ngIf="imageVisible==true">
 </ng-container>
 <ng-container class="upload-box" *ngIf="uploadType==='audio'">
   <p>Selectionner un fichier audio</p>

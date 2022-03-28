@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -47,12 +47,13 @@ import { QuizPageComponent } from './quiz-page/quiz-page.component';
     QuestionUploadComponent,
     RegisterComponent,
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

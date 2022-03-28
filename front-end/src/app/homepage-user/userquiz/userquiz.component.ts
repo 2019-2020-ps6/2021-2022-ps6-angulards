@@ -25,8 +25,7 @@ export class UserQuizComponent implements OnInit {
   constructor(private router: Router) {
   }
 
-  // tslint:disable-next-line:typedef
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   playQuiz(): void {
@@ -35,6 +34,6 @@ export class UserQuizComponent implements OnInit {
 
   redirectToQuiz(url: string): void {
     console.log(url + ' test url');
-    this.router.navigateByUrl(url);
+    this.router.navigateByUrl(url).then();
   }
 }

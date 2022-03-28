@@ -20,21 +20,21 @@ export class QuestionUploadComponent implements OnInit {
   constructor(public quizService: QuizService) {
   }
 
-  onFileSelected(event) {
-    const file:File = event.target.files[0];
-    
+  onFileSelected(event): void {
+    const file: File = event.target.files[0];
+
     if (file) {
       const imageId = uuid.v4().toString();
-      let fileExtension:string = file.name.split('?')[0].split('.').pop();
+      const fileExtension: string = file.name.split('?')[0].split('.').pop();
 
-      console.log(imageId)
-      console.log(fileExtension)
+      console.log(imageId);
+      console.log(fileExtension);
 
       const formData = new FormData();
 
-      formData.append('file', file, imageId + "." + fileExtension);
+      formData.append('file', file, imageId + '.' + fileExtension);
 
-      console.log(formData.get('file')); 
+      console.log(formData.get('file'));
 
       this.quizService.addImage(formData);
     }

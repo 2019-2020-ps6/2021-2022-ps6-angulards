@@ -8,7 +8,7 @@ export const httpOptionsBase = {
 
 export const httpOptionsFormData = {
   headers: new HttpHeaders({
-   "Content-Type": "multipart/form-data"
+   'Content-Type': 'multipart/form-data'
   })
 };
 

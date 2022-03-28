@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirectHome(): void {
-    this.router.navigateByUrl('/userquiz');
+    this.router.navigateByUrl('/userquiz').then();
   }
 
 }

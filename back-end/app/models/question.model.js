@@ -5,4 +5,5 @@ module.exports = new BaseModel('Question', {
   label: Joi.string().required(),
   quizId: Joi.number(),
   answers: Joi.array(),
+  file: Joi.string(), /* IS THAT A STRING ? TO FIX */
 })

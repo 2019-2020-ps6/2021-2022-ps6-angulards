@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete() {
+  delete(): void {
     this.deleteUser.emit(this.user);
   }
 

@@ -1,5 +1,4 @@
 const { Router } = require('express')
-
 const { Answer, Quiz, Question } = require('../../../models')
 const manageAllErrors = require('../../../utils/routes/error-management')
 const AnswersRouter = require('./answers')

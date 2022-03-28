@@ -24,7 +24,7 @@ const filterQuestionsFromQuizz = (quizId) => {
  * @param questionId
  */
 const getQuestionFromQuiz = (quizId, questionId) => {
-  // Check if quizId exists, if not it will throw a NotFoundError
+  // Check if quizId exists, if not it will throw a NotFoundError!
   const quiz = Quiz.getById(quizId)
   const quizIdInt = parseInt(quizId, 10)
   const question = Question.getById(questionId)

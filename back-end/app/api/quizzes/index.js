@@ -1,16 +1,15 @@
 const { Router } = require('express')
-
+const path = require('path')
+const formidable = require('formidable')
+// const fs = require('fs')
 const { Quiz } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 const QuestionsRouter = require('./questions')
 const { buildQuizz, buildQuizzes } = require('./manager')
 
-
 const router = new Router()
-const formidable = require('formidable');
-const fs = require('fs');
-var path = require('path');
-const uploadDirPath =  path.join(__dirname, 'files')
+const uploadDirPath = path.join(__dirname, 'files')
+
 router.use('/:quizId/questions', QuestionsRouter)
 
 router.get('/', (req, res) => {
@@ -41,19 +40,25 @@ router.post('/', (req, res) => {
 })
 
 router.post('/persistimage', (req, res) => {
-  const form = formidable({ uploadDir: uploadDirPath});
+  const form = formidable({ uploadDir: uploadDirPath })
+  // eslint-disable-next-line no-console
+  console.log(`res is ${res.status(0)}`)
   form
-  .on('fileBegin', (formname, file) => {
-    file.filepath = uploadDirPath + '/' + file.originalFilename
-  })
-  .on('file', (fieldName, file) => {
-    console.log(fieldName, file);
-  })
-  .on('end', () => {
-    console.log('-> upload done');
-  });
-  
-  form.parse(req);
+    .on('fileBegin', (formname, file) => {
+      // WARNING HERE TO FIX
+      // eslint-disable-next-line no-param-reassign
+      file.filepath = `${uploadDirPath}/${file.originalFilename}`
+    })
+    .on('file', (fieldName, file) => {
+      // eslint-disable-next-line no-console
+      console.log(fieldName, file)
+    })
+    .on('end', () => {
+      // eslint-disable-next-line no-console
+      console.log('-> upload done')
+    })
+
+  form.parse(req)
 
   // form.parse(req, (err, fields, files) => {
   //   if (err) {

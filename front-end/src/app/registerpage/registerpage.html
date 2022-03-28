@@ -5,16 +5,17 @@
 
 
     <!-- Login Form -->
-    <form>
-      <input class="fadeIn second" name="login" placeholder="Identifiant" type="text">
-      <input class="fadeIn second" id="login" name="login" placeholder="Email" type="text">
-      <input class="fadeIn third" name="login" placeholder="Code pour accéder aux statistiques" type="text">
-      <input class="fadeIn third" name="login" placeholder="Mot de passe" type="password">
+    <form [formGroup]="signupForm" >
+      <input formControlName ="fullname" class="fadeIn second" name="login" placeholder="Identifiant" type="text">
+      <input formControlName ="email" class="fadeIn second" id="login" name="login" placeholder="Email" type="text">
+      <input formControlName ="statcode" class="fadeIn third" name="login" placeholder="Code pour accéder aux statistiques" type="text">
+      <input formControlName ="password" class="fadeIn third" name="login" placeholder="Mot de passe" type="password">
       <input class="fadeIn third" id="password" name="login" placeholder="Confirmez mot de passe" type="password">
       <div>
         <input [formControlName]="'isCorrect'" type="checkbox">J'accepte les termes et conditions
       </div>
-      <input (click)="redirectLogin()" class="fadeIn fourth" type="submit2" value="S'inscrire">
+      <input (click)="signUp()" class="fadeIn fourth" type="submit2" value="S'inscrire">
+
     </form>
 
   </div>

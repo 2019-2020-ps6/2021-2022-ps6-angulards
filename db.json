@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "signUpUsers": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "fullname": "",
+      "email": "",
+      "password": "",
+      "statcode": "",
+      "id": 2
+    },
+    {
+      "fullname": "admin",
+      "email": "aymane.elfiguigui@gmail.com",
+      "password": "123",
+      "statcode": "Aymane69420",
+      "id": 3
+    },
+    {
+      "fullname": "admin",
+      "email": "aymane.elfiguigui@gmail.com",
+      "password": "159",
+      "statcode": "admin",
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

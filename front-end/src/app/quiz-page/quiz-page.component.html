@@ -1,12 +1,11 @@
-<div class="full">
+<div class="wrapper">
 
   <!-- Answers -->
-  <div class="question-center">
+  <div id="formContent">
     <div><img class="img-container"
               src="{{quiz.questions[indexQuiz].image}}"
               alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
-              width="600" height="600"
-    ></div>
+              width="600" height="600"></div>
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
       <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers; let i = index;">
         <button (click)="isAnswerCorrect(quiz.questions[indexQuiz].answers[i].value)" class="answer-box">{{ans.value}}</button>

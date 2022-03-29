@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Question} from '../../models/question.model';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Answer, Question} from '../../models/question.model';
+import {ActivatedRoute} from '@angular/router';
 import {Quiz} from '../../models/quiz.model';
 import {QuizService} from '../../services/quiz.service';
 
@@ -12,16 +12,41 @@ import {QuizService} from '../../services/quiz.service';
 export class QuizPageComponent implements OnInit {
 
   quiz: Quiz;
+  question: Question;
+  answer: Answer;
+  correctAnswer = 0;
+  indexQuiz = 0;
+  selectedAnswer = new Map();
+  id: string;
+  resultAffiche = false;
 
-
-  constructor(private router: Router, public quizService: QuizService) {
+  constructor(private route: ActivatedRoute, public quizService: QuizService) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
       this.quiz = quiz;
     });
   }
 
   ngOnInit(): void {
-    console.log(this.quiz);
+    console.log(this.question);
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.quizService.setSelectedQuiz(this.id);
+  }
+
+  getCorrectAnswer(): Answer {
+    for (let i = 0; i < 4; i++) {
+      if (this.quiz.questions[this.indexQuiz].answers[i].isCorrect) {
+        return this.quiz.questions[this.indexQuiz].answers[i];
+      }
+    }
+  }
+
+  incrementCorrect(answer): void {
+    const correct = this.getCorrectAnswer().value;
+    if (correct === answer) {
+      this.correctAnswer++;
+    }
+    this.resultAffiche = true;
+    this.selectedAnswer.set(this.indexQuiz, answer);
   }
 
 }

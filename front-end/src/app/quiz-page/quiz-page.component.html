@@ -1,7 +1,9 @@
 <h2>{{quiz.name}}</h2>
 <div class="full">
   <div class="question-center">
-    <div class="img-container">{{quiz.questions[indexQuiz].file}}</div>
+    <div><img class="img-container"
+              src="{{quiz.questions[indexQuiz].image}}"
+              alt="Image de la question : {{quiz.questions[indexQuiz].label}}"></div>
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
       <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers">
         <button class="answer-box">{{ans.value}}</button>

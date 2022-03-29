@@ -1,8 +1,15 @@
 <div class="card">
   <h2>Créer une nouvelle question</h2>
-  <app-question-upload [uploadType]="uploadType"></app-question-upload>
+  <!--<app-question-upload [uploadType]="uploadType"></app-question-upload>-->
+
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
+      Url de l'image
+      <br>
+      <input class="input-custom" type="text" id="image" [formControlName]="'image'">
+    </label>
+    <label for="label">
+      <br>
       Titre <br>
       <input class="input-custom" type="text" id="label" [formControlName]="'label'">
     </label>

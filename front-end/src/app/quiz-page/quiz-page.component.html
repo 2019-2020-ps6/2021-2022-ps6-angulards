@@ -9,10 +9,10 @@
   </div>
   <div class="page-switcher-container">
     <div class="previous-question">
-      <a>précédente {{indexQuiz - 1}}</a>
+      <button (click)="this.indexQuiz = this.indexQuiz - 1">précédente</button>
     </div>
     <div class="next-question">
-      <a>suivante {{indexQuiz + 1}}</a>
+      <button (click)="this.indexQuiz = this.indexQuiz + 1">suivante</button>
     </div>
   </div>
 </div>

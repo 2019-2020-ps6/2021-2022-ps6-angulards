@@ -1,8 +1,7 @@
 <div class="full">
 
   <!-- Answers -->
-  <div *ngIf="displayResult == DISPLAY_NO_ANSWER" class="question-center">
-    <div class="img-container">{{quiz.questions[indexQuiz].file}}</div>
+  <div class="question-center">
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
       <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers; let i = index;">
         <button (click)="isAnswerCorrect(quiz.questions[indexQuiz].answers[i].value)" class="answer-box">{{ans.value}}</button>

@@ -33,7 +33,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   getCorrectAnswer(): Answer {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < this.question.answers.length; i++) {
       if (this.quiz.questions[this.indexQuiz].answers[i].isCorrect) {
         return this.quiz.questions[this.indexQuiz].answers[i];
       }
@@ -49,4 +49,11 @@ export class QuizPageComponent implements OnInit {
     this.selectedAnswer.set(this.indexQuiz, answer);
   }
 
+  isStart(): boolean {
+    return this.indexQuiz < 1;
+  }
+
+  isEnd(): boolean {
+    return this.indexQuiz >= this.quiz.questions.length - 1;
+  }
 }

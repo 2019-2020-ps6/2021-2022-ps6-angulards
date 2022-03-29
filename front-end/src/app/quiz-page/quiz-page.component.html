@@ -9,10 +9,11 @@
   </div>
   <div class="page-switcher-container">
     <div class="previous-question">
-      <button (click)="this.indexQuiz = this.indexQuiz - 1">précédente</button>
+      <button *ngIf="!isStart()" (click)="this.indexQuiz = this.indexQuiz - 1">précédente</button>
     </div>
     <div class="next-question">
-      <button (click)="this.indexQuiz = this.indexQuiz + 1">suivante</button>
+      <button *ngIf="!isEnd()" (click)="this.indexQuiz = this.indexQuiz + 1">suivante</button>
+      <button *ngIf="isEnd()">fin</button>
     </div>
   </div>
 </div>

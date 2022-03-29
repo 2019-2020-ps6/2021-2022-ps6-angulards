@@ -1,8 +1,4 @@
-.full {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
+@import '../../styles/welcomin.css';
 
 .question-center {
   margin: auto;
@@ -53,7 +49,7 @@ button {
 .next-question, .previous-question {
   display: inline-block;
   margin: auto;
-  width: 200px;
+  width: 100px;
 }
 
 .show-answer-container {

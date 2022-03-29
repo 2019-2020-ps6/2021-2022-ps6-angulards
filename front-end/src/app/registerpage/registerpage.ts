@@ -25,11 +25,10 @@ export class RegisterComponent implements OnInit{
   signUp(){
     this.http.post<any>('http://localhost:8000/signUpUsers', this.signupForm.value)
       .subscribe(res => {
-        alert('Reussie!');
         this.signupForm.reset();
         this.router.navigate(['login']);
       }, err => {
-        alert('Failure');
+        alert('Erreur de connexion');
       });
 
   }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng serve\" \"json-server --watch C:\\Users\\Admin\\Documents\\GitHub\\2021-2022-ps6-angulards\\auth.json --port 8000\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "concurrently": "^5.2.0",
     "@angular-devkit/build-angular": "~0.1100.7",
     "@angular/cli": "~11.0.7",
     "@angular/compiler-cli": "~11.0.9",

@@ -25,9 +25,13 @@
 .answer-box {
   flex: fit-content;
   width: auto;
-  margin: 0.2em 0.4em 0.2em 0.4em;
+  margin: 0.3em 0.5em 0.3em 0.5em;
   background-color: #5fbae9;
-  border: #3f51b5 1px solid;
+}
+
+button {
+  display: block;
+  padding: 0.2em 1em 0.2em 1em;
 }
 
 .answer-right {
@@ -50,4 +54,8 @@
   display: inline-block;
   margin: auto;
   width: 200px;
+}
+
+.show-answer-container {
+  height: 70%;
 }

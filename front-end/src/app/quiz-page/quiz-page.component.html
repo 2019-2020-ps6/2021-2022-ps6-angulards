@@ -1,20 +1,35 @@
-<h2>{{quiz.name}}</h2>
 <div class="full">
+
+  <!-- Answers -->
   <div class="question-center">
     <div><img class="img-container"
               src="{{quiz.questions[indexQuiz].image}}"
               alt="Image de la question : {{quiz.questions[indexQuiz].label}}"></div>
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
-      <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers">
-        <button class="answer-box">{{ans.value}}</button>
+      <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers; let i = index;">
+        <button (click)="isAnswerCorrect(quiz.questions[indexQuiz].answers[i].value)" class="answer-box">{{ans.value}}</button>
       </div>
   </div>
+
+  <!-- Reward -->
+  <div class="show-answer-container">
+    <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="question-right">
+      <h3>Bravo !!</h3>
+    </div>
+    <div *ngIf="displayResult === DISPLAY_WRONG_ANSWER" class="question-wrong">
+      <h3>Tu feras mieux la prochaine fois!</h3>
+    </div>
+  </div>
+
+  <!-- Page navigation -->
   <div class="page-switcher-container">
     <div class="previous-question">
-      <button (click)="this.indexQuiz = this.indexQuiz - 1">précédente</button>
+      <button *ngIf="!isStart()" (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER">précédente</button>
     </div>
     <div class="next-question">
-      <button (click)="this.indexQuiz = this.indexQuiz + 1">suivante</button>
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1">passer</button>
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1">suivante</button>
+      <button *ngIf="isEnd()">fin</button>
     </div>
   </div>
 </div>

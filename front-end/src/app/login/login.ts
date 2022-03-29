@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
 
         });
         if (user){
-          alert('Login success');
           this.loginForm.reset();
           this.router.navigate(['userquiz']);
         }else {

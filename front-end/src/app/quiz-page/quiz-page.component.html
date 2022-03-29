@@ -6,8 +6,8 @@
               src="{{quiz.questions[indexQuiz].image}}"
               alt="Image de la question : {{quiz.questions[indexQuiz].label}}"></div>
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
-      <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers; let i = index;">
-        <button (click)="isAnswerCorrect(quiz.questions[indexQuiz].answers[i].value)" class="answer-box">{{ans.value}}</button>
+      <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers;">
+        <button (click)="takeActionOnClick(ans)" class="answer-box">{{ans.value}}</button>
       </div>
   </div>
 
@@ -27,9 +27,9 @@
       <button *ngIf="!isStart()" (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER">précédente</button>
     </div>
     <div class="next-question">
-      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1">passer</button>
-      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1">suivante</button>
-      <button *ngIf="isEnd()">fin</button>
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER">passer</button>
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER">suivante</button>
+      <button *ngIf="isEnd()" (click)="finished()">fin</button>
     </div>
   </div>
 </div>

@@ -3,7 +3,6 @@ import {Answer, Question} from '../../models/question.model';
 import {ActivatedRoute} from '@angular/router';
 import {Quiz} from '../../models/quiz.model';
 import {QuizService} from '../../services/quiz.service';
-import {NONE_TYPE} from '@angular/compiler';
 
 
 @Component({
@@ -26,11 +25,13 @@ export class QuizPageComponent implements OnInit {
   quiz: Quiz;
   question: Question;
   answer: Answer;
-  correctAnswer = 0;
+  elo = 0;
   indexQuiz = 0;
   selectedAnswer = new Map();
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
+  filteredAnswers: Answer[];
+
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -41,33 +42,32 @@ export class QuizPageComponent implements OnInit {
     return this.quiz.questions.length - 1;
   }
 
-  getAnswersLength(): number {
-    return this.quiz.questions[this.indexQuiz].answers.length;
+
+  removeWrongAnswer(answer: Answer): void {
+    this.answer = answer;
+    console.log('remove wrong answer');
+    console.log(this.answer.value);
+    const idToDelete =  this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
+    delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
   }
 
   getCorrectAnswer(): Answer {
-    const nbAns = this.getAnswersLength();
-    for (let i = 0; i < nbAns; i++) {
-      if (this.quiz.questions[this.indexQuiz].answers[i].isCorrect) {
-        return this.quiz.questions[this.indexQuiz].answers[i];
+    for (const item of this.quiz.questions[this.indexQuiz].answers) {
+      if (item.isCorrect) {
+        return item;
       }
     }
   }
 
-  removeAnswer(): void {
-    console.log('answer deleted : ');
-    // tslint:disable-next-line:max-line-length
-    console.log(this.quiz.questions[this.indexQuiz].answers.pop().isCorrect ? this.quiz.questions[this.indexQuiz].answers.pop().value : NONE_TYPE);
-  }
-
-  isAnswerCorrect(answer): void {
+  takeActionOnClick(answer): void {
     const correct = this.getCorrectAnswer().value;
-    if (correct === answer) {
-      this.correctAnswer++;
+    if (correct === answer.value) {
+      this.elo++;
       this.displayResult = this.DISPLAY_RIGHT_ANSWER;
     } else {
+      this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
-      this.removeAnswer();
+      this.removeWrongAnswer(answer);
     }
     this.selectedAnswer.set(this.indexQuiz, answer);
   }
@@ -78,5 +78,10 @@ export class QuizPageComponent implements OnInit {
 
   isEnd(): boolean {
     return this.indexQuiz >= this.getQuestionsLength();
+  }
+
+  finished(): void {
+    // on finish
+    console.log('End screen here');
   }
 }

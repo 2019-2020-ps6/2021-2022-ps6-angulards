@@ -48,21 +48,24 @@ export class QuizPageComponent implements OnInit {
     delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
   }
 
-  getCorrectAnswer(): Answer {
+  getCorrectAnswer(): Array<Answer> {
     // this.quiz.questions[this.indexQuiz].answers.forEach((value, index) => console.log(value));
-    return this.quiz.questions[this.indexQuiz].answers.find(x => x.isCorrect);
+    return this.quiz.questions[this.indexQuiz].answers.filter(x => x.isCorrect);
   }
 
   takeActionOnClick(answer): void {
-    const correct = this.getCorrectAnswer();
-    console.log('correct = ' + correct.value);
-    if (correct.value === answer.value) {
+    console.log('clicked on = ' + answer.value);
+    const corrects = this.getCorrectAnswer();
+    corrects.forEach(x => console.log(x.value));
+    if (corrects.includes(answer)) {
       this.elo++;
       this.displayResult = this.DISPLAY_RIGHT_ANSWER;
     } else {
       this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
-      if (!answer.isCorrect) { this.removeWrongAnswer(answer); }
+      if (!answer.isCorrect) {
+        this.removeWrongAnswer(answer);
+      }
     }
     this.selectedAnswer.set(this.indexQuiz, answer);
   }

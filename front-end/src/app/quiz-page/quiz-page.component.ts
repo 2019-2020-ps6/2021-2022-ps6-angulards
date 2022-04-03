@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Answer, Question} from '../../models/question.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../models/quiz.model';
 import {QuizService} from '../../services/quiz.service';
 
@@ -25,7 +25,7 @@ export class QuizPageComponent implements OnInit {
   displayResult = this.DISPLAY_NO_ANSWER;
   filteredAnswers: Answer[];
 
-  constructor(private route: ActivatedRoute, public quizService: QuizService) {
+  constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
       this.quiz = quiz;
     });
@@ -81,5 +81,6 @@ export class QuizPageComponent implements OnInit {
   finished(): void {
     // on finish
     console.log('End screen here');
+    this.router.navigate(['userquiz']);
   }
 }

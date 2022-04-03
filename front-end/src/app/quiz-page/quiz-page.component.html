@@ -5,7 +5,7 @@
     <div><img class="img-container"
               src="{{quiz.questions[indexQuiz].image}}"
               alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
-              width="600" height="600"></div>
+              ></div>
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
       <div class="answer-box-container">
         <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
@@ -29,12 +29,14 @@
   <!-- Page navigation -->
   <div class="page-switcher-container">
     <div class="previous-question">
-      <button *ngIf="!isStart()" (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER">précédente</button>
+      <button *ngIf="!isStart()" (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER" class="passer">précédente</button>
     </div>
     <div class="next-question">
-      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER">passer</button>
-      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER">suivante</button>
-      <button *ngIf="isEnd()" (click)="finished()">fin</button>
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER" class="passer"
+      >passer</button>
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER"
+      class="passer">suivante</button>
+      <button *ngIf="isEnd()" (click)="finished()"class="passer">fin</button>
     </div>
   </div>
 </div>

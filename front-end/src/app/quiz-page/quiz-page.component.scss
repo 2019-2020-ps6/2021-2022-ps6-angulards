@@ -8,9 +8,9 @@
 
 .img-container {
   background-color: #3f51b5;
-  width: max(30%, 400px);
-  height: max(30%, 400px);
-  margin: 2em auto auto;
+  width: 200px;
+  height: 300px;
+  object-fit: fill ;
 }
 
 .answer-box-container {
@@ -24,7 +24,12 @@
   margin: 0.3em 0.5em 0.3em 0.5em;
   background-color: #5fbae9;
 }
-
+.answer-box:hover{
+  cursor: pointer;
+}
+.passer:hover{
+  cursor: pointer;
+}
 button {
   display: block;
   padding: 0.2em 1em 0.2em 1em;

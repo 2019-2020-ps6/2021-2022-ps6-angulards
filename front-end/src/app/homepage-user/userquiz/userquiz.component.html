@@ -1,11 +1,26 @@
-<div *ngIf="quiz" class="card">
-  <h2>
-    Nom : {{quiz.name}}
-  </h2>
-  <span>
-    <br>Theme: {{quiz.theme}}
-  </span>
-  <br/>
-  <button routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="button-card">Lancer le Quiz</button>
-  <router-outlet></router-outlet>
-</div>
+<!--<div *ngIf="quiz" class="card">-->
+
+<!--  <h2>-->
+<!--    Nom : {{quiz.name}}-->
+<!--  </h2>-->
+<!--  <span>-->
+<!--    <br>Theme: {{quiz.theme}}-->
+<!--  </span>-->
+<!--  <br/>-->
+<!--  <button routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="button-card">Lancer le Quiz</button>-->
+<!--  <router-outlet></router-outlet>-->
+
+<!--</div>-->
+
+<main class="page-content">
+  <div class="card">
+    <div class="content">
+      <h2 class="title">{{quiz.name}}</h2>
+        <span>
+          <br>Theme: {{quiz.theme}}
+        </span>
+      <button routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="btn">Lancer Le quiz</button>
+    </div>
+  </div>
+
+</main>

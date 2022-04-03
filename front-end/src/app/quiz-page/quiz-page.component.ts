@@ -12,16 +12,9 @@ import {QuizService} from '../../services/quiz.service';
 })
 export class QuizPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public quizService: QuizService) {
-    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-      this.quiz = quiz;
-    });
-  }
-
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
   public DISPLAY_NO_ANSWER = 0;
-
   quiz: Quiz;
   question: Question;
   answer: Answer;
@@ -32,6 +25,11 @@ export class QuizPageComponent implements OnInit {
   displayResult = this.DISPLAY_NO_ANSWER;
   filteredAnswers: Answer[];
 
+  constructor(private route: ActivatedRoute, public quizService: QuizService) {
+    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+      this.quiz = quiz;
+    });
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -47,7 +45,7 @@ export class QuizPageComponent implements OnInit {
     this.answer = answer;
     console.log('remove wrong answer');
     console.log(this.answer.value);
-    const idToDelete =  this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
+    const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
     delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
   }
 

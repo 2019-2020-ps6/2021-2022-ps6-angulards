@@ -7,8 +7,12 @@
               alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
               width="600" height="600"></div>
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
-      <div class="answer-box-container" *ngFor="let ans of quiz.questions[indexQuiz].answers;">
-        <button (click)="takeActionOnClick(ans)" class="answer-box">{{ans.value}}</button>
+      <div class="answer-box-container">
+        <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
+          <div *ngIf="ans.value">
+            <button (click)="takeActionOnClick(ans)" class="answer-box">{{ans.value}}</button>
+          </div>
+        </div>
       </div>
   </div>
 

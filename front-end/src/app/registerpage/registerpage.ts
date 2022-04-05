@@ -16,25 +16,15 @@ export class RegisterComponent implements OnInit{
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       fullname: [''],
-      email: [''],
       password: [''],
       statcode: ['']
     });
   }
   // tslint:disable-next-line:typedef
   signUp(){
-    this.http.post<any>('http://localhost:8000/signUpUsers', this.signupForm.value)
-      .subscribe(res => {
-        this.signupForm.reset();
-        this.router.navigate(['login']);
-      }, err => {
-        alert('Erreur de connexion');
-      });
-
   }
 
   redirectLogin(): void {
-    this.router.navigateByUrl('/login').then();
   }
 
 

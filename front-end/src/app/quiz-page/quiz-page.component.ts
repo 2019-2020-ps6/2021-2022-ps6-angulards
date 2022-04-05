@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Answer, Question} from '../../models/question.model';
+import {GameSession} from '../../models/gamesession.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../models/quiz.model';
 import {QuizService} from '../../services/quiz.service';
@@ -24,6 +25,7 @@ export class QuizPageComponent implements OnInit {
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   filteredAnswers: Answer[];
+  gameSession: GameSession;
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
@@ -34,6 +36,12 @@ export class QuizPageComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quizService.setSelectedQuiz(this.id);
+    this.gameSession = {
+      userId: 'placeholder', // comment est-ce qu'on sait qui est en train de jouer?
+      quizId: this.id,
+      questionIndex: 0,
+      score: 0
+    };
   }
 
   getQuestionsLength(): number {

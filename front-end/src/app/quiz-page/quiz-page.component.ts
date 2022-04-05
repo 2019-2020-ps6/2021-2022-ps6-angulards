@@ -58,6 +58,7 @@ export class QuizPageComponent implements OnInit {
 
 
   /**
+   * ### DIFFICULTY ONE ###
    * Remove a wrong answer
    * Check if answer is correct
    * Don't remove if there is not enough wrong answers
@@ -80,10 +81,23 @@ export class QuizPageComponent implements OnInit {
     }
   }
 
+  /**
+   * ### DIFFICULTY 2 ###
+   * @param answer answer to remove
+   */
   private removeWrongAnswerElo(answer): void {
     console.log('elo: ', this.elo);
-    if (this.elo > 0) {
-      this.removeWrongAnswer(answer, 1);
+    if (this.elo < 0) {
+      // si une rep correct
+      // min reponse : 4
+      // max reponse : inf
+      this.removeWrongAnswer(answer, 3);
+    }
+    if (this.elo >= 0) { //  && this.elo < 3
+      // si une rep correct
+      // min reponse : 6
+      // max reponse : inf
+      this.removeWrongAnswer(answer, 5);
     }
   }
 
@@ -125,7 +139,7 @@ export class QuizPageComponent implements OnInit {
     } else {
       this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
-      console.log(this.quiz.theme);
+      console.log('theme :', this.quiz.theme);
       if (this.quiz.theme === 'A') {
         this.removeWrongAnswerElo(answer);
       } else {

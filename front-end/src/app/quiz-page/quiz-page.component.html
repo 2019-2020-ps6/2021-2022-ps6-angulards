@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="this.endForScore===false">
 
   <!-- Answers -->
   <div id="formContent">
@@ -39,4 +39,13 @@
       <button *ngIf="isEnd()" (click)="finished()"class="passer">fin</button>
     </div>
   </div>
+</div>
+
+<div class="wrapper fadeInDown" *ngIf="this.endForScore===true" >
+  <script>console.log(isEnd())</script>
+  <h3>Score {{this.scoreGame}} / {{this.getQuestionsLength()}}</h3>
+  Bravo !
+  <br>
+  tu as fini le quiz!
+  <button (click)="navigateToQuizPage()"> Retour à la liste des quiz </button>
 </div>

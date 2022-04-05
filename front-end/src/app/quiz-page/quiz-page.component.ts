@@ -16,6 +16,7 @@ export class QuizPageComponent implements OnInit {
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
   public DISPLAY_NO_ANSWER = 0;
+  endForScore: boolean;
   quiz: Quiz;
   question: Question;
   answer: Answer;
@@ -26,6 +27,7 @@ export class QuizPageComponent implements OnInit {
   displayResult = this.DISPLAY_NO_ANSWER;
   filteredAnswers: Answer[];
   gameSession: GameSession;
+  scoreGame = 0;
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
@@ -36,6 +38,7 @@ export class QuizPageComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quizService.setSelectedQuiz(this.id);
+    this.endForScore = false;
     this.gameSession = {
       userId: 'placeholder', // comment est-ce qu'on sait qui est en train de jouer?
       quizId: this.id,
@@ -72,6 +75,8 @@ export class QuizPageComponent implements OnInit {
     if (corrects.includes(answer)) {
       this.elo++;
       this.displayResult = this.DISPLAY_RIGHT_ANSWER;
+      this.scoreGame++;
+      console.log('Score game : ' + this.scoreGame);
     } else {
       this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
@@ -97,6 +102,13 @@ export class QuizPageComponent implements OnInit {
   finished(): void {
     // on finish
     console.log('End screen here');
+    console.log((this.scoreGame ) / (this.getQuestionsLength() + 1));
+    console.log('Nombre qst total : ' + this.getQuestionsLength() + 1);
+    this.endForScore = true;
+  }
+
+  // tslint:disable-next-line:typedef
+  navigateToQuizPage(){
     this.router.navigate(['userquiz']);
   }
 }

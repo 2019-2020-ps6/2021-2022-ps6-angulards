@@ -25,4 +25,9 @@ export class UserQuizListComponent implements OnInit {
   quizPlay(quiz: Quiz): void {
     this.router.navigate(['/quizzes/' + quiz.id]).then();
   }
+
+  // tslint:disable-next-line:typedef
+  goToStatPage(){
+    this.router.navigate(['stat']).then();
+  }
 }

@@ -9,6 +9,7 @@ import {RegisterComponent} from './registerpage/registerpage';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import {QuizFormComponent} from './quizzes/quiz-form/quiz-form.component';
 import {QuizPageComponent} from './quiz-page/quiz-page.component';
+import {Statistic} from './statistic/statistic';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -20,7 +21,9 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'userquiz', component: UserQuizListComponent},
     {path: 'quiz-form', component: QuizFormComponent},
-    {path: 'quizzes/:id', component: QuizPageComponent}
+    {path: 'quizzes/:id', component: QuizPageComponent},
+    {path: 'stat', component: Statistic}
+
 ];
 
 @NgModule({

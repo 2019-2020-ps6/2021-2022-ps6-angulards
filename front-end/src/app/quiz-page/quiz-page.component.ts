@@ -100,15 +100,12 @@ export class QuizPageComponent implements OnInit {
   }
 
   finished(): void {
-    // on finish
-    console.log('End screen here');
     console.log((this.scoreGame ) / (this.getQuestionsLength() + 1));
     console.log('Nombre qst total : ' + this.getQuestionsLength() + 1);
     this.endForScore = true;
   }
 
-  // tslint:disable-next-line:typedef
-  navigateToQuizPage(){
-    this.router.navigate(['userquiz']);
+  navigateToQuizPage(): void{
+    this.router.navigate(['userquiz']).then();
   }
 }

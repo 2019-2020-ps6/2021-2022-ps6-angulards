@@ -50,7 +50,9 @@ export class QuizPageComponent implements OnInit {
 
 
   removeWrongAnswer(answer: Answer): void {
-    if (answer.isCorrect) { return; }
+    if (answer.isCorrect) {
+      return;
+    }
     this.answer = answer;
     console.log('remove wrong answer: ' + this.answer.value);
     const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
@@ -74,9 +76,10 @@ export class QuizPageComponent implements OnInit {
       this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
 
-      if (this.quiz.theme === 'A') {
+      if (this.quiz.theme === 'B') {
         this.removeWrongAnswer(answer);
-      } else if (this.quiz.theme === 'B') {
+      } else {
+        // par défaut on enlève les réponses fausses
         this.removeWrongAnswer(answer);
       }
     }

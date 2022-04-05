@@ -62,3 +62,105 @@ button {
 .show-answer-container {
   height: 70%;
 }
+
+
+@mixin butterfly($wing-img, $wing-width, $wing-height) {
+  width: ( $wing-width * 2 ) - 10;
+  height: $wing-height;
+
+  /* Wings */
+  &:before,
+  &:after {
+    position: absolute;
+    width: $wing-width;
+    height: $wing-height;
+
+    content: url($wing-img);
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  /* Right wing */
+  &:before {
+    transform: rotate3d(0, 0, 0, 180deg); /* Mirror left wing */
+    transform-origin: center right;
+    animation-name: rightwingani;
+  }
+
+  /* Left wing */
+  &:after {
+    transform-origin: top right;
+    animation-name: leftwingani;
+  }
+
+}
+
+
+@keyframes rightwingani {
+  from {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+  30% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 100deg);
+  }
+  70% {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+}
+
+@keyframes leftwingani {
+  from {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+
+  30%  {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+
+  50% {
+    transform: rotate3d(0, 1, 0, 80deg);
+  }
+
+  70%{
+    transform: rotate3d(0, 1, 0, 00deg);
+  }
+
+  to{
+    transform: rotate3d(0, 1, 0, 00deg);
+  }
+}
+
+.butterfly-large-right{
+  @include butterfly('https://s3-us-west-2.amazonaws.com/s.cdpn.io/5536/wing.png', 178px, 208px);
+  transform: rotate(-20deg) translate(30px, 60px) scale(0.8, 0.8);
+  transform-origin: center center;
+  position: absolute;
+  right: 80px;
+  top :180px;
+}
+
+.butterfly-large-left{
+  @include butterfly('https://s3-us-west-2.amazonaws.com/s.cdpn.io/5536/wing.png', 178px, 208px);
+  transform: rotate(20deg) translate(30px, 60px) scale(0.8, 0.8);
+  transform-origin: center center;
+  position: absolute;
+  left: 80px;
+  top :150px;
+}
+
+.butterfly-small {
+  @include butterfly('https://s3-us-west-2.amazonaws.com/s.cdpn.io/5536/wing-small.png', 75px, 87px);
+  transform: rotate(-0deg)  scale(0.8, 0.8);
+  transform-origin: top left;
+  position: absolute;
+  top: 620px;
+  left: 700px;
+
+}

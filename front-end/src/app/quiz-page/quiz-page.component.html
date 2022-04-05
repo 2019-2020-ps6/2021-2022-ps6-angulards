@@ -20,10 +20,22 @@
   <div class="show-answer-container">
     <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="question-right">
       <h3>Bravo !!</h3>
+
+
     </div>
+    <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="butterfly-large-left">
+
+
+
+    </div>
+    <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="butterfly-large-right"  >
+
+    </div>
+
     <div *ngIf="displayResult === DISPLAY_WRONG_ANSWER" class="question-wrong">
-      <h3>Tu feras mieux la prochaine fois!</h3>
+      <h3>Les papillons vont bientôt s'afficher</h3>
     </div>
+
   </div>
 
   <!-- Page navigation -->
@@ -43,7 +55,7 @@
 
 <div class="wrapper fadeInDown" *ngIf="this.endForScore===true" >
   <script>console.log(isEnd())</script>
-  <h3>Score {{this.scoreGame}} / {{this.getQuestionsLength()}}</h3>
+  <h3>Score {{this.scoreGame}} / {{this.getQuestionsLength()+1}}</h3>
   Bravo !
   <br>
   tu as fini le quiz!

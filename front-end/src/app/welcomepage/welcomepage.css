@@ -8,7 +8,8 @@
   width: 90%;
   max-width: 600px;
   position: relative;
-  padding: 0;
+  padding: 1px;
+
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -16,4 +17,23 @@
 
 .imgWelcome {
   width: 100%;
+
+}
+.wrapper2 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 841px;
+  min-height: 200%;
+  margin: 0 auto;
+
+}
+.fadeInDown2 {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }

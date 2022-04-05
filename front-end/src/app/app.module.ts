@@ -16,10 +16,9 @@ import { QuestionFormComponent } from './questions/question-form/question-form.c
 import { QuestionComponent } from './questions/question/question.component';
 import { UserComponent } from './users/user/user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
-import { UserListComponent } from './users/user-list/user-list.component';
+import { RegisterComponent } from './users/register/register.component';
 import {WelcomePageComponent} from './welcomepage/welcomepage';
 import {LoginComponent} from './login/login';
-import {RegisterComponent} from './registerpage/registerpage';
 import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import { QuizPageComponent } from './quiz-page/quiz-page.component';
@@ -38,10 +37,8 @@ import {Statistic} from './statistic/statistic';
     QuestionComponent,
     UserComponent,
     UserFormComponent,
-    UserListComponent,
     WelcomePageComponent,
     LoginComponent,
-    RegisterComponent,
     UserQuizComponent,
     UserQuizListComponent,
     QuizPageComponent,

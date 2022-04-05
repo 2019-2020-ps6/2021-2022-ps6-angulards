@@ -1,26 +1,29 @@
-<div class="card">
-    <h2>Create a new user</h2>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2>Page d'inscription</h2>
     <form class="user-form" [formGroup]="userForm">
+
       <label for="firstName">
         First name <br>
-        <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+        <input class="fadeIn second" type="text" id="firstName" [formControlName]="'firstName'">
       </label>
       <br>
       <label for="lastName">
         Last name <br>
-        <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+        <input class="fadeIn second" type="text" id="lastName" [formControlName]="'lastName'">
       </label>
       <br>
       <label for="statcode">
-        Last name <br>
-        <input class="input-custom" type="text" id="statcode" [formControlName]="'statcode'">
+        Code Statistique <br>
+        <input class="fadeIn second" type="text" id="statcode" [formControlName]="'statcode'">
       </label>
       <br>
       <label for="password">
-        Last name <br>
-        <input class="input-custom" type="text" id="password" [formControlName]="'password'">
+        Mot de passe <br>
+        <input class="fadeIn second" type="text" id="password" [formControlName]="'password'">
       </label>
       <br>
-      <button type="submit" class="button-card" (click)="addUser()">Create</button>
+      <button type="submit" class="button-card" (click)="addUser()" routerLink='/login'>Create</button>
     </form>
   </div>
+</div>

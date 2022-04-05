@@ -50,6 +50,7 @@ export class QuizPageComponent implements OnInit {
 
 
   removeWrongAnswer(answer: Answer): void {
+    if (answer.isCorrect) { return; }
     this.answer = answer;
     console.log('remove wrong answer: ' + this.answer.value);
     const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
@@ -65,13 +66,17 @@ export class QuizPageComponent implements OnInit {
     console.log('clicked on = ' + answer.value);
     const corrects = this.getCorrectAnswer();
     corrects.forEach(x => console.log(x.value));
+
     if (corrects.includes(answer)) {
       this.elo++;
       this.displayResult = this.DISPLAY_RIGHT_ANSWER;
     } else {
       this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
-      if (!answer.isCorrect) {
+
+      if (this.quiz.theme === 'A') {
+        this.removeWrongAnswer(answer);
+      } else if (this.quiz.theme === 'B') {
         this.removeWrongAnswer(answer);
       }
     }

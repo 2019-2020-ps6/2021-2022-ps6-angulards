@@ -16,6 +16,8 @@
 .answer-box-container {
   display: inline-flex;
   flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .answer-box {

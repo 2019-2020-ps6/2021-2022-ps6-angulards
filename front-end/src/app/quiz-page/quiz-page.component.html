@@ -55,9 +55,20 @@
 
 <div class="wrapper fadeInDown" *ngIf="this.endForScore===true" >
   <script>console.log(isEnd())</script>
-  <h3>Score {{this.scoreGame}} / {{this.getQuestionsLength()+1}}</h3>
-  Bravo !
-  <br>
-  tu as fini le quiz!
-  <button (click)="navigateToQuizPage()"> Retour à la liste des quiz </button>
+
+  <div class="wrapper fadeInDown">
+    <div class="question-center">
+      <!-- Tabs Titles -->
+      <img class="imgWelcome" width="400" src="https://images.assetsdelivery.com/compings_v2/maxborovkov/maxborovkov1804/maxborovkov180400017.jpg" alt=""/>
+
+      <!-- Login Form -->
+      <form>
+
+        Tu as fini le quiz des {{quiz.theme}}
+      </form>
+
+    </div>
+    <br>
+    <input (click)="navigateToQuizPage()" class="fadeIn second" type="submit"
+           value="Retour à la liste des quiz">
 </div>

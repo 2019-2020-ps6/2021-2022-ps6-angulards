@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {GameSession} from "../models/gamesession.model";
+import {GameSession} from '../models/gamesession.model';
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';

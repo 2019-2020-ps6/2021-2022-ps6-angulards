@@ -13,6 +13,7 @@ import {QuizService} from '../../services/quiz.service';
 })
 export class QuizPageComponent implements OnInit {
 
+  // enum answer state
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
   public DISPLAY_NO_ANSWER = 0;
@@ -47,26 +48,70 @@ export class QuizPageComponent implements OnInit {
     };
   }
 
+  /**
+   * return the number of questions in the quiz
+   * used for isEnd calculation
+   */
   getQuestionsLength(): number {
     return this.quiz.questions.length - 1;
   }
 
 
-  removeWrongAnswer(answer: Answer): void {
+  /**
+   * Remove a wrong answer
+   * Check if answer is correct
+   * Don't remove if there is not enough wrong answers
+   * @param answer answer to remove
+   * @param miniWrongAnswer minimum wrong answer to keep
+   */
+  private removeWrongAnswer(answer: Answer, miniWrongAnswer: number): void {
     if (answer.isCorrect) {
       return;
     }
     this.answer = answer;
-    console.log('remove wrong answer: ' + this.answer.value);
-    const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
-    delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
+
+    const wrongs = this.getWrongAnswer();
+    if (wrongs.length > miniWrongAnswer) {
+      const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
+      delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
+    } else {
+      console.log('nb wrong answer ', wrongs.length);
+      console.log('nb mini wrong answer ', miniWrongAnswer);
+    }
   }
 
-  getCorrectAnswer(): Array<Answer> {
+  private removeWrongAnswerElo(answer): void {
+    console.log('elo: ', this.elo);
+    if (this.elo > 0) {
+      this.removeWrongAnswer(answer, 1);
+    }
+  }
+
+  /**
+   * Get correct answers of the current question
+   * return: Array of correct answer(s)
+   */
+  private getCorrectAnswer(): Array<Answer> {
     // this.quiz.questions[this.indexQuiz].answers.forEach((value, index) => console.log(value));
     return this.quiz.questions[this.indexQuiz].answers.filter(x => x.isCorrect);
   }
 
+  /**
+   * Get wrong answers of the current question
+   * return: Array of wrong answer(s)
+   */
+  private getWrongAnswer(): Array<Answer> {
+    return this.quiz.questions[this.indexQuiz].answers.filter(x => !x.isCorrect);
+  }
+
+  /**
+   * do action depending on the click
+   *
+   * correct answer -> incrementing elo to improve difficulty
+   * wrong answer -> decrementing elo and calling method depending on the theme
+   *
+   * @param answer answer clicked by the user
+   */
   takeActionOnClick(answer): void {
     console.log('clicked on = ' + answer.value);
     const corrects = this.getCorrectAnswer();
@@ -80,32 +125,41 @@ export class QuizPageComponent implements OnInit {
     } else {
       this.elo--;
       this.displayResult = this.DISPLAY_WRONG_ANSWER;
-
-      if (this.quiz.theme === 'B') {
-        this.removeWrongAnswer(answer);
+      console.log(this.quiz.theme);
+      if (this.quiz.theme === 'A') {
+        this.removeWrongAnswerElo(answer);
       } else {
         // par défaut on enlève les réponses fausses
-        this.removeWrongAnswer(answer);
+        this.removeWrongAnswer(answer, 0);
       }
     }
     this.selectedAnswer.set(this.indexQuiz, answer);
   }
 
+  /**
+   * First page of the quiz
+   */
   isStart(): boolean {
     return this.indexQuiz < 1;
   }
 
+  /**
+   * Last page of the quiz
+   */
   isEnd(): boolean {
     return this.indexQuiz >= this.getQuestionsLength();
   }
 
+  /**
+   * At the end of the quiz, used to display score
+   */
   finished(): void {
-    console.log((this.scoreGame ) / (this.getQuestionsLength() + 1));
+    console.log((this.scoreGame) / (this.getQuestionsLength() + 1));
     console.log('Nombre qst total : ' + this.getQuestionsLength() + 1);
     this.endForScore = true;
   }
 
-  navigateToQuizPage(): void{
+  navigateToQuizPage(): void {
     this.router.navigate(['userquiz']).then();
   }
 }

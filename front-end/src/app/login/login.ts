@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: [''],
+      firstName: [''],
       password: ['']
 
     });
@@ -27,11 +27,12 @@ export class LoginComponent implements OnInit {
   redirectHome(): void {
     this.router.navigateByUrl('/userquiz').then();
   }
+
   login(): void {
-    this.http.get<any>('http://localhost:8000/signUpUsers')
+    this.http.get<any>('http://localhost:9428/api/users')
       .subscribe(res => {
         const user = res.find((a: any) => {
-          return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password;
+          return a.firstName === this.loginForm.value.firstName && a.password === this.loginForm.value.password;
 
         });
         if (user){

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"json-server --watch C:\\Users\\Admin\\Documents\\GitHub\\2021-2022-ps6-angulards\\auth.json --port 8000\"",
+    "start": " \"ng serve\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

@@ -93,6 +93,7 @@ router.delete('/:quizId', (req, res) => {
 router.post('/response', (req, res) => {
   try {
     console.log('    before creating response')
+    console.log(req.body)
     const response = Responses.create({ ...req.body })
     console.log('    response created :', response)
     res.status(201).json(response)

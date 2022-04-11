@@ -5,6 +5,7 @@ import { Quiz } from '../models/quiz.model';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import {Response} from '../models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,7 @@ export class QuizService {
   }
 
   setSelectedQuiz(quizId: string): void {
+    console.log(quizId);
     const urlWithId = this.quizUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected$.next(quiz);
@@ -87,6 +89,16 @@ export class QuizService {
   deleteQuestion(quiz: Quiz, question: Question): void {
     const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath + '/' + question.id;
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
+  }
+
+  addResponseScore(quizId: string, questionId: string, userId: string, wrongAnswerCount: number): void{
+    const response: Response = {quizId, questionId, userId, wrongAnswerCount} as Response;
+    console.log('before post request');
+    const responseUrl = this.quizUrl + '/response';
+    this.http.post<Response>(responseUrl, response, this.httpOptions).subscribe(() => (val) => {
+      console.log('POST call successful value returned in body',
+        val); });
+    console.log('post done');
   }
 
   /*
@@ -112,4 +124,5 @@ export class QuizService {
     this.quizzes$.next(this.quizzes);
   }
   */
+
 }

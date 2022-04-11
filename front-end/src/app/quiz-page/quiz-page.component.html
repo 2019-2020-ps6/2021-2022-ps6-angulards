@@ -44,9 +44,9 @@
       <button *ngIf="!isStart()" (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER" class="passer">précédente</button>
     </div>
     <div class="next-question">
-      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER" class="passer"
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER" class="passer"
       >passer</button>
-      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="this.indexQuiz = this.indexQuiz + 1; displayResult = DISPLAY_NO_ANSWER"
+      <button *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
       class="passer">suivante</button>
       <button *ngIf="isEnd()" (click)="finished()"class="passer">fin</button>
     </div>

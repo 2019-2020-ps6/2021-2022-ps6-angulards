@@ -18,7 +18,7 @@ import { UserComponent } from './users/user/user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { RegisterComponent } from './users/register/register.component';
 import {WelcomePageComponent} from './welcomepage/welcomepage';
-import {LoginComponent} from './login/login';
+import {LoginComponent} from './login/login.component';
 import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import { QuizPageComponent } from './quiz-page/quiz-page.component';

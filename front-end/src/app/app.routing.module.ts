@@ -4,7 +4,7 @@ import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { RegisterComponent } from './users/register/register.component';
 import {WelcomePageComponent} from './welcomepage/welcomepage';
-import {LoginComponent} from './login/login';
+import {LoginComponent} from './login/login.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import {QuizFormComponent} from './quizzes/quiz-form/quiz-form.component';
 import {QuizPageComponent} from './quiz-page/quiz-page.component';

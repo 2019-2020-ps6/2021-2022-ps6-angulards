@@ -27,8 +27,9 @@ export class QuizPageComponent implements OnInit {
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   filteredAnswers: Answer[];
-  gameSession: GameSession;
   scoreGame = 0;
+
+  wrongAnswerScore = new Map<string, number>();
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
@@ -40,12 +41,7 @@ export class QuizPageComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quizService.setSelectedQuiz(this.id);
     this.endForScore = false;
-    this.gameSession = {
-      userId: 'placeholder', // comment est-ce qu'on sait qui est en train de jouer?
-      quizId: this.id,
-      questionIndex: 0,
-      score: 0
-    };
+
   }
 
   /**
@@ -148,7 +144,37 @@ export class QuizPageComponent implements OnInit {
       }
     }
     this.selectedAnswer.set(this.indexQuiz, answer);
+
+    this.manageQuestionScore(answer);
   }
+
+  /**
+   * Increment the number of wrong answer for a specific user
+   */
+  manageQuestionScore(answer): void{
+    const corrects = this.getCorrectAnswer();
+    corrects.forEach(x => console.log(x.value));
+
+    if (!corrects.includes(answer)) {
+
+      const userId = localStorage.getItem('application-user');
+
+      if (!this.wrongAnswerScore.has(userId)) {
+        this.wrongAnswerScore.set(userId, 0);
+      }
+      this.wrongAnswerScore.set(userId, this.wrongAnswerScore.get(userId) + 1);
+
+    }
+
+  }
+
+  nextQuestion(): void{
+
+    this.indexQuiz = this.indexQuiz + 1;
+    const userId = localStorage.getItem('application-user');
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId) );
+  }
+
 
   /**
    * First page of the quiz

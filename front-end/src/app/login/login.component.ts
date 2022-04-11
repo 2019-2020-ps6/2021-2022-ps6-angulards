@@ -3,10 +3,12 @@ import {Router} from '@angular/router';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {any} from 'codelyzer/util/function';
+import {User} from '../../models/user.model';
+
 @Component({
   selector: 'app-login',
-  templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
@@ -29,15 +31,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    let userName: number;
     this.http.get<any>('http://localhost:9428/api/users')
       .subscribe(res => {
         const user = res.find((a: any) => {
+          userName = a.id;
           return a.firstName === this.loginForm.value.firstName && a.password === this.loginForm.value.password;
 
         });
         if (user){
           this.loginForm.reset();
           this.router.navigate(['userquiz']);
+          this.storeName(userName);
         }else {
           alert('User Not Found');
         }
@@ -47,6 +52,11 @@ export class LoginComponent implements OnInit {
       });
 
 
+  }
+
+  // tslint:disable-next-line:typedef
+  private storeName(userId: any) {
+    localStorage.setItem('application-user', userId);
   }
 
 }

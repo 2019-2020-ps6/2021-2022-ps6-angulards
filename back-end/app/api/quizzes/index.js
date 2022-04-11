@@ -2,7 +2,7 @@ const { Router } = require('express')
 const path = require('path')
 const formidable = require('formidable')
 // const fs = require('fs')
-const { Quiz } = require('../../models')
+const { Quiz, Responses } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 const QuestionsRouter = require('./questions')
 const { buildQuizz, buildQuizzes } = require('./manager')
@@ -84,6 +84,18 @@ router.delete('/:quizId', (req, res) => {
   try {
     Quiz.delete(req.params.quizId)
     res.status(204).end()
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+
+router.post('/response', (req, res) => {
+  try {
+    console.log('    before creating response')
+    const response = Responses.create({ ...req.body })
+    console.log('    response created :', response)
+    res.status(201).json(response)
   } catch (err) {
     manageAllErrors(res, err)
   }

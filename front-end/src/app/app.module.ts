@@ -23,6 +23,7 @@ import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import { QuizPageComponent } from './quiz-page/quiz-page.component';
 import {Statistic} from './statistic/statistic';
+import {SafePipe} from "../../SafePipe";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {Statistic} from './statistic/statistic';
     WelcomePageComponent,
     LoginComponent,
     UserQuizComponent,
+    SafePipe,
     UserQuizListComponent,
     QuizPageComponent,
     QuestionUploadComponent,

@@ -2,7 +2,19 @@
 
   <!-- Answers -->
   <div id="formContent">
-    <div><img class="img-container"
+
+    <div *ngIf="isVideo()">
+      <iframe
+            [src]="this.quiz.questions[this.indexQuiz].image.replace('watch?v=', 'embed/').
+    substring(0, this.quiz.questions[this.indexQuiz].image.indexOf('&') - 2) | safe"
+                   title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay;
+            clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+
+    </div>
+    <div *ngIf="!isVideo()" > <img class="img-container"
               src="{{quiz.questions[indexQuiz].image}}"
               alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
               ></div>
@@ -15,6 +27,7 @@
         </div>
       </div>
   </div>
+
 
   <!-- Reward -->
   <div class="show-answer-container">
@@ -34,6 +47,7 @@
 
     <div *ngIf="displayResult === DISPLAY_WRONG_ANSWER" class="question-wrong">
       <h3>Les papillons vont bientôt s'afficher</h3>
+
     </div>
 
   </div>
@@ -55,6 +69,8 @@
 
 <div class="wrapper fadeInDown" *ngIf="this.endForScore===true" >
   <script>console.log(isEnd())</script>
+
+
 
   <div class="wrapper fadeInDown">
     <div class="question-center">

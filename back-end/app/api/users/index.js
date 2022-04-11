@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { User } = require('../../models')
+const { User, Responses} = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 
 const router = new Router()
@@ -7,6 +7,15 @@ const router = new Router()
 router.get('/', (req, res) => {
   try {
     res.status(200).json(User.get())
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+router.get('/response', (req, res) => {
+  try {
+    console.log('I AM INSIDE')
+    res.status(200).json(Responses.get())
   } catch (err) {
     manageAllErrors(res, err)
   }

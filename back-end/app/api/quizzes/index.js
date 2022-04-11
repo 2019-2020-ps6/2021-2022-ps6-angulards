@@ -2,7 +2,8 @@ const { Router } = require('express')
 const path = require('path')
 const formidable = require('formidable')
 // const fs = require('fs')
-const { Quiz, Responses } = require('../../models')
+const { Quiz, Responses} = require('../../models')
+
 const manageAllErrors = require('../../utils/routes/error-management')
 const QuestionsRouter = require('./questions')
 const { buildQuizz, buildQuizzes } = require('./manager')
@@ -95,7 +96,7 @@ router.post('/response', (req, res) => {
     console.log('    before creating response')
     console.log(req.body)
     const response = Responses.create({ ...req.body })
-    console.log('    response created :', response)
+    console.log(response)
     res.status(201).json(response)
   } catch (err) {
     manageAllErrors(res, err)

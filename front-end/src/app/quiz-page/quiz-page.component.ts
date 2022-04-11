@@ -202,4 +202,10 @@ export class QuizPageComponent implements OnInit {
   navigateToQuizPage(): void {
     this.router.navigate(['userquiz']).then();
   }
+
+  isVideo(): boolean {
+    return this.quiz.questions[this.indexQuiz].image.includes('youtu');
+
+  }
+
 }

@@ -41,14 +41,13 @@ export class QuizPageComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quizService.setSelectedQuiz(this.id);
     this.endForScore = false;
-
   }
 
   /**
    * return the number of questions in the quiz
    * used for isEnd calculation
    */
-  getQuestionsLength(): number {
+  public getQuestionsLength(): number {
     return this.quiz.questions.length - 1;
   }
 
@@ -151,7 +150,7 @@ export class QuizPageComponent implements OnInit {
   /**
    * Increment the number of wrong answer for a specific user
    */
-  manageQuestionScore(answer): void{
+  manageQuestionScore(answer): void {
     const corrects = this.getCorrectAnswer();
     corrects.forEach(x => console.log(x.value));
 
@@ -168,11 +167,11 @@ export class QuizPageComponent implements OnInit {
 
   }
 
-  nextQuestion(): void{
+  nextQuestion(): void {
 
     this.indexQuiz = this.indexQuiz + 1;
     const userId = localStorage.getItem('application-user');
-    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId) );
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
   }
 
 
@@ -180,7 +179,7 @@ export class QuizPageComponent implements OnInit {
    * First page of the quiz
    */
   isStart(): boolean {
-    return this.indexQuiz < 1;
+    return this.indexQuiz === 0;
   }
 
   /**

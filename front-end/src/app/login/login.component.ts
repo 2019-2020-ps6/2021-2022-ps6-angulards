@@ -32,12 +32,10 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     let userName: number;
-    let userStatCode: number;
     this.http.get<any>('http://localhost:9428/api/users')
       .subscribe(res => {
         const user = res.find((a: any) => {
           userName = a.id;
-          userStatCode = a.statcode;
           return a.firstName === this.loginForm.value.firstName && a.password === this.loginForm.value.password;
 
         });
@@ -45,7 +43,6 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           this.router.navigate(['userquiz']);
           this.storeName(userName);
-          this.storeStatCode(userStatCode);
         }else {
           alert('User Not Found');
         }
@@ -60,11 +57,6 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line:typedef
   private storeName(userId: any) {
     localStorage.setItem('application-user', userId);
-  }
-
-  // tslint:disable-next-line:typedef
-  private storeStatCode(userStatCode: any) {
-    localStorage.setItem('user-statCode', userStatCode);
   }
 
 }

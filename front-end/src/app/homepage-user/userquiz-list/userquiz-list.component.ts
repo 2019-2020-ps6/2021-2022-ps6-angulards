@@ -12,7 +12,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./userquiz-list.component.scss']
 })
 export class UserQuizListComponent implements OnInit {
-  userStatCode: string;
+  userId: string;
   showStatcCodeInput = false ;
 
   public quizList: Quiz[] = [];
@@ -20,7 +20,7 @@ export class UserQuizListComponent implements OnInit {
   public statCodeForm!: FormGroup;
 
   constructor(private router: Router, public quizService: QuizService, private http: HttpClient,  private formBuilder: FormBuilder) {
-    this.userStatCode = localStorage.getItem('user-statCode');
+    this.userId = localStorage.getItem('application-user');
 
     this.quizService.quizzes$.subscribe((quizList) => {
       this.quizList = quizList;
@@ -44,12 +44,15 @@ export class UserQuizListComponent implements OnInit {
   }
 
   loginToStat(): void {
-    this.http.get<any>('http://localhost:9428/api/users')
+    const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
+    this.http.get<any>(urlWithId)
       .subscribe(res => {
-        const RightStatCode = res.find((a: any) => {
+          console.log('user : ' + res);
+          const RightStatCode = res.find((a: any) => {
+          console.log('user code : ' + a.statcode);
           return a.statcode === this.statCodeForm.value.statCode;
           });
-        if (RightStatCode){
+          if (RightStatCode){
             this.statCodeForm.reset();
             this.showStatcCodeInput = false;
             this.router.navigate(['stat']).then();

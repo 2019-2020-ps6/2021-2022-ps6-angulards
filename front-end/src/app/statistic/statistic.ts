@@ -12,13 +12,16 @@ import {Response} from '../../models/response.model';
   templateUrl: './statistic.html',
   styleUrls: ['./statistic.css']
 })
+
 // tslint:disable-next-line:component-class-suffix
 export class Statistic implements OnInit {
 
   userId: string;
 
-  response: Response;
-
+  question: Question[];
+  response: Response[];
+  // change users in url to get it from quizzes
+  responseURL = 'http://localhost:9428/api/users/response';
 
   ngOnInit(): void {
   }
@@ -26,19 +29,30 @@ export class Statistic implements OnInit {
   constructor(private router: Router, private http: HttpClient) {
     this.userId = localStorage.getItem('application-user');
     this.getNumberWrongAnswer();
+    //this.getQuestionsById();
   }
 
   getNumberWrongAnswer(): void {
-    /*
-    this.question = this.http.get<Question>('http://localhost:9428/api/quizzes/' + this.quizId + '/questions/' + this.questionId)
-      .subscribe(res => {});
-      */
 
-    this.http.get<Response>('http://localhost:9428/api/users/response')
+    this.http.get<Response[]>(this.responseURL)
       .subscribe(res => {
         console.log('liste de reponse : ', res);
         this.response = res;
       });
 
   }
+
+  /*getQuestionsById(): void {
+    console.log('quizId : ', this.response[0].quizId);
+    this.http.get<Question[]>('http://localhost:9428/api/quizzes/' + this.response[0].quizId + '/questions')
+      .subscribe(res => {
+        console.log('liste de reponse : ', res);
+        this.question = res;
+      });
+  }*/
+
+
+
+
+
 }

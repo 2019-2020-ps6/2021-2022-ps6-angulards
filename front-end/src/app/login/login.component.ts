@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
     let userName: number;
     this.http.get<any>('http://localhost:9428/api/users')
       .subscribe(res => {
-        const user = res.find((a: any) => {
+        console.log('the response = ' + res + ' password is '  + this.loginForm.value.password);
+
+        const user = Array.from(res).find((a: any) => {
           userName = a.id;
           return a.firstName === this.loginForm.value.firstName && a.password === this.loginForm.value.password;
 

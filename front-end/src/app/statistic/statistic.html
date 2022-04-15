@@ -1,12 +1,22 @@
 <button class="button-card" routerLink="/userquiz">Back</button>
 <br>
-Statistique de l'utilisateur {{this.userId}} :
+<div>
+  Statistique de l'utilisateur {{this.user.firstName}} {{this.user.lastName}} :
+</div>
+
 <br>
 
-<div class="question" *ngFor="let stat of this.response; let index = index">
-  <ul>
-    <li *ngIf="this.userId === this.response[index].userId">
-      <span> L'utilisateur a répondu faux à la question : {{this.response[index].questionId}} il lui a fallu {{this.response[index].wrongAnswerCount}} essai(s)</span>
-    </li>
-  </ul>
+<div class="question" *ngFor="let response of this.response; let index = index">
+  <div *ngIf="this.userId === response.userId">
+      <ul *ngFor="let quiz of this.quizList">
+        <li *ngIf="quiz.id === response.quizId ">
+          <span>Pour le quiz {{quiz.name}} de thème {{quiz.theme}} : </span>
+          <ol *ngFor="let question of quiz.questions">
+            <span *ngIf="question.id === response.questionId">
+              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essaie(s) à la question : {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
+            </span>
+          </ol>
+        </li>
+      </ul>
+  </div>
 </div>

@@ -6,6 +6,9 @@ import {HttpClient} from '@angular/common/http';
 import {any} from 'codelyzer/util/function';
 import {Question} from '../../models/question.model';
 import {Response} from '../../models/response.model';
+import {Quiz} from '../../models/quiz.model';
+import {QuizService} from '../../services/quiz.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-statistic',
@@ -17,19 +20,26 @@ import {Response} from '../../models/response.model';
 export class Statistic implements OnInit {
 
   userId: string;
+  user: User;
 
-  question: Question[];
+  // question: Question[];
   response: Response[];
   // change users in url to get it from quizzes
   responseURL = 'http://localhost:9428/api/users/response';
 
+  public quizList: Quiz[] = [];
+
   ngOnInit(): void {
   }
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, public quizService: QuizService) {
     this.userId = localStorage.getItem('application-user');
     this.getNumberWrongAnswer();
-    //this.getQuestionsById();
+    this.getUserById();
+
+    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
+      this.quizList = quizzes;
+    });
   }
 
   getNumberWrongAnswer(): void {
@@ -39,12 +49,25 @@ export class Statistic implements OnInit {
         console.log('liste de reponse : ', res);
         this.response = res;
       });
-
+    console.log('responses ' , this.response);
   }
 
-  /*getQuestionsById(): void {
+  getUserById(): void {
+    const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
+
+    this.http.get<User>(urlWithId)
+      .subscribe(res => {
+        console.log('user : ', res);
+        this.user = res;
+      });
+  }
+
+  /*
+  getQuestionsById(): void {
     console.log('quizId : ', this.response[0].quizId);
-    this.http.get<Question[]>('http://localhost:9428/api/quizzes/' + this.response[0].quizId + '/questions')
+    const urlWithId = 'http://localhost:9428/api/quizzes/' + this.response[0].quizId + '/questions';
+
+    this.http.get<Question[]>(urlWithId)
       .subscribe(res => {
         console.log('liste de reponse : ', res);
         this.question = res;

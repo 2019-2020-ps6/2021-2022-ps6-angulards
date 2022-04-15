@@ -4,6 +4,7 @@ import {Quiz} from '../../../models/quiz.model';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {User} from '../../../models/user.model';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class UserQuizListComponent implements OnInit {
   public quizList: Quiz[] = [];
 
   public statCodeForm!: FormGroup;
+  private code: string;
 
   constructor(private router: Router, public quizService: QuizService, private http: HttpClient,  private formBuilder: FormBuilder) {
     this.userId = localStorage.getItem('application-user');
@@ -40,30 +42,24 @@ export class UserQuizListComponent implements OnInit {
   // tslint:disable-next-line:typedef
   EnterStatCode(){
     // this.router.navigate(['stat']).then();
-    this.showStatcCodeInput = true;
+    this.showStatcCodeInput = !this.showStatcCodeInput;
   }
 
   loginToStat(): void {
     const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
-    this.http.get<any>(urlWithId)
+    this.http.get<User>(urlWithId)
       .subscribe(res => {
-          console.log('user : ' + res);
-          const RightStatCode = res.find((a: any) => {
-          console.log('user code : ' + a.statcode);
-          return a.statcode === this.statCodeForm.value.statCode;
+          console.log('user : ' + res.statcode);
+          this.code = res.statcode;
           });
-          if (RightStatCode){
+    console.log(this.code);
+    if (this.code === this.statCodeForm.value.statCode){
             this.statCodeForm.reset();
-            this.showStatcCodeInput = false;
+            this.showStatcCodeInput = !this.showStatcCodeInput;
             this.router.navigate(['stat']).then();
           }else {
             alert('Wrong Statistic Code, please retry');
           }
-        },
-        err => {
-          alert('Erreur de connextion');
-        });
-
 
   }
 

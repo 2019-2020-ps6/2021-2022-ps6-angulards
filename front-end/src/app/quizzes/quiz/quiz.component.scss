@@ -232,7 +232,7 @@
   --color: #a972cb;
   --hover: #cb72aa;
   height: 50px;
-  width: 100px;
+  width: 98px;
   text-align: center;
   line-height: 0.5em;
   font-size: 12px;
@@ -262,20 +262,22 @@
   --color: #8fc866;
   --hover: #66c887;
   height: 50px;
-  width: 100px;
+  width: 98px;
   text-align: center;
   line-height: 0.5em;
   font-size: 12px;
+
 }
 
 .offset {
   --color: #19bc8b;
   --hover: #f50707;
   height: 50px;
-  width: 100px;
+  width: 98px;
   text-align: center;
   line-height: 0.5em;
   font-size: 12px;
+
 }
 
 button {
@@ -315,4 +317,14 @@ h1 {
 code {
   color: #e4cb58;
   font: inherit;
+}
+div.relative {
+  position: relative;
+  left: 12px;
+  font-size: 16px;
+
+}
+div.relative2{
+  position: relative;
+  bottom: 30px;
 }

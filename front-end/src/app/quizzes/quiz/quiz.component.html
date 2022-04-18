@@ -7,8 +7,14 @@
 <!--    <button class="button-card" (click)="delete()">Supprimer</button>-->
 <!--    <button class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Editer</button>-->
 <!--</div>-->
-<figure class="snip1543">
-  <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2019-11/03/full/1572796865-0693.jpg?im=Resize,width=1200" alt="sample108" />
+<!--  <style>-->
+<!--    body {-->
+<!--      background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');-->
+<!--    }-->
+<!--  </style>-->
+<!--<body>-->
+<figure class="snip1543" xmlns:width="http://www.w3.org/1999/xhtml">
+  <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2019-11/03/full/1572796865-0693.jpg?im=Resize,width=1200" alt="sample108" style="width:100%;" />
   <figcaption>
 
     <h3>{{quiz.name}}</h3>
@@ -17,11 +23,15 @@
   </figcaption>
 
 </figure>
-<h5>
-<button class="slide" (click)="playQuiz()" >Jouer</button>
-<button class="fill " routerLink="/edit-quiz/{{quiz.id}}">Editer</button>
+<div  class="relative">
+  <b> Le nom du quiz : {{quiz.name}}   </b>
+</div>
+<div class ="relative2"><h5>
+  <button class="slide" (click)="playQuiz()" >Jouer</button>
+  <button class="fill " routerLink="/edit-quiz/{{quiz.id}}">Editer</button>
+  <button class="offset" (click)="delete()">Supprimer</button> </h5>
+</div>
 
-<button class="offset" (click)="delete()">Supprimer</button> </h5>
 
 <!--<figure class="snip1543 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample100.jpg" alt="sample100" />-->
 <!--  <figcaption>-->

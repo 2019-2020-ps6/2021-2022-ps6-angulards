@@ -168,10 +168,17 @@ export class QuizPageComponent implements OnInit {
   }
 
   nextQuestion(): void {
-
     this.indexQuiz = this.indexQuiz + 1;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
+  }
+
+  isAudioQuestion(): boolean {
+    return this.quiz.questions[this.indexQuiz].image == null && this.quiz.questions[this.indexQuiz].audio != null;
+  }
+
+  isImageQuestion(): boolean {
+    return this.quiz.questions[this.indexQuiz].image != null && this.quiz.questions[this.indexQuiz].audio == null;
   }
 
 
@@ -204,7 +211,6 @@ export class QuizPageComponent implements OnInit {
 
   isVideo(): boolean {
     return this.quiz.questions[this.indexQuiz].image.includes('youtu');
-
   }
 
 }

@@ -28,6 +28,8 @@ export class QuizPageComponent implements OnInit {
   displayResult = this.DISPLAY_NO_ANSWER;
   filteredAnswers: Answer[];
   scoreGame = 0;
+  nextQuestionType = 'image'; // can be image or audio
+
 
   wrongAnswerScore = new Map<string, number>();
 
@@ -88,12 +90,13 @@ export class QuizPageComponent implements OnInit {
       // max reponse : inf
       this.removeWrongAnswer(answer, 3);
     }
-    if (this.elo >= 0) { //  && this.elo < 3
+    if (this.elo >= 0 && this.elo < 3) {
       // si une rep correct
       // min reponse : 6
       // max reponse : inf
       this.removeWrongAnswer(answer, 5);
     }
+
   }
 
   /**
@@ -122,29 +125,52 @@ export class QuizPageComponent implements OnInit {
    * @param answer answer clicked by the user
    */
   takeActionOnClick(answer): void {
-    console.log('clicked on = ' + answer.value);
     const corrects = this.getCorrectAnswer();
-    corrects.forEach(x => console.log(x.value));
-
-    if (corrects.includes(answer)) {
-      this.elo++;
-      this.displayResult = this.DISPLAY_RIGHT_ANSWER;
-      this.scoreGame++;
-      console.log('Score game : ' + this.scoreGame);
-    } else {
-      this.elo--;
-      this.displayResult = this.DISPLAY_WRONG_ANSWER;
-      console.log('theme :', this.quiz.theme);
-      if (this.quiz.theme === 'A') {
-        this.removeWrongAnswerElo(answer);
-      } else {
-        // par défaut on enlève les réponses fausses
-        this.removeWrongAnswer(answer, 0);
-      }
-    }
+    if (corrects.includes(answer)) { this.onRightAnswer(); } else { this.onWrongAnswer(answer); }
     this.selectedAnswer.set(this.indexQuiz, answer);
-
+    this.changeCurrentQuestionType();
     this.manageQuestionScore(answer);
+  }
+
+  /**
+   * When user click the right answer
+   * Increment elo
+   * Change display with DISPLAY_RIGHT_ANSWER field
+   * increment score game for final result
+   * @private
+   */
+  private onRightAnswer(): void {
+    this.elo++;
+    this.displayResult = this.DISPLAY_RIGHT_ANSWER;
+    this.scoreGame++;
+    console.log('Score game : ' + this.scoreGame);
+  }
+
+  /**
+   * When user click the wrong answer
+   * Decrement elo, game score
+   * Change display on html using display field
+   * take action depending on the theme of the quiz
+   * @param answer wrong answer to remove if necessary
+   * @private
+   */
+  private onWrongAnswer(answer): void {
+    this.elo--;
+    this.displayResult = this.DISPLAY_WRONG_ANSWER;
+
+    if (this.quiz.theme === 'picto' || this.quiz.theme === 'A') {
+      this.removeWrongAnswerElo(answer);
+    } else {
+      this.removeWrongAnswer(answer, 0); // removing wrong answer till there is no more wrong answers available
+    }
+  }
+
+  private changeCurrentQuestionType(): void {
+    if (this.elo >= 3) {
+      this.nextQuestionType = 'image';
+    } else {
+      this.nextQuestionType = 'audio';
+    }
   }
 
   /**

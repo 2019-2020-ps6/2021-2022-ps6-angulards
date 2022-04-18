@@ -26,9 +26,10 @@ export class QuizPageComponent implements OnInit {
   selectedAnswer = new Map();
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
-  filteredAnswers: Answer[];
   scoreGame = 0;
   nextQuestionType = 'image'; // can be image or audio
+  indexOfImageQuestion = [];
+  indexOfAudioQuestion = [];
 
 
   wrongAnswerScore = new Map<string, number>();
@@ -181,12 +182,8 @@ export class QuizPageComponent implements OnInit {
     corrects.forEach(x => console.log(x.value));
 
     if (!corrects.includes(answer)) {
-
       const userId = localStorage.getItem('application-user');
-
-      if (!this.wrongAnswerScore.has(userId)) {
-        this.wrongAnswerScore.set(userId, 0);
-      }
+      if (!this.wrongAnswerScore.has(userId)) { this.wrongAnswerScore.set(userId, 0);}
       this.wrongAnswerScore.set(userId, this.wrongAnswerScore.get(userId) + 1);
 
     }
@@ -199,12 +196,12 @@ export class QuizPageComponent implements OnInit {
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
   }
 
-  isAudioQuestion(): boolean {
-    return this.quiz.questions[this.indexQuiz].image == null && this.quiz.questions[this.indexQuiz].audio != null;
+  isAudioQuestion(i): boolean {
+    return this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
   }
 
-  isImageQuestion(): boolean {
-    return this.quiz.questions[this.indexQuiz].image != null && this.quiz.questions[this.indexQuiz].audio == null;
+  isImageQuestion(i): boolean {
+    return this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
   }
 
 
@@ -212,6 +209,8 @@ export class QuizPageComponent implements OnInit {
    * First page of the quiz
    */
   isStart(): boolean {
+    this.orderQuestionByType();
+
     return this.indexQuiz === 0;
   }
 
@@ -239,4 +238,18 @@ export class QuizPageComponent implements OnInit {
     return this.quiz.questions[this.indexQuiz].image.includes('youtu');
   }
 
+  /**
+   * Store quiz index of questions by type
+   * @private
+   */
+  private orderQuestionByType(): void {
+    for (let i = 0; i <= this.getQuestionsLength(); i++) {
+      if (this.isImageQuestion(i)) {
+        this.indexOfImageQuestion.push(i);
+      }
+      if (this.isAudioQuestion(i)) {
+        this.indexOfAudioQuestion.push(i);
+      }
+    }
+  }
 }

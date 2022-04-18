@@ -8,5 +8,6 @@ export interface Question {
     id: string;
     label: string;
     answers: Answer[];
-    image: string;
+    image?: string;
+    audio?: string;
 }

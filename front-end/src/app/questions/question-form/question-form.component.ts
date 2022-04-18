@@ -27,7 +27,8 @@ export class QuestionFormComponent implements OnInit {
   private initializeQuestionForm(): void {
     this.questionForm = this.formBuilder.group({
       label: ['', Validators.required],
-      image: ['', Validators.required],
+      image: [''],
+      audio: [''],
       answers: this.formBuilder.array([])
     });
   }

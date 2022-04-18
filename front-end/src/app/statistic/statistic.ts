@@ -22,7 +22,6 @@ export class Statistic implements OnInit {
   userId: string;
   user: User;
 
-  // question: Question[];
   response: Response[];
   // change users in url to get it from quizzes
   responseURL = 'http://localhost:9428/api/users/response';
@@ -61,18 +60,6 @@ export class Statistic implements OnInit {
         this.user = res;
       });
   }
-
-  /*
-  getQuestionsById(): void {
-    console.log('quizId : ', this.response[0].quizId);
-    const urlWithId = 'http://localhost:9428/api/quizzes/' + this.response[0].quizId + '/questions';
-
-    this.http.get<Question[]>(urlWithId)
-      .subscribe(res => {
-        console.log('liste de reponse : ', res);
-        this.question = res;
-      });
-  }*/
 
 
 

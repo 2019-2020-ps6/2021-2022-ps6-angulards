@@ -4,9 +4,15 @@
 
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
-      Url de l'image ou de la video
+      Url de l'image
       <br>
       <input class="input-custom" type="text" id="image" [formControlName]="'image'">
+    </label>
+    <label for="label">
+      <br>
+      Url de l'audio ou de la vidéo
+      <br>
+      <input class="input-custom" type="text" id="audio" [formControlName]="'audio'">
     </label>
     <label for="label">
       <br>

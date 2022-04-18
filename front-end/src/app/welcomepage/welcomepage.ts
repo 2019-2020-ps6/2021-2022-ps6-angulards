@@ -17,5 +17,9 @@ export class WelcomePageComponent implements OnInit {
     this.router.navigateByUrl('/login').then();
   }
 
+  redirectAdminLogin(): void {
+    this.router.navigateByUrl('/admin-login').then();
+  }
+
 
 }

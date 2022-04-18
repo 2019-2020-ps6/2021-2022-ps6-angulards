@@ -27,8 +27,7 @@
   width: 841px;
   min-height: 200%;
   margin: 0 auto;
-
-
+  margin-bottom: 50px;
 }
 .fadeInDown2 {
   -webkit-animation-name: fadeInDown;

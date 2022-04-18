@@ -42,4 +42,9 @@ export class QuizListComponent implements OnInit {
   redirectToQuizForm(){
     this.router.navigateByUrl('/quiz-form').then();
   }
+
+  LogOut() {
+    localStorage.clear();
+    this.router.navigate(['/welcomepage']).then();
+  }
 }

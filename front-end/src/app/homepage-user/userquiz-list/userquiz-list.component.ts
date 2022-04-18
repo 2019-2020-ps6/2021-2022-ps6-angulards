@@ -63,4 +63,8 @@ export class UserQuizListComponent implements OnInit {
 
   }
 
+  LogOut() {
+    localStorage.clear();
+    this.router.navigate(['/welcomepage']).then();
+  }
 }

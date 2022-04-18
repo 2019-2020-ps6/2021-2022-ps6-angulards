@@ -2,6 +2,9 @@
   <br>
   <button (click)="EnterStatCode()" class="bi bi-bar-chart-line">Stat</button>
 </div>
+<div>
+  <button (click)="LogOut()" class="bi bi-box-arrow-right">Déconnexion</button>
+</div>
 
 <!-- StatCode Form -->
 <form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput">

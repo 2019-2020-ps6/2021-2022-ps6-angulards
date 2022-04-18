@@ -1,3 +1,8 @@
+<div>
+  <br>
+  <button (click)="LogOut()" class="bi bi-box-arrow-right">Déconnexion</button>
+</div>
+
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
         <app-quiz [quiz]="quiz" (quizPlayed)="playQuiz($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>

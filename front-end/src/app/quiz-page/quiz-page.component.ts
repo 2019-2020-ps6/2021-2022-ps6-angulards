@@ -27,9 +27,9 @@ export class QuizPageComponent implements OnInit {
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   scoreGame = 0;
+
   nextQuestionType = 'image'; // can be image or audio
-  indexOfImageQuestion = [];
-  indexOfAudioQuestion = [];
+  indexOfImageQuestion = []; indexOfAudioQuestion = [];
 
 
   wrongAnswerScore = new Map<string, number>();
@@ -179,22 +179,35 @@ export class QuizPageComponent implements OnInit {
    */
   manageQuestionScore(answer): void {
     const corrects = this.getCorrectAnswer();
-    corrects.forEach(x => console.log(x.value));
-
     if (!corrects.includes(answer)) {
       const userId = localStorage.getItem('application-user');
-      if (!this.wrongAnswerScore.has(userId)) { this.wrongAnswerScore.set(userId, 0);}
+      if (!this.wrongAnswerScore.has(userId)) { this.wrongAnswerScore.set(userId, 0); }
       this.wrongAnswerScore.set(userId, this.wrongAnswerScore.get(userId) + 1);
-
     }
-
   }
 
+  /**
+   * next question regarding question type
+   */
+  nextQuestion(): void {
+    console.log('Current elo ' + this.elo);
+    if (this.elo >= 3) {
+      this.indexQuiz = this.indexOfImageQuestion.pop();
+    } else {
+      this.indexQuiz = this.indexOfAudioQuestion.pop();
+    }
+    if (isNaN(this.indexQuiz)) { this.indexQuiz += 1; }
+    console.log('index quiz ' + this.indexQuiz);
+    const userId = localStorage.getItem('application-user');
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
+  }
+
+  /*
   nextQuestion(): void {
     this.indexQuiz = this.indexQuiz + 1;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
-  }
+  } */
 
   isAudioQuestion(i): boolean {
     return this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
@@ -209,9 +222,10 @@ export class QuizPageComponent implements OnInit {
    * First page of the quiz
    */
   isStart(): boolean {
-    this.orderQuestionByType();
-
-    return this.indexQuiz === 0;
+    if (this.indexQuiz === 0) {
+      this.orderQuestionByType();
+      return true;
+    }
   }
 
   /**

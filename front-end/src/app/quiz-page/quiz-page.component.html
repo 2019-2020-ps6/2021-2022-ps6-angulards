@@ -20,10 +20,11 @@
     ></div>
 
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
-    <div class="answer-box-container">
+    <div class="form">
       <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
-        <div *ngIf="ans">
-          <button (click)="takeActionOnClick(ans)" class="answer-box">{{ans.value}}</button>
+        <div class="inputGroup" *ngIf="ans">
+          <button (click)="takeActionOnClick(ans)" class="custom-btn btn-11">{{ans.value}}</button>
+
         </div>
       </div>
     </div>
@@ -45,17 +46,17 @@
   <div class="page-switcher-container">
     <div class="previous-question">
       <button (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER" *ngIf="!isStart()"
-              class="passer">précédente
+              class="custom-btn btn-1mod"> <-  précédente
       </button>
     </div>
     <div class="next-question">
       <button (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
-              *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" class="passer">passer
+              *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" class="custom-btn btn-1">passer  ->
       </button>
       <button (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
-              *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" class="passer">suivante
+              *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" class="custom-btn btn-1">suivante  ->
       </button>
-      <button (click)="finished()" *ngIf="isEnd()" class="passer">fin</button>
+      <button (click)="finished()" *ngIf="isEnd()" class="custom-btn btn-1">fin</button>
     </div>
   </div>
 </div>

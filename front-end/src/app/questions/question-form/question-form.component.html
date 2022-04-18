@@ -1,36 +1,62 @@
-<div class="card">
-  <h2>Créer une nouvelle question</h2>
-  <!--<app-question-upload [uploadType]="uploadType"></app-question-upload>-->
 
-  <form class="quiz-form" [formGroup]="questionForm">
-    <label for="label">
-      Url de l'image
-      <br>
-      <input class="input-custom" type="text" id="image" [formControlName]="'image'">
-    </label>
-    <label for="label">
-      <br>
-      Url de l'audio ou de la vidéo
-      <br>
-      <input class="input-custom" type="text" id="audio" [formControlName]="'audio'">
-    </label>
-    <label for="label">
-      <br>
-      Titre <br>
-      <input class="input-custom" type="text" id="label" [formControlName]="'label'">
-    </label>
+
+<div class="container">
+  <form id ="contact" class="quiz-form" [formGroup]="questionForm">
+    <h3>Créer une nouvelle question
+    </h3>
+
+
+<!--    <label for="label">-->
+<!--      Url de l'image-->
+<!--      <br>-->
+<!--      <input class="input-custom" type="text" id="image" [formControlName]="'image'">-->
+<!--    </label>-->
+    <fieldset>
+      <input placeholder=" Url de l'image" type="text" id="image" [formControlName]="'image'" >
+    </fieldset>
+<!--    <label for="label">-->
+<!--      <br>-->
+<!--      Url de l'audio ou de la vidéo-->
+<!--      <br>-->
+<!--      <input class="input-custom" type="text" id="audio" [formControlName]="'audio'">-->
+<!--    </label>-->
+    <fieldset>
+      <input placeholder="Url de l'audio ou de la vidéo" type="text" id="audio" [formControlName]="'audio'" >
+    </fieldset>
+
+<!--    <label for="label">-->
+<!--      <br>-->
+<!--      Titre <br>-->
+<!--      <input class="input-custom" type="text" id="label" [formControlName]="'label'">-->
+<!--    </label>-->
+    <fieldset>
+      <input placeholder="Titre" type="text" id="label" [formControlName]="'label'" >
+    </fieldset>
+
     <br>
     <button class="button-card" (click)="addAnswer()">Ajouter une réponse</button>
     <div class="answer" formArrayName="answers">
       <div *ngFor="let address of answers.controls; let i=index">
         <div class="answer-form" [formGroupName]="i">
-          <label>
-            Réponse
-            <input type="text" [formControlName]="'value'">
-            <br>
-            correcte ?
-            <input type="checkbox" [formControlName]="'isCorrect'">
-          </label>
+<!--          <label>-->
+<!--            Réponse-->
+<!--            <input type="text" [formControlName]="'value'">-->
+<!--            <br>-->
+<!--            correcte ?-->
+<!--            <input type="checkbox" [formControlName]="'isCorrect'">-->
+<!--          </label>-->
+          <fieldset>
+            <input placeholder="Réponse" type="text" [formControlName]="'value'" >
+<!--            <input ptype="checkbox" [formControlName]="'isCorrect'">-->
+          </fieldset>
+
+
+            <label> correcte ?
+              <input  class="roundedTwo" type="checkbox" [formControlName]="'isCorrect'"></label>
+
+
+
+
         </div>
       </div>
     </div>

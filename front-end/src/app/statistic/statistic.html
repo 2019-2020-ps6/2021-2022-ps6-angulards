@@ -1,24 +1,23 @@
-<button class="button-card" routerLink="/userquiz">Back</button>
 <br>
+<button class="button-card" routerLink="/userquiz">Back</button>
+<br><br>
 <div>
   Statistique de l'utilisateur {{this.user.firstName}} {{this.user.lastName}} :
 </div>
 
 <br>
 
-<div class="question" *ngFor="let response of this.response; let index = index">
-  <div *ngIf="this.userId === response.userId">
-      <ul *ngFor="let quiz of this.quizList">
-        <li *ngIf="quiz.id === response.quizId">
-          <span>Pour le quiz {{quiz.name}} de thème {{quiz.theme}} : </span>
-          <ol *ngFor="let question of quiz.questions">
-            <span *ngIf="question.id === response.questionId">
-              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essaie(s) à la question {{question.id}}:
+<div class="question" *ngFor="let quiz of this.quizList; let index = index">
+  <span>{{index + 1 }} : Pour le quiz {{quiz.name}} de thème {{quiz.theme}} : </span>
+  <div *ngFor="let response of this.response">
+    <ul *ngFor="let question of this.quiz.questions">
+      <li *ngIf="quiz.id === response.quizId && this.userId === response.userId && question.id === response.questionId">
+            <span>
+              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essai(s) à la question {{question.id}}:
               <br>
               {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
             </span>
-          </ol>
-        </li>
-      </ul>
+      </li>
+    </ul>
   </div>
 </div>

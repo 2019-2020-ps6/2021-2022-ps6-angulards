@@ -31,7 +31,7 @@ export class QuizPageComponent implements OnInit {
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
   lastAnswer = [];
-  answersAlreadyDeleted = false;
+  answersAlreadyDeleted = 0;
   wrongAnswerScore = new Map<string, number>();
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
@@ -110,7 +110,7 @@ export class QuizPageComponent implements OnInit {
         }
       }
     } while (!questionPicked);
-    this.answersAlreadyDeleted = false;
+    this.answersAlreadyDeleted = 0;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
@@ -252,12 +252,12 @@ export class QuizPageComponent implements OnInit {
       console.log('picto wrong answer');
     }
     if (this.isEmotion()) {
-      if (this.lastAnswer.pop() === false && this.answersAlreadyDeleted === false) {
+      if (this.lastAnswer.pop() === false && this.answersAlreadyDeleted === 0) {
         this.removeWrongAnswer(answer, 0);
         this.removeWrongAnswer(this.getWrongAnswer()[0], 0);
         this.elo--;
         console.log('emotion two wrong answer');
-        this.answersAlreadyDeleted = true;
+        this.answersAlreadyDeleted = 2;
       } else {
         console.log('emotion wrong answer');
       }

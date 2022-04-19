@@ -13,12 +13,6 @@ import {QuizService} from '../../services/quiz.service';
 })
 export class QuizPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
-    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-      this.quiz = quiz;
-    });
-  }
-
   // enum answer state
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
@@ -33,13 +27,18 @@ export class QuizPageComponent implements OnInit {
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   scoreGame = 0;
-
   nextQuestionType = 'image'; // can be image or audio
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
-
-
+  lastAnswer = [];
+  answersAlreadyDeleted = false;
   wrongAnswerScore = new Map<string, number>();
+
+  constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
+    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+      this.quiz = quiz;
+    });
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -56,57 +55,6 @@ export class QuizPageComponent implements OnInit {
       return 0;
     }
     return this.quiz.questions.length - 1;
-  }
-
-
-  /**
-   * ### DIFFICULTY ONE ###
-   * Remove a wrong answer
-   * Check if answer is correct
-   * Don't remove if there is not enough wrong answers
-   * @param answer answer to remove
-   * @param miniWrongAnswer minimum wrong answer to keep
-   */
-  private removeWrongAnswer(answer: Answer, miniWrongAnswer: number): void {
-    if (answer.isCorrect) {
-      return;
-    }
-    this.answer = answer;
-    if (this.getWrongAnswer().length > miniWrongAnswer) {
-      const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
-      delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
-    }
-  }
-
-  /**
-   * ### DIFFICULTY 2 ###
-   * @param answer answer to remove
-   */
-  private removeWrongAnswerElo(answer): void {
-    if (this.elo < 0) {
-      this.removeWrongAnswer(answer, 3);
-    }
-    if (this.elo >= 0 && this.elo < 3) {
-      this.removeWrongAnswer(answer, 5);
-    }
-
-  }
-
-  /**
-   * Get correct answers of the current question
-   * return: Array of correct answer(s)
-   */
-  private getCorrectAnswer(): Array<Answer> {
-    // this.quiz.questions[this.indexQuiz].answers.forEach((value, index) => console.log(value));
-    return this.quiz.questions[this.indexQuiz].answers.filter(x => x.isCorrect);
-  }
-
-  /**
-   * Get wrong answers of the current question
-   * return: Array of wrong answer(s)
-   */
-  private getWrongAnswer(): Array<Answer> {
-    return this.quiz.questions[this.indexQuiz].answers.filter(x => !x.isCorrect);
   }
 
   /**
@@ -130,45 +78,6 @@ export class QuizPageComponent implements OnInit {
   }
 
   /**
-   * When user click the right answer
-   * Increment elo
-   * Change display with DISPLAY_RIGHT_ANSWER field
-   * increment score game for final result
-   * @private
-   */
-  private onRightAnswer(): void {
-    this.elo++;
-    this.displayResult = this.DISPLAY_RIGHT_ANSWER;
-    this.scoreGame++;
-  }
-
-  /**
-   * When user click the wrong answer
-   * Decrement elo, game score
-   * Change display on html using display field
-   * take action depending on the theme of the quiz
-   * @param answer wrong answer to remove if necessary
-   * @private
-   */
-  private onWrongAnswer(answer): void {
-    this.elo--;
-    this.displayResult = this.DISPLAY_WRONG_ANSWER;
-    if (this.quiz.theme.toLocaleLowerCase().startsWith('picto')) {
-      this.removeWrongAnswer(answer, 0); // removing wrong answer till there is no more wrong answers available
-    } else {
-      this.removeWrongAnswerElo(answer);
-    }
-  }
-
-  private changeCurrentQuestionType(): void {
-    if (this.elo <= 0) {
-      this.nextQuestionType = 'image';
-    } else {
-      this.nextQuestionType = 'audio';
-    }
-  }
-
-  /**
    * Increment the number of wrong answer for a specific user
    */
   manageQuestionScore(answer): void {
@@ -181,7 +90,6 @@ export class QuizPageComponent implements OnInit {
       this.wrongAnswerScore.set(userId, this.wrongAnswerScore.get(userId) + 1);
     }
   }
-
 
   /**
    * Next question with question type
@@ -202,19 +110,11 @@ export class QuizPageComponent implements OnInit {
         }
       }
     } while (!questionPicked);
+    this.answersAlreadyDeleted = false;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
   }
-
-  private isAudioQuestion(i): boolean {
-    return this.quiz.questions[i] != null && this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
-  }
-
-  private isImageQuestion(i): boolean {
-    return this.quiz.questions[i] != null && this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
-  }
-
 
   /**
    * First page of the quiz
@@ -249,7 +149,8 @@ export class QuizPageComponent implements OnInit {
   }
 
   isVideo(): boolean {
-    return this.quiz !== undefined && this.quiz.questions[this.indexQuiz].image != null
+    return this.quiz !== undefined
+      && this.quiz.questions[this.indexQuiz].image != null
       && this.quiz.questions[this.indexQuiz].image.includes('youtu');
   }
 
@@ -259,6 +160,134 @@ export class QuizPageComponent implements OnInit {
 
   isAudio(): boolean {
     return this.quiz !== undefined && this.quiz.questions[this.indexQuiz].audio != null;
+  }
+
+  /**
+   * ### DIFFICULTY ONE ###
+   * Remove a wrong answer
+   * Check if answer is correct
+   * Don't remove if there is not enough wrong answers
+   * @param answer answer to remove
+   * @param miniWrongAnswer minimum wrong answer to keep
+   */
+  private removeWrongAnswer(answer: Answer, miniWrongAnswer: number): void {
+    if (answer.isCorrect) {
+      return;
+    }
+    this.answer = answer;
+    if (this.getWrongAnswer().length > miniWrongAnswer) {
+      const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
+      delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
+    }
+  }
+
+  /**
+   * ### DIFFICULTY 2 ###
+   * 4 answers, 6 answers, all answer depending on the elo
+   * @param answer answer to remove
+   */
+  private removeWrongAnswerElo(answer): void {
+    if (this.elo < 0) {
+      this.removeWrongAnswer(answer, 3);
+    } else if (this.elo >= 0 && this.elo < 3) {
+      this.removeWrongAnswer(answer, 5);
+    } else {
+      this.removeWrongAnswer(answer, 16);
+    }
+  }
+
+  /**
+   * Get correct answers of the current question
+   * return: Array of correct answer(s)
+   */
+  private getCorrectAnswer(): Array<Answer> {
+    return this.quiz.questions[this.indexQuiz].answers.filter(x => x.isCorrect);
+  }
+
+  /**
+   * Get wrong answers of the current question
+   * return: Array of wrong answer(s)
+   */
+  private getWrongAnswer(): Array<Answer> {
+    return this.quiz.questions[this.indexQuiz].answers.filter(x => !x.isCorrect);
+  }
+
+  /**
+   * When user click the right answer
+   * Increment elo
+   * Change display with DISPLAY_RIGHT_ANSWER field
+   * increment score game for final result
+   * @private
+   */
+  private onRightAnswer(): void {
+    if (this.isEmotion()) {
+      if (this.lastAnswer.pop()) {
+        this.elo++;     // si juste q(n-1) et q(n) alors elo++;
+        console.log('emotion two good answer');
+      } else {
+        console.log('emotion good answer');
+      }
+    }
+    if (this.isPicto()) {
+      console.log('picto good answer');
+      this.elo++;
+    }
+    this.scoreGame++;
+    this.displayResult = this.DISPLAY_RIGHT_ANSWER;
+    this.lastAnswer.push(true);
+  }
+
+  /**
+   * When user click the wrong answer
+   * Decrement elo, game score
+   * Change display on html using display field
+   * take action depending on the theme of the quiz
+   * @param answer wrong answer to remove if necessary
+   * @private
+   */
+  private onWrongAnswer(answer): void {
+    if (this.isPicto()) {
+      this.removeWrongAnswerElo(answer);
+      this.elo--;
+      console.log('picto wrong answer');
+    }
+    if (this.isEmotion()) {
+      if (this.lastAnswer.pop() === false && this.answersAlreadyDeleted === false) {
+        this.removeWrongAnswer(answer, 0);
+        this.removeWrongAnswer(this.getWrongAnswer()[0], 0);
+        this.elo--;
+        console.log('emotion two wrong answer');
+        this.answersAlreadyDeleted = true;
+      } else {
+        console.log('emotion wrong answer');
+      }
+    }
+    this.displayResult = this.DISPLAY_WRONG_ANSWER;
+    this.lastAnswer.push(false);
+  }
+
+  private isEmotion(): boolean {
+    return this.quiz.theme.toLocaleLowerCase().includes('motion');
+  }
+
+  private isPicto(): boolean {
+    return this.quiz.theme.toLocaleLowerCase().startsWith('picto');
+  }
+
+  private changeCurrentQuestionType(): void {
+    if (this.elo <= 0) {
+      this.nextQuestionType = 'image';
+    } else {
+      this.nextQuestionType = 'audio';
+    }
+  }
+
+  private isAudioQuestion(i): boolean {
+    return this.quiz.questions[i] != null && this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
+  }
+
+  private isImageQuestion(i): boolean {
+    return this.quiz.questions[i] != null && this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
   }
 
   /**

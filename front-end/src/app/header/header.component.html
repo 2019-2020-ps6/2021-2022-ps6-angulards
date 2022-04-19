@@ -1,3 +1,31 @@
-<div class="header">
-    Angulards
-</div>
+
+<!--    Angulards-->
+<!--  <a class="navigation" [routerLink]="['/quiz-list']">Quiz</a>-->
+<!--  <a class="navigation" [routerLink]="['/user-list']">Utilisateurs</a>-->
+<!--  <a class="navigation2" (click)="LogOut()">Déconnxion</a>-->
+
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<nav>
+  <input type="checkbox" id="check">
+  <label for="check" class="checkbtn">
+    <i class="fas fa-bars"></i>
+  </label>
+  <label class="logo">Angulards</label>
+  <ul>
+    <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'"
+           [routerLink]="['/userquiz']">Accueil</a></li>
+
+    <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'"
+           style="cursor: pointer">Stat</a></li>
+
+    <li><a (click)="LogOut()" style="cursor: pointer">Déconnexion</a></li>
+  </ul>
+</nav>
+</html>
+

@@ -46,12 +46,13 @@ h2 {
   border-radius: 10px 10px 10px 10px;
   background: #fff;
   width: 90%;
-  max-width: 900px;
+  max-width: 650px;
   position: relative;
   padding: 20px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
+  margin-top : 150px
 }
 
 #formFooter {

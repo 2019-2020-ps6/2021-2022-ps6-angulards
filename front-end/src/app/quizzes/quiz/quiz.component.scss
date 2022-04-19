@@ -19,6 +19,9 @@
   width: 100%;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+
+  display: flex;
+  justify-content: center;
 }
 
 .snip1543 *,
@@ -176,8 +179,9 @@
 */
 .fill:hover,
 .fill:focus {
-  box-shadow: inset 0 0 0 2em var(--hover);
+  //box-shadow: inset 0 0 0 2em var(--hover);
   cursor: pointer;
+
 }
 
 .pulse:hover,
@@ -236,6 +240,7 @@
   text-align: center;
   line-height: 0.5em;
   font-size: 12px;
+  border-radius: 50%;
 }
 
 .pulse {
@@ -286,7 +291,7 @@ button {
 }
 button:hover, button:focus {
   border-color: var(--hover);
-  color: #fff;
+  color: #000000;
 }
 
 body {
@@ -322,6 +327,7 @@ div.relative {
   position: relative;
   left: 12px;
   font-size: 16px;
+  justify-content: center;
 
 }
 div.relative2{

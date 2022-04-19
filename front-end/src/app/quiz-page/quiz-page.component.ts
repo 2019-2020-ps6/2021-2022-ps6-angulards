@@ -72,14 +72,9 @@ export class QuizPageComponent implements OnInit {
       return;
     }
     this.answer = answer;
-
-    const wrongs = this.getWrongAnswer();
-    if (wrongs.length > miniWrongAnswer) {
+    if (this.getWrongAnswer().length > miniWrongAnswer) {
       const idToDelete = this.quiz.questions[this.indexQuiz].answers.indexOf(answer);
       delete this.quiz.questions[this.indexQuiz].answers[idToDelete];
-    } else {
-      console.log('nb wrong answer ', wrongs.length);
-      console.log('nb mini wrong answer ', miniWrongAnswer);
     }
   }
 
@@ -88,17 +83,10 @@ export class QuizPageComponent implements OnInit {
    * @param answer answer to remove
    */
   private removeWrongAnswerElo(answer): void {
-    console.log('elo: ', this.elo);
     if (this.elo < 0) {
-      // si une rep correct
-      // min reponse : 4
-      // max reponse : inf
       this.removeWrongAnswer(answer, 3);
     }
     if (this.elo >= 0 && this.elo < 3) {
-      // si une rep correct
-      // min reponse : 6
-      // max reponse : inf
       this.removeWrongAnswer(answer, 5);
     }
 
@@ -152,7 +140,6 @@ export class QuizPageComponent implements OnInit {
     this.elo++;
     this.displayResult = this.DISPLAY_RIGHT_ANSWER;
     this.scoreGame++;
-    console.log('Score game : ' + this.scoreGame);
   }
 
   /**
@@ -166,7 +153,6 @@ export class QuizPageComponent implements OnInit {
   private onWrongAnswer(answer): void {
     this.elo--;
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
-
     if (this.quiz.theme === 'picto' || this.quiz.theme === 'A') {
       this.removeWrongAnswerElo(answer);
     } else {
@@ -203,20 +189,16 @@ export class QuizPageComponent implements OnInit {
    */
   nextQuestion(): void {
     console.log('elo : ' + this.elo);
-    console.log('next question type ' + this.nextQuestionType);
     let questionPicked = false;
     let newIndex = this.indexQuiz;
     do {
-      console.log('before matching ' + newIndex);
-      if (this.quiz.questions[newIndex++].id == null) {
+      if (this.quiz.questions[newIndex++] == null) {
         questionPicked = true;
-        console.log('matching end');
       } else {
         if ((this.nextQuestionType === 'audio' && this.isAudioQuestion(newIndex))
           || this.nextQuestionType === 'image' && this.isImageQuestion(newIndex)) {
           questionPicked = true;
           this.indexQuiz = newIndex;
-          console.log('matching ');
         }
       }
     } while (!questionPicked);
@@ -235,10 +217,12 @@ export class QuizPageComponent implements OnInit {
 
 
   private isAudioQuestion(i): boolean {
+    if (this.quiz.questions[i] == null) { return false; }
     return this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
   }
 
   private isImageQuestion(i): boolean {
+    if (this.quiz.questions[i] == null) { return false; }
     return this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
   }
 
@@ -257,7 +241,10 @@ export class QuizPageComponent implements OnInit {
    * Last page of the quiz
    */
   isEnd(): boolean {
-    return this.indexQuiz >= this.getQuestionsLength();
+    const images = new Set(this.indexOfImageQuestion);
+    const audios = new Set(this.indexOfAudioQuestion);
+    return ((this.nextQuestionType === 'image' && (images.size === this.indexQuiz - 2))
+      || (this.nextQuestionType === 'audio' && audios.size === this.indexQuiz - 2));
   }
 
   /**
@@ -265,7 +252,6 @@ export class QuizPageComponent implements OnInit {
    */
   finished(): void {
     console.log((this.scoreGame) / (this.getQuestionsLength() + 1));
-    console.log('Nombre qst total : ' + this.getQuestionsLength() + 1);
     this.endForScore = true;
   }
 

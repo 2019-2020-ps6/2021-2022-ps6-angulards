@@ -29,7 +29,8 @@ export class QuizPageComponent implements OnInit {
   scoreGame = 0;
 
   nextQuestionType = 'image'; // can be image or audio
-  indexOfImageQuestion = []; indexOfAudioQuestion = [];
+  indexOfImageQuestion = [];
+  indexOfAudioQuestion = [];
 
 
   wrongAnswerScore = new Map<string, number>();
@@ -127,7 +128,11 @@ export class QuizPageComponent implements OnInit {
    */
   takeActionOnClick(answer): void {
     const corrects = this.getCorrectAnswer();
-    if (corrects.includes(answer)) { this.onRightAnswer(); } else { this.onWrongAnswer(answer); }
+    if (corrects.includes(answer)) {
+      this.onRightAnswer();
+    } else {
+      this.onWrongAnswer(answer);
+    }
     this.selectedAnswer.set(this.indexQuiz, answer);
     this.changeCurrentQuestionType();
     this.manageQuestionScore(answer);
@@ -167,7 +172,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   private changeCurrentQuestionType(): void {
-    if (this.elo >= 3) {
+    if (this.elo >= 0) {
       this.nextQuestionType = 'image';
     } else {
       this.nextQuestionType = 'audio';
@@ -181,35 +186,46 @@ export class QuizPageComponent implements OnInit {
     const corrects = this.getCorrectAnswer();
     if (!corrects.includes(answer)) {
       const userId = localStorage.getItem('application-user');
-      if (!this.wrongAnswerScore.has(userId)) { this.wrongAnswerScore.set(userId, 0); }
+      if (!this.wrongAnswerScore.has(userId)) {
+        this.wrongAnswerScore.set(userId, 0);
+      }
       this.wrongAnswerScore.set(userId, this.wrongAnswerScore.get(userId) + 1);
     }
   }
 
+
   /**
-   * next question regarding question type
-   */
+   * Next question with question type
+   * TO DO: change data structure to make previous question working
+
   nextQuestion(): void {
-    console.log('Current elo ' + this.elo);
-    if (this.elo >= 3 && this.indexOfImageQuestion.length) {
-      this.indexQuiz = this.indexOfImageQuestion.pop();
-    } else if (this.indexOfAudioQuestion.length) {
-      this.indexQuiz = this.indexOfAudioQuestion.pop();
-    } else {
-      this.indexQuiz += 1;
-    }
-    if (isNaN(this.indexQuiz)) { this.indexQuiz += 1; }
-    console.log('index quiz ' + this.indexQuiz);
+    console.log('elo : ' + this.elo);
+    let questionPicked = false;
+    let newIndex = this.indexQuiz;
+    do {
+      console.log('before matching ' + newIndex);
+      if (this.quiz.questions[newIndex++].id == null) {
+        questionPicked = true;
+        console.log('matching end');
+      } else {
+        if ((this.nextQuestionType === 'audio' && this.isAudioQuestion(newIndex))
+          || this.nextQuestionType === 'image' && this.isImageQuestion(newIndex)) {
+          questionPicked = true;
+          this.indexQuiz = newIndex;
+          console.log('matching ' + newIndex);
+        }
+      }
+    } while (!questionPicked);
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
-  }
+  } */
 
-  /*
   nextQuestion(): void {
     this.indexQuiz = this.indexQuiz + 1;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
-  } */
+  }
+
 
   isAudioQuestion(i): boolean {
     return this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
@@ -252,6 +268,14 @@ export class QuizPageComponent implements OnInit {
 
   isVideo(): boolean {
     return this.quiz.questions[this.indexQuiz].image.includes('youtu');
+  }
+
+  isImage(): boolean {
+    return this.quiz.questions[this.indexQuiz].image != null && !this.isVideo();
+  }
+
+  isAudio(): boolean {
+    return this.quiz.questions[this.indexQuiz].audio != null;
   }
 
   /**

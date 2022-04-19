@@ -13,6 +13,12 @@ import {QuizService} from '../../services/quiz.service';
 })
 export class QuizPageComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
+    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+      this.quiz = quiz;
+    });
+  }
+
   // enum answer state
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
@@ -34,12 +40,6 @@ export class QuizPageComponent implements OnInit {
 
 
   wrongAnswerScore = new Map<string, number>();
-
-  constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
-    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-      this.quiz = quiz;
-    });
-  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -217,12 +217,16 @@ export class QuizPageComponent implements OnInit {
 
 
   private isAudioQuestion(i): boolean {
-    if (this.quiz.questions[i] == null) { return false; }
+    if (this.quiz.questions[i] == null) {
+      return false;
+    }
     return this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
   }
 
   private isImageQuestion(i): boolean {
-    if (this.quiz.questions[i] == null) { return false; }
+    if (this.quiz.questions[i] == null) {
+      return false;
+    }
     return this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
   }
 
@@ -241,10 +245,10 @@ export class QuizPageComponent implements OnInit {
    * Last page of the quiz
    */
   isEnd(): boolean {
-    const images = new Set(this.indexOfImageQuestion);
-    const audios = new Set(this.indexOfAudioQuestion);
-    return ((this.nextQuestionType === 'image' && (images.size === this.indexQuiz - 2))
-      || (this.nextQuestionType === 'audio' && audios.size === this.indexQuiz - 2));
+    const lastImageQuestionIndex = Math.max.apply(null, this.indexOfImageQuestion);
+    const lastAudioQuestionIndex = Math.max.apply(null, this.indexOfAudioQuestion);
+    return ((this.nextQuestionType === 'image' && (lastImageQuestionIndex === this.indexQuiz))
+      || (this.nextQuestionType === 'audio' && (lastAudioQuestionIndex === this.indexQuiz)));
   }
 
   /**
@@ -260,7 +264,9 @@ export class QuizPageComponent implements OnInit {
   }
 
   isVideo(): boolean {
-    if (this.quiz.questions[this.indexQuiz].image == null) { return false; }
+    if (this.quiz.questions[this.indexQuiz].image == null) {
+      return false;
+    }
     return this.quiz.questions[this.indexQuiz].image.includes('youtu');
   }
 

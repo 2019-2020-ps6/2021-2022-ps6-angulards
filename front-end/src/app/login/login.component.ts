@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      firstName: [''],
+      email: [''],
       password: ['']
 
     });
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
         const user = Array.from(res).find((a: any) => {
           userName = a.id;
-          return a.firstName === this.loginForm.value.firstName && a.password === this.loginForm.value.password;
+          return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password;
 
         });
         if (user){

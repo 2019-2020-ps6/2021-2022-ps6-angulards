@@ -15,7 +15,12 @@
     <ul *ngFor="let question of this.quiz.questions">
       <li *ngIf="quiz.id === response.quizId && this.userId === response.userId && question.id === response.questionId">
             <span>
-              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essai(s) à la question {{question.id}}:
+              <span *ngIf="response.wrongAnswerCount === 1">
+              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essai à la question {{question.id}}:
+              </span>
+              <span *ngIf="response.wrongAnswerCount > 1 ">
+              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essais à la question {{question.id}}:
+              </span>
               <br>
               {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
             </span>

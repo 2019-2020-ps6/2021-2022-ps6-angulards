@@ -22,7 +22,7 @@ export class AdminLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.adminloginForm = this.formBuilder.group({
-      firstName: [''],
+      email: [''],
       password: [''],
       adminCode: [''],
 
@@ -36,7 +36,7 @@ export class AdminLoginComponent implements OnInit {
       .subscribe(res => {
         const admin = Array.from(res).find((a: any) => {
           userName = a.id;
-          return a.firstName === this.adminloginForm.value.firstName && a.password === this.adminloginForm.value.password
+          return a.email === this.adminloginForm.value.firstName && a.password === this.adminloginForm.value.password
             && this.adminloginForm.value.adminCode === this.adminCod;
 
         });

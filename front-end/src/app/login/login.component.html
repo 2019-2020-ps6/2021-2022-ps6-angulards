@@ -6,16 +6,11 @@
 
     <!-- Login Form -->
     <form [formGroup]="loginForm">
-      <input formControlName ="firstName" class="fadeIn second" id="firstName" name="firstName" placeholder="firstName" type="text">
+      <input formControlName ="email" class="fadeIn second" id="email" name="email" placeholder="email" type="text">
       <input formControlName ="password" class="fadeIn third" id="password" name="login" placeholder="Mot de passe" type="password">
       <input (click)="login()" class="fadeIn fourth" type="submit2" value="Commencer à jouer">
       <!-- edit the router link to the right one when done -->
     </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Mot de passe oublié?</a>
-    </div>
 
   </div>
   <div>

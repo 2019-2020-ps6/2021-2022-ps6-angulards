@@ -132,10 +132,10 @@ export class QuizPageComponent implements OnInit {
       this.onRightAnswer();
     } else {
       this.onWrongAnswer(answer);
+      this.manageQuestionScore(answer);
     }
     this.selectedAnswer.set(this.indexQuiz, answer);
     this.changeCurrentQuestionType();
-    this.manageQuestionScore(answer);
   }
 
   /**

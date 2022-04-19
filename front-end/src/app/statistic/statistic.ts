@@ -62,7 +62,7 @@ export class Statistic implements OnInit {
   }
 
 
-
-
-
+  deleteResponses(): void {
+    this.quizService.deleteResponse();
+  }
 }

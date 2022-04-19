@@ -191,10 +191,12 @@ export class QuizPageComponent implements OnInit {
    */
   nextQuestion(): void {
     console.log('Current elo ' + this.elo);
-    if (this.elo >= 3) {
+    if (this.elo >= 3 && this.indexOfImageQuestion.length) {
       this.indexQuiz = this.indexOfImageQuestion.pop();
-    } else {
+    } else if (this.indexOfAudioQuestion.length) {
       this.indexQuiz = this.indexOfAudioQuestion.pop();
+    } else {
+      this.indexQuiz += 1;
     }
     if (isNaN(this.indexQuiz)) { this.indexQuiz += 1; }
     console.log('index quiz ' + this.indexQuiz);

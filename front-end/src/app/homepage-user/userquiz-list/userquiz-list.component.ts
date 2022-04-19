@@ -67,4 +67,15 @@ export class UserQuizListComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/welcomepage']).then();
   }
+  /* Open when someone clicks on the span element */
+  // tslint:disable-next-line:typedef
+   openNav() {
+    document.getElementById('myNav').style.width = '100%';
+  }
+
+  /* Close when someone clicks on the "x" symbol inside the overlay */
+  // tslint:disable-next-line:typedef
+   closeNav() {
+    document.getElementById('myNav').style.width = '0%';
+  }
 }

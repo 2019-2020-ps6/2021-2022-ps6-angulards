@@ -7,29 +7,28 @@
 <!--</div>-->
 
 
-<form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput">
-  <input formControlName ="statCode" id="statCode" name="statCode" placeholder="Code statistique" type="password">
-  <input (click)="loginToStat()" type="submit" value="Entrez">
-</form>
-<nav role="navigation">
-  <div id="menuToggle">
 
-    <input type="checkbox" />
+<!-- The overlay -->
+<div id="myNav" class="overlay">
 
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
 
-    <span></span>
-    <span></span>
-    <span></span>
+  <!-- Overlay content -->
+  <div class="overlay-content">
+    <a (click)="EnterStatCode()">Stat</a>
+    <form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput">
+      <input formControlName ="statCode" id="statCode" name="statCode" placeholder="Code statistique" type="password">
+      <input (click)="loginToStat()" type="submit" value="Entrez">
+    </form>
+    <a (click)="LogOut()">Déconnexion</a>
 
-
-    <ul id="menu">
-      <a (click)="EnterStatCode()"><li>Stat</li></a>
-      <a (click)="LogOut()"><li>Déconnexion</li></a>
-
-    </ul>
   </div>
-</nav>
 
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+<span style="font-size:30px;cursor:pointer;" (click)="openNav()">&#9776; open</span>
 
 <!-- StatCode Form -->
 

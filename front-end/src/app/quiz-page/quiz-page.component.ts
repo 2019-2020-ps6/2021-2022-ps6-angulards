@@ -204,6 +204,7 @@ export class QuizPageComponent implements OnInit {
     } while (!questionPicked);
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
+    this.wrongAnswerScore.set(userId, 0);
   }
 
   private isAudioQuestion(i): boolean {

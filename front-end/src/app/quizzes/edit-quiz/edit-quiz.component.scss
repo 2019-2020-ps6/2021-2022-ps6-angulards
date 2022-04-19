@@ -1,1 +1,36 @@
 @import '../../../styles/card.scss';
+.btn-1mod {
+  transition: all 0.3s ease;
+  width:  160px;
+  padding: 0px 10px;
+  background: #d2cbcb;
+  font-size: 16px;
+  font-weight: 700;
+}
+.btn-1mod:hover {
+  box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
+}
+.custom-btn1 {
+  width: fit-content;
+  height: 40px;
+
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  margin: 1rem;
+  text-align: left;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  padding: 0 2.5em 2.5em 2.5em;
+  line-height: 35px;
+  background-color: #eae1e1;
+  right: 35px;
+
+}

@@ -1,16 +1,38 @@
-<div>
-  <br>
-  <button (click)="EnterStatCode()" class="bi bi-bar-chart-line">Stat</button>
-</div>
-<div>
-  <button (click)="LogOut()" class="bi bi-box-arrow-right">Déconnexion</button>
-</div>
+<!--<div>-->
+<!--  <br>-->
+<!--  <button (click)="EnterStatCode()" class="bi bi-bar-chart-line">Stat</button>-->
+<!--</div>-->
+<!--<div>-->
+<!--  <button (click)="LogOut()" class="bi bi-box-arrow-right">Déconnexion</button>-->
+<!--</div>-->
 
-<!-- StatCode Form -->
+
 <form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput">
   <input formControlName ="statCode" id="statCode" name="statCode" placeholder="Code statistique" type="password">
   <input (click)="loginToStat()" type="submit" value="Entrez">
 </form>
+<nav role="navigation">
+  <div id="menuToggle">
+
+    <input type="checkbox" />
+
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+
+    <ul id="menu">
+      <a (click)="EnterStatCode()"><li>Stat</li></a>
+      <a (click)="LogOut()"><li>Déconnexion</li></a>
+
+    </ul>
+  </div>
+</nav>
+
+
+<!-- StatCode Form -->
+
 
 <h3 class="title-lstquiz">
   Liste des quiz

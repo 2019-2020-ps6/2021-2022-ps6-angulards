@@ -52,7 +52,7 @@ export class QuizPageComponent implements OnInit {
    * used for isEnd calculation
    */
   public getQuestionsLength(): number {
-    if (this.quiz.questions.length == null) {
+    if (this.quiz === undefined) {
       return 0;
     }
     return this.quiz.questions.length - 1;
@@ -264,18 +264,16 @@ export class QuizPageComponent implements OnInit {
   }
 
   isVideo(): boolean {
-    if (this.quiz.questions[this.indexQuiz].image == null) {
-      return false;
-    }
-    return this.quiz.questions[this.indexQuiz].image.includes('youtu');
+    return !this.quiz === undefined && this.quiz.questions[this.indexQuiz].image != null
+      && this.quiz.questions[this.indexQuiz].image.includes('youtu');
   }
 
   isImage(): boolean {
-    return this.quiz.questions[this.indexQuiz].image != null && !this.isVideo();
+    return !this.quiz === undefined && this.quiz.questions[this.indexQuiz].image != null && !this.isVideo();
   }
 
   isAudio(): boolean {
-    return this.quiz.questions[this.indexQuiz].audio != null;
+    return !this.quiz === undefined && this.quiz.questions[this.indexQuiz].audio != null;
   }
 
   /**

@@ -154,7 +154,7 @@ export class QuizPageComponent implements OnInit {
     this.elo--;
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
     if (this.quiz.theme.toLocaleLowerCase().startsWith('picto')) {
-      this.removeWrongAnswer(answer, 8); // removing wrong answer till there is no more wrong answers available
+      this.removeWrongAnswer(answer, 0); // removing wrong answer till there is no more wrong answers available
     } else {
       this.removeWrongAnswerElo(answer);
     }

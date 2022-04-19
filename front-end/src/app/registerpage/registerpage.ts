@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './registerpage.html',
   styleUrls: ['./registerpage.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   public signupForm !: FormGroup;
   constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient) {
   }

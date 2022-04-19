@@ -18,7 +18,6 @@ const routes: Routes = [
     { path: '', redirectTo: '/welcomepage', pathMatch: 'full' },
     {path: 'welcomepage', component: WelcomePageComponent},
     {path: 'login', component: LoginComponent},
-    // {path: 'register', component: RegisterComponent},
     {path: 'userquiz', component: UserQuizListComponent},
     {path: 'quiz-form', component: QuizFormComponent},
     {path: 'quizzes/:id', component: QuizPageComponent},

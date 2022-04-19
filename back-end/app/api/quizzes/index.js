@@ -103,4 +103,13 @@ router.post('/response', (req, res) => {
   }
 })
 
+router.delete('/response', (req, res) => {
+  try {
+    Responses.delete(req.params.quizId)
+    res.status(204).end()
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
 module.exports = router

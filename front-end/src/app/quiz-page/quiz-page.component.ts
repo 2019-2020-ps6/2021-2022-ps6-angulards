@@ -153,7 +153,7 @@ export class QuizPageComponent implements OnInit {
   private onWrongAnswer(answer): void {
     this.elo--;
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
-    if (this.quiz.theme === 'picto' || this.quiz.theme === 'pictogramme') {
+    if (this.quiz.theme.toLocaleLowerCase().startsWith('picto')) {
       this.removeWrongAnswerElo(answer);
     } else {
       this.removeWrongAnswer(answer, 8); // removing wrong answer till there is no more wrong answers available

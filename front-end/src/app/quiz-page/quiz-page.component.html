@@ -20,7 +20,7 @@
     ></div>
 
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
-    <div class="form">
+    <div class="answer-box-container">
       <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
         <div class="inputGroup" *ngIf="ans">
           <button (click)="takeActionOnClick(ans)" class="custom-btn btn-11">{{ans.value}}</button>

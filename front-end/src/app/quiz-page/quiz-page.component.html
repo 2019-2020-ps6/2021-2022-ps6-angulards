@@ -14,17 +14,23 @@
               title="YouTube video player"></iframe>
     </div>
 
-    <div *ngIf="!isVideo()"><img alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
+    <div *ngIf="isImage()"><img alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
                                  class="img-container"
                                  src="{{quiz.questions[indexQuiz].image}}"
     ></div>
+
+    <div *ngIf="isAudio()">
+      <audio controls>
+        <source src="{{quiz.questions[indexQuiz].audio}}"/>
+        <p>Audio non pris en charge</p>
+      </audio>
+    </div>
 
     <h3>{{quiz.questions[indexQuiz].label}}</h3>
     <div class="answer-box-container">
       <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
         <div class="inputGroup" *ngIf="ans">
           <button (click)="takeActionOnClick(ans)" class="custom-btn btn-11">{{ans.value}}</button>
-
         </div>
       </div>
     </div>

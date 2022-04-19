@@ -52,6 +52,9 @@ export class QuizPageComponent implements OnInit {
    * used for isEnd calculation
    */
   public getQuestionsLength(): number {
+    if (this.quiz.questions.length == null) {
+      return 0;
+    }
     return this.quiz.questions.length - 1;
   }
 
@@ -167,12 +170,12 @@ export class QuizPageComponent implements OnInit {
     if (this.quiz.theme === 'picto' || this.quiz.theme === 'A') {
       this.removeWrongAnswerElo(answer);
     } else {
-      this.removeWrongAnswer(answer, 0); // removing wrong answer till there is no more wrong answers available
+      this.removeWrongAnswer(answer, 8); // removing wrong answer till there is no more wrong answers available
     }
   }
 
   private changeCurrentQuestionType(): void {
-    if (this.elo >= 0) {
+    if (this.elo <= 0) {
       this.nextQuestionType = 'image';
     } else {
       this.nextQuestionType = 'audio';
@@ -197,9 +200,10 @@ export class QuizPageComponent implements OnInit {
   /**
    * Next question with question type
    * TO DO: change data structure to make previous question working
-
+   */
   nextQuestion(): void {
     console.log('elo : ' + this.elo);
+    console.log('next question type ' + this.nextQuestionType);
     let questionPicked = false;
     let newIndex = this.indexQuiz;
     do {
@@ -212,26 +216,28 @@ export class QuizPageComponent implements OnInit {
           || this.nextQuestionType === 'image' && this.isImageQuestion(newIndex)) {
           questionPicked = true;
           this.indexQuiz = newIndex;
-          console.log('matching ' + newIndex);
+          console.log('matching ');
         }
       }
     } while (!questionPicked);
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
-  } */
+  }
 
+  /*
   nextQuestion(): void {
     this.indexQuiz = this.indexQuiz + 1;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
   }
+   */
 
 
-  isAudioQuestion(i): boolean {
+  private isAudioQuestion(i): boolean {
     return this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;
   }
 
-  isImageQuestion(i): boolean {
+  private isImageQuestion(i): boolean {
     return this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
   }
 
@@ -267,6 +273,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   isVideo(): boolean {
+    if (this.quiz.questions[this.indexQuiz].image == null) { return false; }
     return this.quiz.questions[this.indexQuiz].image.includes('youtu');
   }
 

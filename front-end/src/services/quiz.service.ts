@@ -101,11 +101,6 @@ export class QuizService {
     console.log('post done');
   }
 
-  deleteResponse(): void {
-    const urlWithId = this.quizUrl + '/response';
-    this.http.delete<Response>(urlWithId, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-  }
-
   /*
   Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
   addQuestion(quiz: Quiz, question: Question) {

@@ -1,14 +1,14 @@
 // @ts-ignore
 
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {any} from 'codelyzer/util/function';
-import {Question} from '../../models/question.model';
-import {Response} from '../../models/response.model';
-import {Quiz} from '../../models/quiz.model';
-import {QuizService} from '../../services/quiz.service';
-import {User} from '../../models/user.model';
+import {Question} from '../../../models/question.model';
+import {Response} from '../../../models/response.model';
+import {Quiz} from '../../../models/quiz.model';
+import {QuizService} from '../../../services/quiz.service';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-statistic',
@@ -27,14 +27,19 @@ export class Statistic implements OnInit {
   responseURL = 'http://localhost:9428/api/users/response';
 
   public quizList: Quiz[] = [];
+  id: string;
+  quiz: Quiz;
 
   ngOnInit(): void {
+    this.filterQuiz();
   }
 
-  constructor(private router: Router, private http: HttpClient, public quizService: QuizService) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, public quizService: QuizService) {
+    this.id = this.route.snapshot.paramMap.get('id');
     this.userId = localStorage.getItem('application-user');
     this.getNumberWrongAnswer();
     this.getUserById();
+    this.getQuizById();
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
@@ -61,8 +66,17 @@ export class Statistic implements OnInit {
       });
   }
 
+  getQuizById(): void {
+    const urlWithId = 'http://localhost:9428/api/quizzes/' + this.id;
 
-  deleteResponses(): void {
-    this.quizService.deleteResponse();
+    this.http.get<Quiz>(urlWithId)
+      .subscribe(res => {
+        console.log('user : ', res);
+        this.quiz = res;
+      });
+  }
+
+  filterQuiz(): void{
+    this.quizList = this.quizList.filter((quiz) => quiz.id !== this.id);
   }
 }

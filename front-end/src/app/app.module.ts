@@ -22,9 +22,10 @@ import {LoginComponent} from './login/login.component';
 import {UserQuizComponent} from './homepage-user/userquiz/userquiz.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import { QuizPageComponent } from './quiz-page/quiz-page.component';
-import {Statistic} from './statistic/statistic';
+import {Statistic} from './stat/statistic/statistic';
 import {SafePipe} from '../../SafePipe';
 import {AdminLoginComponent} from './adminspace/login/admin-login.component';
+import {StatHomePage} from './stat/statistic-homepage/statistic-homepage.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {AdminLoginComponent} from './adminspace/login/admin-login.component';
     RegisterComponent,
     Statistic,
     AdminLoginComponent,
+    StatHomePage,
   ],
     imports: [
         BrowserModule,

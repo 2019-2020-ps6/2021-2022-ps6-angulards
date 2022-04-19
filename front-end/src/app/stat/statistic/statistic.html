@@ -1,7 +1,5 @@
 <br>
-<button class="button-card" routerLink="/userquiz">Retour</button>
-<br><br>
-<button class="button-card" (click)="deleteResponses()">Supprimer les statistiques</button>
+<button class="button-card" routerLink="/stat">Retour</button>
 <br><br>
 <div>
   Statistique de l'utilisateur {{this.user.firstName}} {{this.user.lastName}} :
@@ -9,17 +7,16 @@
 
 <br>
 
-<div class="question" *ngFor="let quiz of this.quizList; let index = index">
-  <span>{{index + 1 }} : Pour le quiz {{quiz.name}} de thème {{quiz.theme}} : </span>
+<span>Pour le quiz {{this.quiz.name}} de thème '{{quiz.theme}}' : </span>
   <div *ngFor="let response of this.response">
     <ul *ngFor="let question of this.quiz.questions">
       <li *ngIf="quiz.id === response.quizId && this.userId === response.userId && question.id === response.questionId">
             <span>
               <span *ngIf="response.wrongAnswerCount === 1">
-              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essai à la question {{question.id}}:
+              {{this.user.firstName}} a répondu juste en {{response.wrongAnswerCount}} essai à la question {{question.id}}:
               </span>
               <span *ngIf="response.wrongAnswerCount > 1 ">
-              L'utilisateur a répondu juste en {{response.wrongAnswerCount}} essais à la question {{question.id}}:
+              {{this.user.firstName}} a répondu juste en {{response.wrongAnswerCount}} essais à la question {{question.id}}:
               </span>
               <br>
               {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
@@ -27,4 +24,3 @@
       </li>
     </ul>
   </div>
-</div>

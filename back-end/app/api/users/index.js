@@ -40,6 +40,28 @@ router.get('/response/:quizId/:userId', (req, res) => {
   }
 })
 
+/**
+ * filter the responses by a specific question
+ */
+const filterResponseByUserIdAndQuizIdAndQuestions = (userId, quizId, questionId) => {
+  const responses = Responses.get()
+  console.log('ok ', typeof responses[0].questionId)
+  return responses.filter((response) => response.quizId === Number(quizId) && response.questionId === Number(questionId) && response.userId === userId)
+}
+
+/**
+ * Get Responses of a specific questions
+ */
+router.get('/response/:quizId/:userId/:questionId', (req, res) => {
+  try {
+    User.getById(req.params.userId)
+    console.log('quest id : ', typeof req.params.questionId)
+    res.status(200).json(filterResponseByUserIdAndQuizIdAndQuestions(req.params.userId, req.params.quizId,req.params.questionId))
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
 router.get('/:userId', (req, res) => {
   try {
     res.status(200).json(User.getById(req.params.userId))

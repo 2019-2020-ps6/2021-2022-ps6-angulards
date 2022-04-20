@@ -31,10 +31,14 @@ router.post('/', (req, res) => {
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
     let question
-    if (req.body.image === '') {
-      question = Question.create({ label: req.body.label, audio: req.body.audio, quizId })
-    } else {
+    if (req.body.image === '' && req.body.indice === '') {
+      question = Question.create({ label: req.body.label, audio: req.body.audio ,quizId })
+    } else if (req.body.audio === '' && req.body.indice === '') {
       question = Question.create({ label: req.body.label, image: req.body.image, quizId })
+    } else if (req.body.audio === '') {
+      question = Question.create({ label: req.body.label, image: req.body.image, indice: req.body.indice, quizId })
+    } else if (req.body.image === '') {
+      question = Question.create({ label: req.body.label, audio: req.body.audio, indice: req.body.indice, quizId })
     }
     // If answers have been provided in the request, we create the answer and update the response to send.
     if (req.body.answers && req.body.answers.length > 0) {

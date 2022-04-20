@@ -32,9 +32,8 @@ export class Statistic implements OnInit {
 
   averageWrongAnswers: number;
   averageRightAnswers: number;
-  rightAnsCount: number;
-  rightAnsLength: number;
-
+  allTriesRightAnswerPerQuestionCount = new Map<string, number>();
+  allTriesPerQuestionCount = new Map<string, number>();
 
   responseOfUser: Response[];
   responseOfUserPerQuestion: Response[];
@@ -53,7 +52,6 @@ export class Statistic implements OnInit {
     this.getNumberWrongAnswer();
     this.getQuizById();
     this.getResponsesOfUser();
-
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
@@ -90,6 +88,8 @@ export class Statistic implements OnInit {
     this.http.get<Quiz>(urlWithId)
       .subscribe(res => {
         this.quiz = res;
+        this.getResponsesOfUserPerQuestion();
+        console.log('quiz ' , this.quiz);
       });
     console.log('quizzz ' , this.quiz);
   }
@@ -122,25 +122,30 @@ export class Statistic implements OnInit {
     this.averageWrongAnswers = (this.averageWrongAnswers / this.responseOfUser.length );
   }
 
-  getResponsesOfUserPerQuestion(questionId: string): void {
-    const urlWithId = 'http://localhost:9428/api/users/response/' + this.id + '/' + this.userId + '/' + questionId;
+  getResponsesOfUserPerQuestion(): void {
+    this.quiz.questions.forEach(question => {
+      const urlWithId = 'http://localhost:9428/api/users/response/' + this.id + '/' + this.userId + '/' + question.id;
 
-    this.http.get<Response[]>(urlWithId)
-      .subscribe(res => {
-        console.log('res ' , res);
-        this.responseOfUserPerQuestion = res;
-        this.returnValue();
-      });
-    console.log('response of user ' , this.responseOfUser);
+      this.http.get<Response[]>(urlWithId)
+        .subscribe(res => {
+          console.log('res ' , res);
+          this.responseOfUserPerQuestion = res;
+          this.allTriesPerQuestionStatistics();
+        });
+    });
+
   }
 
-  returnValue(): void{
-    let i;
-    for (i = 0; i < this.responseOfUserPerQuestion.length ; i++){
-      if (this.responseOfUser[i].wrongAnswerCount === 0){
-        this.rightAnsCount++;
+  allTriesPerQuestionStatistics(): void{
+    this.responseOfUserPerQuestion.forEach(res => {
+      if (!this.allTriesPerQuestionCount.has(res.questionId)) {
+        this.allTriesRightAnswerPerQuestionCount.set(res.questionId, 0);
+        this.allTriesPerQuestionCount.set(res.questionId, 0);
       }
-    }
-    this.rightAnsLength = i;
+      this.allTriesPerQuestionCount.set(res.questionId, this.allTriesPerQuestionCount.get(res.questionId) + 1);
+      if (res.wrongAnswerCount === 0) {
+        this.allTriesRightAnswerPerQuestionCount.set(res.questionId, this.allTriesRightAnswerPerQuestionCount.get(res.questionId) + 1);
+      }
+    });
   }
 }

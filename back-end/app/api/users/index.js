@@ -28,11 +28,12 @@ router.get('/response', (req, res) => {
  */
 const filterResponseByUserIdAndQuizId = (userId, quizId) => {
   const responses = Responses.get()
-  return responses.filter((response) => response.quizId === quizId && response.userId === userId)
+  return responses.filter((response) => response.quizId === Number(quizId) && response.userId === userId)
 }
 
 router.get('/response/:quizId/:userId', (req, res) => {
   try {
+    console.log('inside')
     User.getById(req.params.userId)
     res.status(200).json(filterResponseByUserIdAndQuizId(req.params.userId, req.params.quizId))
   } catch (err) {
@@ -56,7 +57,7 @@ router.get('/response/:quizId/:userId/:questionId', (req, res) => {
   try {
     User.getById(req.params.userId)
     console.log('quest id : ', typeof req.params.questionId)
-    res.status(200).json(filterResponseByUserIdAndQuizIdAndQuestions(req.params.userId, req.params.quizId,req.params.questionId))
+    res.status(200).json(filterResponseByUserIdAndQuizIdAndQuestions(req.params.userId, req.params.quizId, req.params.questionId))
   } catch (err) {
     manageAllErrors(res, err)
   }

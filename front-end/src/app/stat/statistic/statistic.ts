@@ -22,38 +22,53 @@ export class Statistic implements OnInit {
   userId: string;
   user: User;
 
-  response: Response[];
-  // change users in url to get it from quizzes
+  response;
+  // change users in url to get it from quizzes or better create Response package in back
   responseURL = 'http://localhost:9428/api/users/response';
 
   public quizList: Quiz[] = [];
   id: string;
   quiz: Quiz;
 
+  averageWrongAnswers: number;
+  averageRightAnswers: number;
+
+  responseOfUser: Response[];
+
+  showDetail: boolean;
+
   ngOnInit(): void {
-    this.filterQuiz();
+    this.getUserById();
+
   }
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, public quizService: QuizService) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.userId = localStorage.getItem('application-user');
+    this.showDetail = false;
     this.getNumberWrongAnswer();
-    this.getUserById();
     this.getQuizById();
+    this.getResponsesOfUser();
+
 
     this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
       this.quizList = quizzes;
     });
+
+    this.averageWrongAnswers = 0;
+    this.averageRightAnswers = 0;
+  }
+
+  showDetails(): void{
+    this.showDetail = !this.showDetail;
   }
 
   getNumberWrongAnswer(): void {
 
     this.http.get<Response[]>(this.responseURL)
       .subscribe(res => {
-        console.log('liste de reponse : ', res);
         this.response = res;
       });
-    console.log('responses ' , this.response);
   }
 
   getUserById(): void {
@@ -61,7 +76,6 @@ export class Statistic implements OnInit {
 
     this.http.get<User>(urlWithId)
       .subscribe(res => {
-        console.log('user : ', res);
         this.user = res;
       });
   }
@@ -71,12 +85,37 @@ export class Statistic implements OnInit {
 
     this.http.get<Quiz>(urlWithId)
       .subscribe(res => {
-        console.log('user : ', res);
         this.quiz = res;
       });
+    console.log('quizzz ' , this.quiz);
   }
 
-  filterQuiz(): void{
-    this.quizList = this.quizList.filter((quiz) => quiz.id !== this.id);
+  getResponsesOfUser(): void {
+    const urlWithId = 'http://localhost:9428/api/users/response/' + this.id + '/' + this.userId;
+
+    this.http.get<Response[]>(urlWithId)
+      .subscribe(res => {
+        console.log('res ' , res);
+        this.responseOfUser = res;
+        this.getAveragesStat();
+      });
+    console.log('response of user ' , this.responseOfUser);
   }
+
+  getAveragesStat(): void{
+    let i;
+    console.log('response of user ', this.responseOfUser);
+    for (i = 0; i < this.responseOfUser.length ; i++){
+      if (this.responseOfUser[i].wrongAnswerCount === 0){
+        this.averageRightAnswers++;
+      }
+      else{
+        this.averageWrongAnswers += this.responseOfUser[i].wrongAnswerCount;
+      }
+    }
+
+    this.averageRightAnswers =  (this.averageRightAnswers / this.responseOfUser.length ) * 100;
+    this.averageWrongAnswers = (this.averageWrongAnswers / this.responseOfUser.length );
+  }
+
 }

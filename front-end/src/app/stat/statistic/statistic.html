@@ -2,16 +2,42 @@
 <button class="button-card" routerLink="/stat">Retour</button>
 <br><br>
 <div>
-  Statistique de l'utilisateur {{this.user.firstName}} {{this.user.lastName}} :
+  Statistique de l'utilisateur <strong id="userInfo">  </strong> :
 </div>
 
 <br>
 
 <span>Pour le quiz {{this.quiz.name}} de thème '{{quiz.theme}}' : </span>
+
+<div>
+  Pourcentage de réussite : {{this.averageRightAnswers.toFixed(0)}} %
+  <br>
+  Moyenne de clique à une mauvaise réponse : {{this.averageWrongAnswers.toFixed(0)}}
+</div>
+
+<br>
+<button (click)="showDetails()" > Détails des réponses </button>
+
+<div *ngIf="showDetail">
+    <ul *ngFor="let question of this.quiz.questions">
+      {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px"> :
+        <li>
+            <span>
+              {{question.id}}
+              <br>
+            </span>
+        </li>
+    </ul>
+</div>
+
+<!--<div *ngIf="showDetail">
   <div *ngFor="let response of this.response">
     <ul *ngFor="let question of this.quiz.questions">
-      <li *ngIf="quiz.id === response.quizId && this.userId === response.userId && question.id === response.questionId">
+      <li *ngIf="this.userId === response.userId && question.id === response.questionId">
             <span>
+              <span *ngIf="response.wrongAnswerCount === 0">
+              {{this.user.firstName}} a répondu du premier coup à la question {{question.id}}:
+              </span>
               <span *ngIf="response.wrongAnswerCount === 1">
               {{this.user.firstName}} a répondu juste en {{response.wrongAnswerCount}} essai à la question {{question.id}}:
               </span>
@@ -24,3 +50,4 @@
       </li>
     </ul>
   </div>
+</div>-->

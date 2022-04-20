@@ -71,8 +71,8 @@ export class QuizPageComponent implements OnInit {
       this.onRightAnswer();
     } else {
       this.onWrongAnswer(answer);
-      this.manageQuestionScore(answer);
     }
+    this.manageQuestionScore(answer);
     this.selectedAnswer.set(this.indexQuiz, answer);
     this.changeCurrentQuestionType();
   }
@@ -82,12 +82,14 @@ export class QuizPageComponent implements OnInit {
    */
   manageQuestionScore(answer): void {
     const corrects = this.getCorrectAnswer();
+    const userId = localStorage.getItem('application-user');
     if (!corrects.includes(answer)) {
-      const userId = localStorage.getItem('application-user');
       if (!this.wrongAnswerScore.has(userId)) {
         this.wrongAnswerScore.set(userId, 0);
       }
       this.wrongAnswerScore.set(userId, this.wrongAnswerScore.get(userId) + 1);
+    }else{
+      this.wrongAnswerScore.set(userId, 0);
     }
   }
 

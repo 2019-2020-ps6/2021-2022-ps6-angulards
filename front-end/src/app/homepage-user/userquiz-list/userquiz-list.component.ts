@@ -39,8 +39,7 @@ export class UserQuizListComponent implements OnInit {
     this.router.navigate(['/quizzes/' + quiz.id]).then();
   }
 
-  // tslint:disable-next-line:typedef
-  EnterStatCode(){
+  EnterStatCode(): void{
     // this.router.navigate(['stat']).then();
     this.showStatcCodeInput = !this.showStatcCodeInput;
   }

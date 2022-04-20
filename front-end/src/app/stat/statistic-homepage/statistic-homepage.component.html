@@ -1,9 +1,9 @@
 <br>
+<button class="button-card" routerLink="/userquiz">Retour</button>
+<br>
 <h3 class="title-lstquiz">
   Séléctionner le quiz dont vous voulez voir les statistiques
-
 </h3>
-<br>
 <div class="quiz-list">
   <div *ngFor="let quiz of quizList" class="quiz">
     <app-userquiz (quizPlayed)="quizPlay($event)" [quiz]="quiz"></app-userquiz>

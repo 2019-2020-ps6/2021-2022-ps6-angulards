@@ -4,6 +4,7 @@ const Joi = require('joi')
 const logger = require('../utils/logger.js')
 const ValidationError = require('./errors/validation-error.js')
 const NotFoundError = require('./errors/not-found-error.js')
+const {Question, Quiz} = require("../models");
 
 module.exports = class BaseModel {
   constructor(name, schema) {

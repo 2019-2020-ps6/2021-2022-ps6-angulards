@@ -97,6 +97,9 @@ export class QuizPageComponent implements OnInit {
    * TO DO: change data structure to make previous question working
    */
   nextQuestion(): void {
+    const userId = localStorage.getItem('application-user');
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
+    this.wrongAnswerScore.set(userId, 0);
     console.log('elo : ' + this.elo);
     let questionPicked = false;
     let newIndex = this.indexQuiz;
@@ -111,9 +114,6 @@ export class QuizPageComponent implements OnInit {
         }
       }
     } while (!questionPicked);
-    const userId = localStorage.getItem('application-user');
-    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
-    this.wrongAnswerScore.set(userId, 0);
     if (this.answersAlreadyDeleted === 2) {
       console.log('next question will be 4 answers');
       this.limitedAnswer = false;

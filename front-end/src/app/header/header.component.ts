@@ -13,27 +13,27 @@ import {Quiz} from '../../models/quiz.model';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  // showStatcCodeInput = false ;
-  // userId: string;
-  // private code: string;
-  // public statCodeForm!: FormGroup;
-  // public quizList: Quiz[] = [];
+   showStatcCodeInput = false ;
+   userId: string;
+   private code: string;
+   public statCodeForm!: FormGroup;
+   public quizList: Quiz[] = [];
 
 
   // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, public location: Location,public quizService: QuizService, private router: Router, private formBuilder: FormBuilder) {
     console.log(this.location.path());
-    // this.userId = localStorage.getItem('application-user');
-    //
-    // this.quizService.quizzes$.subscribe((quizList) => {
-    //   this.quizList = quizList;
-    // });
+    this.userId = localStorage.getItem('application-user');
+
+    this.quizService.quizzes$.subscribe((quizList) => {
+       this.quizList = quizList;
+     });
   }
 
   ngOnInit(): void {
-    // this.statCodeForm = this.formBuilder.group({
-    //   statCode: [''],
-    // });
+     this.statCodeForm = this.formBuilder.group({
+       statCode: [''],
+     });
   }
 
 
@@ -44,22 +44,26 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/welcomepage']).then();
   }
 
+  EnterStatCode(): void{
+    // this.router.navigate(['stat']).then();
+    this.showStatcCodeInput = !this.showStatcCodeInput;
+  }
 
-  // loginToStat(): void {
-  //   const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
-  //   this.http.get<User>(urlWithId)
-  //     .subscribe(res => {
-  //       console.log('user : ' + res.statcode);
-  //       this.code = res.statcode;
-  //     });
-  //   console.log(this.code);
-  //   if (this.code === this.statCodeForm.value.statCode){
-  //     this.statCodeForm.reset();
-  //     this.showStatcCodeInput = !this.showStatcCodeInput;
-  //     this.router.navigate(['stat']).then();
-  //   }else {
-  //     alert('Wrong Statistic Code, please retry');
-  //   }
-  //
-  // }
+  loginToStat(): void {
+     const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
+     this.http.get<User>(urlWithId)
+       .subscribe(res => {
+         console.log('user : ' + res.statcode);
+         this.code = res.statcode;
+       });
+     console.log(this.code);
+     if (this.code === this.statCodeForm.value.statCode){
+       this.statCodeForm.reset();
+       this.showStatcCodeInput = !this.showStatcCodeInput;
+       this.router.navigate(['stat']).then();
+     }else {
+       alert('Wrong Statistic Code, please retry');
+     }
+
+  }
 }

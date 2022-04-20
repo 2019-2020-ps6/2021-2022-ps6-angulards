@@ -21,8 +21,10 @@
     <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'"
            [routerLink]="['/userquiz']">Accueil</a></li>
 
-    <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'"
+    <li><a (click)="EnterStatCode()" *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage'&& this.location.path() != '/quiz-list' && this.location.path() != '/login'
+          && this.location.path() != '/quiz-form' && this.location.path() != '/edit-quiz'"
            style="cursor: pointer">Stat</a></li>
+
 
     <li><a (click)="LogOut()" style="cursor: pointer">Déconnexion</a></li>
   </ul>

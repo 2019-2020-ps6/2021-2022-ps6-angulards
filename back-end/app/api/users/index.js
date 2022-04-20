@@ -28,7 +28,7 @@ router.get('/response', (req, res) => {
  */
 const filterResponseByUserIdAndQuizId = (userId, quizId) => {
   const responses = Responses.get()
-  return responses.filter((response) => response.quizId === Number(quizId) && response.userId === userId)
+  return responses.filter((response) => response.quizId === quizId && response.userId === userId)
 }
 
 router.get('/response/:quizId/:userId', (req, res) => {

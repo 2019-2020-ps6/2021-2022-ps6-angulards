@@ -19,14 +19,13 @@
 <button (click)="showDetails()" > Détails des réponses </button>
 
 <div *ngIf="showDetail">
+  Détails sur chaque question du quiz :
     <ul *ngFor="let question of this.quiz.questions">
-      {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px"> :
-        <li>
-            <span>
-              {{question.id}}
-              <br>
-            </span>
-        </li>
+      Réponse juste à la question : {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
+      <li>
+        {{this.getResponsesOfUserPerQuestion(question.id)}} {{this.rightAnsCount}} fois sur {{this.rightAnsLength}} id {{question.id}}
+      </li>
+
     </ul>
 </div>
 

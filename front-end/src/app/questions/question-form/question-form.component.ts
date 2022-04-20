@@ -29,6 +29,7 @@ export class QuestionFormComponent implements OnInit {
       label: ['', Validators.required],
       image: [''],
       audio: [''],
+      indice: [''],
       answers: this.formBuilder.array([])
     });
   }

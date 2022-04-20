@@ -6,6 +6,7 @@ export const QUESTION_ACTOR: Question = {
     label: 'Jean Gabin a joué dans...',
     image: '',
     audio: '',
+    indice: '',
     answers: [
         {
             value: 'Les tuches II',

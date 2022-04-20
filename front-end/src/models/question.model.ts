@@ -10,4 +10,5 @@ export interface Question {
     answers: Answer[];
     image?: string;
     audio?: string;
+    indice?: string;
 }

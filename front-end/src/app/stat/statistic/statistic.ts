@@ -32,8 +32,12 @@ export class Statistic implements OnInit {
 
   averageWrongAnswers: number;
   averageRightAnswers: number;
+  rightAnsCount: number;
+  rightAnsLength: number;
+
 
   responseOfUser: Response[];
+  responseOfUserPerQuestion: Response[];
 
   showDetail: boolean;
 
@@ -118,4 +122,25 @@ export class Statistic implements OnInit {
     this.averageWrongAnswers = (this.averageWrongAnswers / this.responseOfUser.length );
   }
 
+  getResponsesOfUserPerQuestion(questionId: string): void {
+    const urlWithId = 'http://localhost:9428/api/users/response/' + this.id + '/' + this.userId + '/' + questionId;
+
+    this.http.get<Response[]>(urlWithId)
+      .subscribe(res => {
+        console.log('res ' , res);
+        this.responseOfUserPerQuestion = res;
+        this.returnValue();
+      });
+    console.log('response of user ' , this.responseOfUser);
+  }
+
+  returnValue(): void{
+    let i;
+    for (i = 0; i < this.responseOfUserPerQuestion.length ; i++){
+      if (this.responseOfUser[i].wrongAnswerCount === 0){
+        this.rightAnsCount++;
+      }
+    }
+    this.rightAnsLength = i;
+  }
 }

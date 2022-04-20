@@ -57,14 +57,13 @@ body {
   padding: 10rem;
   width: 100%;
   text-align: center;
-  color: red;
+  color: yellow;
+  font-weight: 700;
 
   font-size: larger;
   background-color: antiquewhite;
   background-image: url("https://bsmedia.business-standard.com/_media/bs/img/article/2019-11/03/full/1572796865-0693.jpg?im=Resize,width=1200");
   background-size: 100% 100%;
-  height: 300px;
-  border: 2px solid;
 
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
   0 2px 2px rgba(0, 0, 0, 0.1),
@@ -108,34 +107,19 @@ body {
         hsla(0, 0%, 0%, 0.182) 46.6%,
         hsla(0, 0%, 0%, 0.249) 53.1%,
         hsla(0, 0%, 0%, 0.320) 58.9%,
-        hsla(0, 0%, 0%, 0.394) 64.3%,
-        hsla(0, 0%, 0%, 0.468) 69.3%,
-        hsla(0, 0%, 0%, 0.540) 74.1%,
-        hsla(0, 0%, 0%, 0.607) 78.8%,
-        hsla(0, 0%, 0%, 0.668) 83.6%,
-        hsla(0, 0%, 0%, 0.721) 88.7%,
-        hsla(0, 0%, 0%, 0.762) 94.1%,
-        hsla(0, 0%, 0%, 0.790) 100%
+        hsla(0, 0%, 0%, 0.394) 60.3%,
+        hsla(0, 0%, 0%, 0.320) 65.3%,
+        hsla(0, 0%, 0%, 0.249) 70.1%,
+        hsla(0, 0%, 0%, 0.182) 75.8%,
+        hsla(0, 0%, 0%, 0.123) 83.6%,
+        hsla(0, 0%, 0%, 0.072) 88.7%,
+        hsla(0, 0%, 0%, 0.034) 94.1%,
+        hsla(0, 0%, 0%, 0.009) 100%
     );
     transform: translateY(-50%);
     transition: transform calc(var(--d) * 2) var(--e);
   }
 
-
-
-
-    //&:nth-child(#{1}):before {
-    //background-image: url(http://127.0.0.1:8080/database/question.data.json);
-    //
-    //}
-  //&:nth-child(#{2}):before {
-  //  background-image: url(https://i.pinimg.com/originals/f2/42/83/f24283a590bb343770f598877a0b63dc.jpg);
-  //
-  //}
-  //&:nth-child(#{3}):before {
-  //  background-image: url(https://wikimemoires.net/wp-content/uploads/2022/03/Champ-semantique-non-verbal-de-la-communication-traditionnelle.jpg);
-  //
-  //}
 
 }
 
@@ -158,12 +142,13 @@ body {
 
 .title {
   font-size: 2rem;
-  color: black;
+  color: white;
 
-  padding-right: 40px;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1.2;
-  position: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .copy {
@@ -175,7 +160,6 @@ body {
 
 .btn {
   cursor: pointer;
-  margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
   font-size: 0.65rem;
   font-weight: bold;
@@ -184,6 +168,8 @@ body {
   color: white;
   background-color: black;
   border: none;
+  margin-top: 150px;
+
 
   &:hover {
     background-color: lighten(black, 10%);
@@ -215,16 +201,20 @@ body {
   .card:hover,
   .card:focus-within {
     align-items: center;
+    display: flex;
+    justify-content: center;
 
     &:before { transform: translateY(-4%); }
     &:after { transform: translateY(-50%); }
 
     .content {
-      transform: translateY(-5%);
+      transform: translateY(-8%);
+
+
 
       > *:not(.title) {
         opacity: 1;
-        transform: translateY(-25%);
+        transform: translateY(-100%);
         transition-delay: calc(var(--d) / 8);
       }
     }

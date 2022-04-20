@@ -1,71 +1,29 @@
 
-
-<div class="container">
-  <form id ="contact" class="quiz-form" [formGroup]="questionForm">
-    <h3>Créer une nouvelle question
-    </h3>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 class="active">Créer une nouvelle question</h2>
 
 
-<!--    <label for="label">-->
-<!--      Url de l'image-->
-<!--      <br>-->
-<!--      <input class="input-custom" type="text" id="image" [formControlName]="'image'">-->
-<!--    </label>-->
-    <fieldset>
-      <input placeholder=" Url de l'image" type="text" id="image" [formControlName]="'image'" >
-    </fieldset>
-<!--    <label for="label">-->
-<!--      <br>-->
-<!--      Url de l'audio ou de la vidéo-->
-<!--      <br>-->
-<!--      <input class="input-custom" type="text" id="audio" [formControlName]="'audio'">-->
-<!--    </label>-->
-    <fieldset>
-      <input placeholder="Url de l'audio ou de la vidéo" type="text" id="audio" [formControlName]="'audio'" >
-    </fieldset>
-    <fieldset>
-      <input placeholder="Indice de la question (thème expression)" type="text" id="indice" [formControlName]="'indice'" >
-    </fieldset>
+    <form [formGroup]="questionForm">
+      <input [formControlName]="'image'" class="fadeIn second" id="image"  placeholder=" Url de l'image ou de la vidéo" type="text">
+      <input [formControlName]="'audio'" class="fadeIn third" id="audio"  placeholder="Url de l'audio" type="text">
+      <input [formControlName]="'label'" class="fadeIn third" id="label"  placeholder="Titre" type="text">
+      <br>
+      <button class="button-card2 fadeIn fourth" (click)="addAnswer()">Ajouter une réponse</button>
+      <div class="answer" formArrayName="answers">
+        <div *ngFor="let address of answers.controls; let i=index">
+          <div class="answer-form" [formGroupName]="i">
+            <input [formControlName]="'value'" class=""   placeholder="Réponse" type="text">
+            <label>
+              <br>
 
-<!--    <label for="label">-->
-<!--      <br>-->
-<!--      Titre <br>-->
-<!--      <input class="input-custom" type="text" id="label" [formControlName]="'label'">-->
-<!--    </label>-->
-    <fieldset>
-      <input placeholder="Titre" type="text" id="label" [formControlName]="'label'" >
-    </fieldset>
-
-    <br>
-    <button class="button-card" (click)="addAnswer()">Ajouter une réponse</button>
-    <div class="answer" formArrayName="answers">
-      <div *ngFor="let address of answers.controls; let i=index">
-        <div class="answer-form" [formGroupName]="i">
-<!--          <label>-->
-<!--            Réponse-->
-<!--            <input type="text" [formControlName]="'value'">-->
-<!--            <br>-->
-<!--            correcte ?-->
-<!--            <input type="checkbox" [formControlName]="'isCorrect'">-->
-<!--          </label>-->
-          <fieldset>
-            <input placeholder="Réponse" type="text" [formControlName]="'value'" >
-<!--            <input ptype="checkbox" [formControlName]="'isCorrect'">-->
-          </fieldset>
-
-
-            <label> correcte ?
-              <input  class="roundedTwo" type="checkbox" [formControlName]="'isCorrect'"></label>
-
-
-
-
+              <input  class="" type="checkbox" [formControlName]="'isCorrect'">correcte ?</label>
+          </div>
         </div>
       </div>
-    </div>
-    <button type="submit" class="button-card" (click)="addQuestion()">Créer la question</button>
-  </form>
-</div>
+      <button type="submit" class="button fadeIn fourth" (click)="addQuestion()">Créer la question</button>
 
-<!-- Uncomment below to see your form structure and how it changes-->
-<!-- <br><br>{{quizForm.getRawValue() | json}} -->
+      <!--      <input (click)="login()" class="fadeIn fourth" type="submit2" value="Commencer à jouer">-->
+    </form>
+
+  </div>

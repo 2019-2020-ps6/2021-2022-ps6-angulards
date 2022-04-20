@@ -24,10 +24,11 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  position: relative;
   width: 841px;
   min-height: 200%;
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin-left: 480px;
+
 }
 .fadeInDown2 {
   -webkit-animation-name: fadeInDown;

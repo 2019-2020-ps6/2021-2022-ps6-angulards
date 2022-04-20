@@ -33,6 +33,7 @@ export class QuizPageComponent implements OnInit {
   lastAnswer = [];
   answersAlreadyDeleted = 0;
   wrongAnswerScore = new Map<string, number>();
+  private limitedAnswer: boolean;
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
@@ -112,10 +113,14 @@ export class QuizPageComponent implements OnInit {
         }
       }
     } while (!questionPicked);
-    this.answersAlreadyDeleted = 0;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
+    if (this.answersAlreadyDeleted === 2) {
+      console.log('next question will be 4 answers');
+      this.limitedAnswer = false;
+      this.answersAlreadyDeleted = 0;
+    }
   }
 
   /**
@@ -249,7 +254,7 @@ export class QuizPageComponent implements OnInit {
    */
   private onWrongAnswer(answer): void {
     if (this.isPicto()) {
-      this.removeWrongAnswerElo(answer);
+      this.removeWrongAnswer(answer, 0);
       this.elo--;
       console.log('picto wrong answer');
     }

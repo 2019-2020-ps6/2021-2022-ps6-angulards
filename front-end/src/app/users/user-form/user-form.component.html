@@ -6,34 +6,23 @@
         S'inscrire en tant qu'Administrateur
         <input type="checkbox" id="admin" [formControlName]="'admin'">
       </label>
-      <br><br>
       <label for="email">
-        Email <br>
-        <input class="fadeIn second" type="text" id="email" [formControlName]="'email'">
-        <br>
+        <input class="fadeIn second" type="text" id="email" placeholder="E-mail" [formControlName]="'email'">
       </label>
       <label for="firstName">
-        Prénom <br>
-        <input class="fadeIn second" type="text" id="firstName" [formControlName]="'firstName'">
+        <input class="fadeIn second" type="text" id="firstName" placeholder="Prénom" [formControlName]="'firstName'">
       </label>
-      <br>
       <label for="lastName">
-        Nom <br>
-        <input class="fadeIn second" type="text" id="lastName" [formControlName]="'lastName'">
+        <input class="fadeIn second" type="text" id="lastName" placeholder="Nom" [formControlName]="'lastName'">
       </label>
-      <br>
       <label for="statcode" *ngIf="!isAdminSignup()">
-        Code Statistique <br>
-        <input class="fadeIn second" type="text" id="statcode" [formControlName]="'statcode'">
+        <input class="fadeIn second" type="text" id="statcode" placeholder="Code Statistique" [formControlName]="'statcode'">
       </label>
       <label for="admincode" *ngIf="isAdminSignup()">
-        Code Admin <br>
-        <input type="text" id="admincode">
+        <input type="text" id="admincode" placeholder="Code Admin">
       </label>
-      <br>
       <label for="password">
-        Mot de passe <br>
-        <input class="fadeIn second" type="text" id="password" [formControlName]="'password'">
+        <input class="fadeIn second" type="text" id="password" placeholder="Mot de passe" [formControlName]="'password'">
       </label>
       <br>
       <button type="submit" class="button-card" (click)="addUser()">S'inscrire</button>

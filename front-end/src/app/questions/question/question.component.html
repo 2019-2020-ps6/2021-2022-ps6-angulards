@@ -1,10 +1,12 @@
-<div class="card">
+<div class="wrapper fadeInDown" xmlns="http://www.w3.org/1999/html">
+  <div id="formContent">
     <h2>
         <i class="fab fa-leanpub"></i>
-        {{question.label}}
+        <strong class="TitleText">{{question.label}}</strong>
     </h2>
     <div class="answer" *ngFor="let answer of question.answers; let i=index">
-        {{i}} - {{answer.value}} <ng-container *ngIf="answer.isCorrect"><i class="far fa-check-square"></i></ng-container> <br>
+        {{i+1}} - {{answer.value}} <ng-container *ngIf="answer.isCorrect"><i class="far fa-check-square"></i></ng-container> <br>
     </div>
     <button class="button-card" (click)="delete()">Supprimer</button>
+  </div>
 </div>

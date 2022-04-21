@@ -4,7 +4,7 @@
 <h3 class="title-lstquiz">
   Séléctionner le quiz dont vous voulez voir les statistiques
 </h3>
-<div class="quiz-list">
+<div class="quiz-list2">
   <div *ngFor="let quiz of quizList" class="quiz">
     <app-userquiz (quizPlayed)="quizPlay($event)" [quiz]="quiz"></app-userquiz>
   </div>

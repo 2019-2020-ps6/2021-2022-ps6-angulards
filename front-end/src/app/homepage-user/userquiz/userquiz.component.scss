@@ -30,6 +30,19 @@ body {
 
 
 }
+.quiz-list {
+  grid-template-columns: 150px 150px 150px;
+  grid-template-rows: auto auto auto;
+  grid-gap: 300px;
+  mso-grid-top: 600px;
+  align-items: center;
+  display: grid;
+  margin-bottom: 500px;
+
+  row-gap: 5px;
+
+}
+
 
 .page-content {
   display: grid;

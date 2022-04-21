@@ -10,22 +10,42 @@
 <span>Pour le quiz {{this.quiz.name}} de thème '{{quiz.theme}}' : </span>
 
 <div>
-  Pourcentage de réussite : {{this.averageRightAnswers.toFixed(0)}} %
+  <ng-container *ngIf="this.averageRightAnswers>=0 && this.averageRightAnswers <= 30">
+  Pourcentage de réussite : <span style="color: red">{{this.averageRightAnswers.toFixed(0)}} %</span>
+  </ng-container>
+  <ng-container *ngIf="this.averageRightAnswers>30 && this.averageRightAnswers<=60">
+  Pourcentage de réussite : <span style="color: orange">{{this.averageRightAnswers.toFixed(0)}} %</span>
+  </ng-container>
+  <ng-container *ngIf="this.averageRightAnswers>60 && this.averageRightAnswers<=100">
+  Pourcentage de réussite : <span style="color: green">{{this.averageRightAnswers.toFixed(0)}} %</span>
+  </ng-container>
   <br>
-  Moyenne de clique à une mauvaise réponse : {{this.averageWrongAnswers.toFixed(0)}}
+  <ng-container *ngIf="this.averageWrongAnswers<=1">
+    Moyenne de clique à une mauvaise réponse :  <span style="color: green">{{this.averageWrongAnswers.toFixed(0)}}</span>
+  </ng-container>
+  <ng-container *ngIf="this.averageWrongAnswers>1 && this.averageWrongAnswers<=2">
+    Moyenne de clique à une mauvaise réponse :  <span style="color: orange">{{this.averageWrongAnswers.toFixed(0)}}</span>
+  </ng-container>
+  <ng-container *ngIf="this.averageWrongAnswers>2">
+    Moyenne de clique à une mauvaise réponse:  <span style="color: red">{{this.averageWrongAnswers.toFixed(0)}}</span>
+  </ng-container>
+  <ng-container *ngIf="this.averageWrongAnswers.toFixed(0) ==='NaN'">
+    Moyenne de clique à une mauvaise réponse : Pas encore d'essais
+  </ng-container>
+
 </div>
 
 <br>
 <button (click)="showDetails()" > Détails des réponses </button>
 
 <div *ngIf="showDetail">
+  <br>
   Détails sur chaque question du quiz :
     <ul *ngFor="let question of this.quiz.questions">
       Réponse juste à la question : {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
       <li>
         {{this.allTriesRightAnswerPerQuestionCount.get(question.id)}} fois sur {{this.allTriesPerQuestionCount.get(question.id)}}
       </li>
-
     </ul>
 </div>
 

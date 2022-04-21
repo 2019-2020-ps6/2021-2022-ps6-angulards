@@ -1,22 +1,24 @@
 @import '../../styles/welcomin.css';
 
 #formContent {
-  margin-top: 100px;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
+  margin-top: 20px;
   width: 90%;
   max-width: 600px;
   position: relative;
-  padding: 1px;
-
+  padding: 20px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
+  position: relative;
+
+
 }
 
 .imgWelcome {
-  width: 100%;
+  width: 80%;
 
 }
 .wrapper2 {
@@ -27,8 +29,7 @@
   position: relative;
   width: 841px;
   min-height: 200%;
-  margin-left: 480px;
-
+  margin-left: 250px;
 }
 .fadeInDown2 {
   -webkit-animation-name: fadeInDown;

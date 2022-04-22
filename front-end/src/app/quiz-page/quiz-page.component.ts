@@ -31,7 +31,7 @@ export class QuizPageComponent implements OnInit {
   nextQuestionType = 'image'; // can be image or audio
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
-  lastAnswer = [];
+  lastAnswer = undefined;
   nextQuestionElo = 0;
   // 0 -> 4 rep image
   // 1 -> 6 rep image
@@ -79,9 +79,6 @@ export class QuizPageComponent implements OnInit {
     }
     this.manageQuestionScore(answer);
     this.selectedAnswer.set(this.indexQuiz, answer);
-    this.changeNextQuestionType();
-    this.changeNextQuestionElo();
-
   }
 
   /**
@@ -107,6 +104,9 @@ export class QuizPageComponent implements OnInit {
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
     console.log('elo : ' + this.elo);
+
+    this.changeNextQuestionType();
+    this.changeNextQuestionElo();
     this.selectImageOrAudioQuestion();
     this.selectEloQuestion();
     this.DISPLAY_HINT = false;
@@ -243,7 +243,6 @@ export class QuizPageComponent implements OnInit {
   private onRightAnswer(): void {
     if (this.isEmotion()) {
       console.log('emotion good answer');
-      this.lastAnswer = this.lastAnswer.concat(true);
     }
     if (this.isPicto()) {
       console.log('picto good answer');
@@ -269,8 +268,7 @@ export class QuizPageComponent implements OnInit {
     }
     if (this.isEmotion()) {
       console.log('emotion wrong answer');
-      this.lastAnswer = this.lastAnswer.concat(false);
-      this.nextQuestionElo--;
+      this.lastAnswer = false;
     }
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
     this.DISPLAY_HINT = true;
@@ -286,18 +284,19 @@ export class QuizPageComponent implements OnInit {
   }
 
   private changeNextQuestionElo(): void {
-    this.nextQuestionElo--;
-    if (this.lastAnswer.pop() === true) {
-      if (this.nextQuestionElo > 4) {
-        this.nextQuestionElo = 4;
-      } else {
-        this.nextQuestionElo += 2;
-      }
-    } else {
-      if (this.nextQuestionElo <= 0) {
-        this.nextQuestionElo = 0;
-      }
+    this.nextQuestionElo -= 0.5;
+
+    if (this.lastAnswer !== false) {
+      this.nextQuestionElo += 1;
     }
+
+    if (this.nextQuestionElo > 4) {
+      this.nextQuestionElo = 4;
+    }
+    if (this.nextQuestionElo < 0.5) {
+      this.nextQuestionElo = 0;
+    }
+    this.lastAnswer = undefined;
     console.log('elo next question ' + this.nextQuestionElo);
   }
 

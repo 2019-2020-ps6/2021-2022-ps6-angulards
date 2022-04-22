@@ -103,13 +103,11 @@ export class QuizPageComponent implements OnInit {
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
-    console.log('elo : ' + this.elo);
-
     this.changeNextQuestionType();
     this.changeNextQuestionElo();
+    this.DISPLAY_HINT = false;
     this.selectImageOrAudioQuestion();
     this.selectEloQuestion();
-    this.DISPLAY_HINT = false;
   }
 
   /**
@@ -180,7 +178,19 @@ export class QuizPageComponent implements OnInit {
   }
 
   private selectEloQuestion(): void {
-    // to do
+    if (this.nextQuestionElo <= 1) {
+      // next question 4 rep image
+    }
+    if (this.nextQuestionElo <= 2) {
+      // next question 6 rep image
+    }
+    if (this.nextQuestionElo <= 3) {
+      // next question audi 4 rep
+    }
+    if (this.nextQuestionElo <= 4) {
+      // next question audio 6 rep
+    }
+    // next question video or error
   }
 
   /**
@@ -247,6 +257,7 @@ export class QuizPageComponent implements OnInit {
     if (this.isPicto()) {
       console.log('picto good answer');
       this.elo++;
+      console.log('elo : ' + this.elo);
     }
     this.scoreGame++;
     this.displayResult = this.DISPLAY_RIGHT_ANSWER;
@@ -264,6 +275,7 @@ export class QuizPageComponent implements OnInit {
     if (this.isPicto()) {
       this.removeWrongAnswer(answer, 0);
       this.elo--;
+      console.log('elo : ' + this.elo);
       console.log('picto wrong answer');
     }
     if (this.isEmotion()) {

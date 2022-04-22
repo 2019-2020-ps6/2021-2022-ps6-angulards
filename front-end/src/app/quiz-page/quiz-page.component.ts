@@ -14,6 +14,7 @@ import {QuizService} from '../../services/quiz.service';
 export class QuizPageComponent implements OnInit {
 
   // enum answer state
+  DISPLAY_HINT = false;
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
   public DISPLAY_NO_ANSWER = 0;
@@ -31,9 +32,12 @@ export class QuizPageComponent implements OnInit {
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
   lastAnswer = [];
-  answersAlreadyDeleted = 0;
+  nextQuestionElo = 0;
+  // 0 -> 4 rep image
+  // 1 -> 6 rep image
+  // 2 -> 4 rep audio
+  // 3 -> 6 rep audio
   wrongAnswerScore = new Map<string, number>();
-  private limitedAnswer: boolean;
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
@@ -75,7 +79,9 @@ export class QuizPageComponent implements OnInit {
     }
     this.manageQuestionScore(answer);
     this.selectedAnswer.set(this.indexQuiz, answer);
-    this.changeCurrentQuestionType();
+    this.changeNextQuestionType();
+    this.changeNextQuestionElo();
+
   }
 
   /**
@@ -101,24 +107,9 @@ export class QuizPageComponent implements OnInit {
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
     console.log('elo : ' + this.elo);
-    let questionPicked = false;
-    let newIndex = this.indexQuiz;
-    do {
-      if (this.quiz.questions[newIndex++] == null) {
-        questionPicked = true;
-      } else {
-        if ((this.nextQuestionType === 'audio' && this.isAudioQuestion(newIndex))
-          || this.nextQuestionType === 'image' && this.isImageQuestion(newIndex)) {
-          questionPicked = true;
-          this.indexQuiz = newIndex;
-        }
-      }
-    } while (!questionPicked);
-    if (this.answersAlreadyDeleted === 2) {
-      console.log('next question will be 4 answers');
-      this.limitedAnswer = false;
-      this.answersAlreadyDeleted = 0;
-    }
+    this.selectImageOrAudioQuestion();
+    this.selectEloQuestion();
+    this.DISPLAY_HINT = false;
   }
 
   /**
@@ -165,6 +156,31 @@ export class QuizPageComponent implements OnInit {
 
   isAudio(): boolean {
     return this.quiz !== undefined && this.quiz.questions[this.indexQuiz].audio != null;
+  }
+
+  /**
+   * Pick next question
+   * Image or video depending on nextQuestionType variable
+   * @private
+   */
+  private selectImageOrAudioQuestion(): void {
+    let questionPicked = false;
+    let newIndex = this.indexQuiz;
+    do {
+      if (this.quiz.questions[newIndex++] == null) {
+        questionPicked = true;
+      } else {
+        if ((this.nextQuestionType === 'audio' && this.isAudioQuestion(newIndex))
+          || this.nextQuestionType === 'image' && this.isImageQuestion(newIndex)) {
+          questionPicked = true;
+          this.indexQuiz = newIndex;
+        }
+      }
+    } while (!questionPicked);
+  }
+
+  private selectEloQuestion(): void {
+    // to do
   }
 
   /**
@@ -226,12 +242,8 @@ export class QuizPageComponent implements OnInit {
    */
   private onRightAnswer(): void {
     if (this.isEmotion()) {
-      if (this.lastAnswer.pop()) {
-        this.elo++;     // si juste q(n-1) et q(n) alors elo++;
-        console.log('emotion two good answer');
-      } else {
-        console.log('emotion good answer');
-      }
+      console.log('emotion good answer');
+      this.lastAnswer = this.lastAnswer.concat(true);
     }
     if (this.isPicto()) {
       console.log('picto good answer');
@@ -239,7 +251,6 @@ export class QuizPageComponent implements OnInit {
     }
     this.scoreGame++;
     this.displayResult = this.DISPLAY_RIGHT_ANSWER;
-    this.lastAnswer.push(true);
   }
 
   /**
@@ -257,34 +268,37 @@ export class QuizPageComponent implements OnInit {
       console.log('picto wrong answer');
     }
     if (this.isEmotion()) {
-      if (this.lastAnswer.pop() === false && this.answersAlreadyDeleted === 0) {
-        this.removeWrongAnswer(answer, 0);
-        this.removeWrongAnswer(this.getWrongAnswer()[0], 0);
-        this.elo--;
-        console.log('emotion two wrong answer');
-        this.answersAlreadyDeleted = 2;
-      } else {
-        console.log('emotion wrong answer');
-      }
+      console.log('emotion wrong answer');
+      this.lastAnswer = this.lastAnswer.concat(false);
+      this.nextQuestionElo--;
     }
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
-    this.lastAnswer.push(false);
+    this.DISPLAY_HINT = true;
   }
 
-  private isEmotion(): boolean {
-    return this.quiz.theme.toLocaleLowerCase().includes('motion');
-  }
 
-  private isPicto(): boolean {
-    return this.quiz.theme.toLocaleLowerCase().startsWith('picto');
-  }
-
-  private changeCurrentQuestionType(): void {
+  private changeNextQuestionType(): void {
     if (this.elo <= 0) {
       this.nextQuestionType = 'image';
     } else {
       this.nextQuestionType = 'audio';
     }
+  }
+
+  private changeNextQuestionElo(): void {
+    this.nextQuestionElo--;
+    if (this.lastAnswer.pop() === true) {
+      if (this.nextQuestionElo > 4) {
+        this.nextQuestionElo = 4;
+      } else {
+        this.nextQuestionElo += 2;
+      }
+    } else {
+      if (this.nextQuestionElo <= 0) {
+        this.nextQuestionElo = 0;
+      }
+    }
+    console.log('elo next question ' + this.nextQuestionElo);
   }
 
   private isAudioQuestion(i): boolean {
@@ -293,6 +307,14 @@ export class QuizPageComponent implements OnInit {
 
   private isImageQuestion(i): boolean {
     return this.quiz.questions[i] != null && this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
+  }
+
+  private isEmotion(): boolean {
+    return this.quiz.theme.toLocaleLowerCase().includes('motion');
+  }
+
+  private isPicto(): boolean {
+    return this.quiz.theme.toLocaleLowerCase().startsWith('picto');
   }
 
   /**
@@ -309,4 +331,5 @@ export class QuizPageComponent implements OnInit {
       }
     }
   }
+
 }

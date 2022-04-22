@@ -32,6 +32,7 @@ export class QuizPageComponent implements OnInit {
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
   lastAnswer = undefined;
+  nbWrongAnswerPerQuestion = 0;
   nextQuestionElo = 0;
   // 0 -> 4 rep image
   // 1 -> 6 rep image
@@ -100,6 +101,7 @@ export class QuizPageComponent implements OnInit {
    * TO DO: change data structure to make previous question working
    */
   nextQuestion(): void {
+    this.nbWrongAnswerPerQuestion = 0;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
@@ -281,13 +283,14 @@ export class QuizPageComponent implements OnInit {
       this.elo--;
       console.log('elo : ' + this.elo);
       console.log('picto wrong answer');
+      this.nbWrongAnswerPerQuestion++;
+      this.DISPLAY_HINT = this.nbWrongAnswerPerQuestion >= 2;
     }
     if (this.isEmotion()) {
       console.log('emotion wrong answer');
       this.lastAnswer = false;
     }
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
-    this.DISPLAY_HINT = true;
   }
 
   private changeNextQuestionElo(): void {

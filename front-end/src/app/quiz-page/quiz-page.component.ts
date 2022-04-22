@@ -103,11 +103,14 @@ export class QuizPageComponent implements OnInit {
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
-    this.changeNextQuestionType();
-    this.changeNextQuestionElo();
-    this.DISPLAY_HINT = false;
-    this.selectImageOrAudioQuestion();
-    this.selectEloQuestion();
+    if (this.isPicto()) {
+      this.DISPLAY_HINT = false;
+    }
+    if (this.isEmotion()) {
+      this.changeNextQuestionElo();
+      this.selectEloQuestion();
+    }
+    this.selectImageOrAudioQuestion(); // then change question
   }
 
   /**
@@ -180,15 +183,16 @@ export class QuizPageComponent implements OnInit {
   private selectEloQuestion(): void {
     if (this.nextQuestionElo <= 1) {
       // next question 4 rep image
-    }
-    if (this.nextQuestionElo <= 2) {
+      this.nextQuestionType = 'image';
+    } else if (this.nextQuestionElo <= 2) {
       // next question 6 rep image
-    }
-    if (this.nextQuestionElo <= 3) {
+      this.nextQuestionType = 'image';
+    } else if (this.nextQuestionElo <= 3) {
       // next question audi 4 rep
-    }
-    if (this.nextQuestionElo <= 4) {
+      this.nextQuestionType = 'audio';
+    } else if (this.nextQuestionElo <= 4) {
       // next question audio 6 rep
+      this.nextQuestionType = 'audio';
     }
     // next question video or error
   }
@@ -286,22 +290,12 @@ export class QuizPageComponent implements OnInit {
     this.DISPLAY_HINT = true;
   }
 
-
-  private changeNextQuestionType(): void {
-    if (this.elo <= 0) {
-      this.nextQuestionType = 'image';
-    } else {
-      this.nextQuestionType = 'audio';
-    }
-  }
-
   private changeNextQuestionElo(): void {
     this.nextQuestionElo -= 0.5;
 
     if (this.lastAnswer !== false) {
       this.nextQuestionElo += 1;
     }
-
     if (this.nextQuestionElo > 4) {
       this.nextQuestionElo = 4;
     }

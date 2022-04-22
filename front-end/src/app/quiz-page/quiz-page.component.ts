@@ -12,12 +12,11 @@ import {QuizService} from '../../services/quiz.service';
   styleUrls: ['./quiz-page.component.scss']
 })
 export class QuizPageComponent implements OnInit {
-
   // enum answer state
-  DISPLAY_HINT = false;
   public DISPLAY_RIGHT_ANSWER = 2;
   public DISPLAY_WRONG_ANSWER = 1;
   public DISPLAY_NO_ANSWER = 0;
+  DISPLAY_HINT = false;
   endForScore: boolean;
   quiz: Quiz;
   question: Question;
@@ -28,7 +27,7 @@ export class QuizPageComponent implements OnInit {
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   scoreGame = 0;
-  nextQuestionType = 'image'; // can be image or audio
+  nextQuestionType = 'image'; // could be image or audio, image by default
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
   lastAnswer = undefined;
@@ -182,6 +181,11 @@ export class QuizPageComponent implements OnInit {
     } while (!questionPicked);
   }
 
+  /**
+   * ### DIFFICULTY 3 ###
+   * change question difficulty depending on ELO
+   * @private
+   */
   private selectEloQuestion(): void {
     if (this.nextQuestionElo <= 1) {
       // next question 4 rep image
@@ -293,6 +297,11 @@ export class QuizPageComponent implements OnInit {
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
   }
 
+  /**
+   * change nextQuestionElo global variable
+   * make sure elo is in the range [0 : 4]
+   * @private
+   */
   private changeNextQuestionElo(): void {
     this.nextQuestionElo -= 0.5;
 
@@ -308,6 +317,7 @@ export class QuizPageComponent implements OnInit {
     this.lastAnswer = undefined;
     console.log('elo next question ' + this.nextQuestionElo);
   }
+
 
   private isAudioQuestion(i): boolean {
     return this.quiz.questions[i] != null && this.quiz.questions[i].image == null && this.quiz.questions[i].audio != null;

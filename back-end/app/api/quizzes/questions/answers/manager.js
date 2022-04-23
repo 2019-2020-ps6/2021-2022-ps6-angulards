@@ -1,4 +1,4 @@
-const { Answer, User} = require('../../../../models')
+const { Answer, User } = require('../../../../models')
 const NotFoundError = require('../../../../utils/errors/not-found-error.js')
 const { getQuestionFromQuiz } = require('../manager')
 

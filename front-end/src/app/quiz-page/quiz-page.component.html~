@@ -1,0 +1,96 @@
+<div *ngIf="this.endForScore===false" class="wrapper">
+
+  <!-- Answers -->
+  <div id="formContent">
+    <div *ngIf="getQuestionsLength() == -1">
+      <h4>Il n'y a pas encore de questions !</h4>
+    </div>
+
+    <div *ngIf="isVideo()">
+      <iframe [src]="this.quiz.questions[this.indexQuiz].image.replace('watch?v=', 'embed/').
+    substring(0, this.quiz.questions[this.indexQuiz].image.indexOf('&') - 2) | safe"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen [frameBorder]="0"
+              title="YouTube video player"></iframe>
+    </div>
+
+    <div *ngIf="isImage()"><img alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
+                                 class="img-container"
+                                 src="{{quiz.questions[indexQuiz].image}}"
+    ></div>
+
+    <div *ngIf="isAudio()">
+      <audio controls>
+        <source src="{{quiz.questions[indexQuiz].audio}}"/>
+        <p>Audio non pris en charge</p>
+      </audio>
+    </div>
+
+    <h3>{{quiz.questions[indexQuiz].label}}</h3>
+    <div class="answer-box-container">
+      <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
+        <div class="inputGroup" *ngIf="ans">
+          <button (click)="takeActionOnClick(ans)" class="">{{ans.value}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="DISPLAY_HINT" class="">
+      <p>{{quiz.questions[indexQuiz].indice}}</p>
+    </div>
+  </div>
+
+
+  <!-- Reward -->
+  <div class="show-answer-container">
+    <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="question-right">
+      <h3>Bravo !!</h3>
+    </div>
+    <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="butterfly-large-left"></div>
+    <div *ngIf="displayResult === DISPLAY_RIGHT_ANSWER" class="butterfly-large-right"></div>
+    <div *ngIf="displayResult === DISPLAY_WRONG_ANSWER" class="question-wrong"><h3>Les papillons vont bientôt
+      s'afficher</h3></div>
+  </div>
+
+  <!-- Page navigation -->
+  <div class="page-switcher-container">
+    <div class="previous-question">
+      <i (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER" *ngIf="!isStart()"
+              class="fas fa-arrow-alt-circle-left previous2"  ><font size="+1">Précédent</font>
+
+      </i>
+    </div>
+
+    <div class="next-question">
+      <i (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
+              *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" class='fas fa-arrow-alt-circle-right next2 '
+      ><font size="+1">Suivant</font>
+      </i>
+      <i (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
+              *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" class="fas fa-arrow-alt-circle-right  next2" ><font size="+1">Suivant</font>
+      </i>
+      <i (click)="finished()" *ngIf="isEnd()" class="fas fa-arrow-alt-circle-right  next2"><font size="+1">fin </font></i>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="this.endForScore===true" class="wrapper fadeInDown">
+  <script>console.log(isEnd())</script>
+
+  <div class="wrapper fadeInDown">
+    <div class="question-center">
+      <!-- Tabs Titles -->
+      <img alt="" class="imgWelcome"
+           src="https://images.assetsdelivery.com/compings_v2/maxborovkov/maxborovkov1804/maxborovkov180400017.jpg"
+           width="400"/>
+
+      <!-- Login Form -->
+      <form>
+        Tu as fini le quiz des {{quiz.theme}}
+      </form>
+
+    </div>
+    <br>
+    <input (click)="navigateToQuizPage()" class="fadeIn second" type="submit"
+           value="Retour à la liste des quiz">
+  </div>

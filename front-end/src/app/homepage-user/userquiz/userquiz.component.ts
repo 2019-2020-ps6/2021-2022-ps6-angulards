@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Quiz} from '../../../models/quiz.model';
 import {Router} from '@angular/router';
+import {QuizService} from "../../../services/quiz.service";
 
 @Component({
   selector: 'app-userquiz',
@@ -8,6 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./userquiz.component.scss']
 })
 export class UserQuizComponent implements OnInit {
+  userId: string;
+  public quizList: Quiz[] = [];
 
   /**
    * Input here could be undefined, if the parent component doesn't give any userquiz.
@@ -22,7 +25,12 @@ export class UserQuizComponent implements OnInit {
   quizPlayed: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public quizService: QuizService) {
+    this.userId = localStorage.getItem('application-user');
+
+    this.quizService.quizzes$.subscribe((quizList) => {
+      this.quizList = quizList;
+    });
   }
 
   ngOnInit(): void {
@@ -36,4 +44,8 @@ export class UserQuizComponent implements OnInit {
     console.log(url + ' test url');
     this.router.navigateByUrl(url).then();
   }
+  quizPlay(quiz: Quiz): void {
+    this.router.navigate(['/stat/' + quiz.id]).then();
+  }
+
 }

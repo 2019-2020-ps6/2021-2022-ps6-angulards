@@ -1,6 +1,12 @@
 .quiz-list {
-  display: flex;
+  grid-template-columns: 20rem 20rem 20rem;
+  grid-template-rows: auto auto auto;
+  grid-gap: 2rem;
+  mso-grid-top: 2rem;
+  display: grid;
+  justify-content: space-evenly;
 }
+
 
 .btn-rond{
   margin-left: 20px;
@@ -27,6 +33,10 @@
   display: flex;
   position: relative;
 }
+.pos{
+
+
+}
 .plus__line {
   width: 6px;
   height: 50px;
@@ -35,6 +45,7 @@
   position: absolute;
   left: calc(50% - 3px);
   top: calc(50% - 25px);
+
 }
 .plus__line--h {
   transform: rotate(90deg);
@@ -130,3 +141,4 @@ body {
   right: 10px;
 
 }
+

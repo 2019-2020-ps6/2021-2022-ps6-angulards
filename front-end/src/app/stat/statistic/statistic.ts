@@ -24,7 +24,7 @@ export class Statistic implements OnInit {
 
   response;
   // change users in url to get it from quizzes or better create Response package in back
-  responseURL = 'http://localhost:9428/api/users/response';
+  responseURL = 'http://localhost:9428/api/gamesession/response';
 
   public quizList: Quiz[] = [];
   id: string;
@@ -95,7 +95,7 @@ export class Statistic implements OnInit {
   }
 
   getResponsesOfUser(): void {
-    const urlWithId = 'http://localhost:9428/api/users/response/' + this.id + '/' + this.userId;
+    const urlWithId = 'http://localhost:9428/api/gamesession/response/' + this.id + '/' + this.userId;
 
     this.http.get<Response[]>(urlWithId)
       .subscribe(res => {
@@ -124,7 +124,7 @@ export class Statistic implements OnInit {
 
   getResponsesOfUserPerQuestion(): void {
     this.quiz.questions.forEach(question => {
-      const urlWithId = 'http://localhost:9428/api/users/response/' + this.id + '/' + this.userId + '/' + question.id;
+      const urlWithId = 'http://localhost:9428/api/gamesession/response/' + this.id + '/' + this.userId + '/' + question.id;
 
       this.http.get<Response[]>(urlWithId)
         .subscribe(res => {

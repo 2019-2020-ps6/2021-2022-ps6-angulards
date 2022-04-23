@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Answer, Question} from '../../models/question.model';
-import {GameSession} from '../../models/gamesession.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Quiz} from '../../models/quiz.model';
 import {QuizService} from '../../services/quiz.service';

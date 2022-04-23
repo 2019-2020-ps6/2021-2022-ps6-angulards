@@ -99,18 +99,26 @@ export class QuizPageComponent implements OnInit {
    * TO DO: change data structure to make previous question working
    */
   nextQuestion(): void {
-    this.nbWrongAnswerPerQuestion = 0;
     const userId = localStorage.getItem('application-user');
     this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
     this.wrongAnswerScore.set(userId, 0);
     if (this.isPicto()) {
+      this.indexQuiz++;
+      console.log('pictogram next question');
+    }
+    if (this.isExpression()) {
+      this.nextQuestionType = 'all';
+      this.nbWrongAnswerPerQuestion = 0;
       this.DISPLAY_HINT = false;
+      this.indexQuiz++;
+      console.log('expression next question');
     }
     if (this.isEmotion()) {
       this.changeNextQuestionElo();
       this.selectEloQuestion();
+      this.selectImageOrAudioQuestion(); // then change question
+      console.log('expresssion next question');
     }
-    this.selectImageOrAudioQuestion(); // then change question
   }
 
   /**
@@ -129,8 +137,11 @@ export class QuizPageComponent implements OnInit {
   isEnd(): boolean {
     const lastImageQuestionIndex = Math.max.apply(null, this.indexOfImageQuestion);
     const lastAudioQuestionIndex = Math.max.apply(null, this.indexOfAudioQuestion);
+    console.log(this.nextQuestionType);
+    console.log(this.getQuestionsLength() + ' ' + this.indexQuiz);
     return ((this.nextQuestionType === 'image' && (lastImageQuestionIndex === this.indexQuiz))
-      || (this.nextQuestionType === 'audio' && (lastAudioQuestionIndex === this.indexQuiz)));
+      || (this.nextQuestionType === 'audio' && (lastAudioQuestionIndex === this.indexQuiz))
+      || (this.nextQuestionType === 'all' && this.indexQuiz === this.getQuestionsLength()));
   }
 
   /**
@@ -191,7 +202,7 @@ export class QuizPageComponent implements OnInit {
       this.nextQuestionType = 'image';
     } else if (this.nextQuestionElo <= 2) {
       // next question 6 rep image
-      this.nextQuestionType = 'image';
+      this.nextQuestionType = 'audio';
     } else if (this.nextQuestionElo <= 3) {
       // next question audi 4 rep
       this.nextQuestionType = 'audio';
@@ -264,9 +275,12 @@ export class QuizPageComponent implements OnInit {
       console.log('emotion good answer');
     }
     if (this.isPicto()) {
-      console.log('picto good answer');
+      console.log('pictogram good answer');
       this.elo++;
       console.log('elo : ' + this.elo);
+    }
+    if (this.isExpression()) {
+      console.log('expression good answer');
     }
     this.scoreGame++;
     this.displayResult = this.DISPLAY_RIGHT_ANSWER;
@@ -284,14 +298,17 @@ export class QuizPageComponent implements OnInit {
     if (this.isPicto()) {
       this.removeWrongAnswer(answer, 0);
       this.elo--;
-      console.log('elo : ' + this.elo);
-      console.log('picto wrong answer');
+      console.log('pictogram wrong answer');
+      console.log('new elo : ' + this.elo);
+    }
+    if (this.isExpression()) {
       this.nbWrongAnswerPerQuestion++;
       this.DISPLAY_HINT = this.nbWrongAnswerPerQuestion >= 2;
+      console.log('expression wrong answer');
     }
     if (this.isEmotion()) {
-      console.log('emotion wrong answer');
       this.lastAnswer = false;
+      console.log('emotion wrong answer');
     }
     this.displayResult = this.DISPLAY_WRONG_ANSWER;
   }
@@ -332,6 +349,10 @@ export class QuizPageComponent implements OnInit {
 
   private isPicto(): boolean {
     return this.quiz.theme.toLocaleLowerCase().startsWith('picto');
+  }
+
+  private isExpression(): boolean {
+    return this.quiz.theme.toLocaleLowerCase().includes('express');
   }
 
   /**

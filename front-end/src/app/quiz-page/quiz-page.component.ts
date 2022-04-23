@@ -26,7 +26,7 @@ export class QuizPageComponent implements OnInit {
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   scoreGame = 0;
-  nextQuestionType = 'image'; // could be image or audio, image by default
+  nextQuestionType = 'all'; // could be image or audio, image by default
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
   lastAnswer = undefined;
@@ -137,11 +137,9 @@ export class QuizPageComponent implements OnInit {
   isEnd(): boolean {
     const lastImageQuestionIndex = Math.max.apply(null, this.indexOfImageQuestion);
     const lastAudioQuestionIndex = Math.max.apply(null, this.indexOfAudioQuestion);
-    console.log(this.nextQuestionType);
-    console.log(this.getQuestionsLength() + ' ' + this.indexQuiz);
     return ((this.nextQuestionType === 'image' && (lastImageQuestionIndex === this.indexQuiz))
       || (this.nextQuestionType === 'audio' && (lastAudioQuestionIndex === this.indexQuiz))
-      || (this.nextQuestionType === 'all' && this.indexQuiz === this.getQuestionsLength()));
+      || (this.indexQuiz === this.getQuestionsLength()));
   }
 
   /**
@@ -204,10 +202,7 @@ export class QuizPageComponent implements OnInit {
       // next question 6 rep image
       this.nextQuestionType = 'audio';
     } else if (this.nextQuestionElo <= 3) {
-      // next question audi 4 rep
-      this.nextQuestionType = 'audio';
-    } else if (this.nextQuestionElo <= 4) {
-      // next question audio 6 rep
+      // next question audio
       this.nextQuestionType = 'audio';
     }
     // next question video or error
@@ -233,7 +228,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   /**
-   * ### DIFFICULTY 2 ###
+   * ### DIFFICULTY NOT UNDERSTOOD ###
    * 4 answers, 6 answers, all answer depending on the elo
    * @param answer answer to remove
    */
@@ -271,16 +266,8 @@ export class QuizPageComponent implements OnInit {
    * @private
    */
   private onRightAnswer(): void {
-    if (this.isEmotion()) {
-      console.log('emotion good answer');
-    }
     if (this.isPicto()) {
-      console.log('pictogram good answer');
       this.elo++;
-      console.log('elo : ' + this.elo);
-    }
-    if (this.isExpression()) {
-      console.log('expression good answer');
     }
     this.scoreGame++;
     this.displayResult = this.DISPLAY_RIGHT_ANSWER;

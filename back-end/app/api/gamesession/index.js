@@ -1,6 +1,8 @@
 const { Router } = require('express')
 const { User, Responses } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
+const { filterResponseByUserIdAndQuizIdAndQuestions, filterResponseByUserIdAndQuizId } = require('./manager')
+
 
 const router = new Router()
 
@@ -25,15 +27,6 @@ router.post('/response', (req, res) => {
   }
 })
 
-/**
- * filterQuestionsFromQuizz.
- * This function filters among the questions to return only the question linked with the given quizId.
- * @param quizId
- */
-const filterResponseByUserIdAndQuizId = (userId, quizId) => {
-  const responses = Responses.get()
-  return responses.filter((response) => response.quizId === Number(quizId) && response.userId === userId)
-}
 
 router.get('/response/:quizId/:userId', (req, res) => {
   try {
@@ -45,14 +38,6 @@ router.get('/response/:quizId/:userId', (req, res) => {
   }
 })
 
-/**
- * filter the responses by a specific question
- */
-const filterResponseByUserIdAndQuizIdAndQuestions = (userId, quizId, questionId) => {
-  const responses = Responses.get()
-  console.log('ok ', typeof responses[0].questionId)
-  return responses.filter((response) => response.quizId === Number(quizId) && response.questionId === Number(questionId) && response.userId === userId)
-}
 
 /**
  * Get Responses of a specific questions

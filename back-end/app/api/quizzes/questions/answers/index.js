@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.get('/:answerId', (req, res) => {
   try {
-    const answer = getAnswerFromQuestion(req.params.quizId, req.params.userId ,req.params.questionId, req.params.answerId)
+    const answer = getAnswerFromQuestion(req.params.quizId, req.params.userId, req.params.questionId, req.params.answerId)
     res.status(200).json(answer)
   } catch (err) {
     if (err.name === 'NotFoundError') {

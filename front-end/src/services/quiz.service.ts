@@ -94,8 +94,8 @@ export class QuizService {
   addResponseScore(quizId: string, questionId: string, userId: string, wrongAnswerCount: number): void{
     const response: Response = {quizId, questionId, userId, wrongAnswerCount} as Response;
     console.log('before post request');
-    const responseUrl = this.quizUrl + '/response';
-    this.http.post<Response>(responseUrl, response, this.httpOptions).subscribe((val) => {
+    const gameSessionUrl = serverUrl + '/gamesession/response';
+    this.http.post<Response>(gameSessionUrl, response, this.httpOptions).subscribe((val) => {
       console.log('POST call successful value returned in body', val); });
     console.log('post done');
   }

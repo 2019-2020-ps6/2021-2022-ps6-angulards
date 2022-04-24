@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private http: HttpClient, public location: Location,public quizService: QuizService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, public location: Location, public quizService: QuizService, private router: Router, private formBuilder: FormBuilder) {
     console.log(this.location.path());
     this.userId = localStorage.getItem('application-user');
 

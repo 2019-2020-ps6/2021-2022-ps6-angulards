@@ -62,7 +62,8 @@ export class HeaderComponent implements OnInit {
        this.showStatcCodeInput = !this.showStatcCodeInput;
        this.router.navigate(['stat']).then();
      }else {
-       alert('Wrong Statistic Code, please retry');
+       const header = document.querySelector('h3');
+       header.innerText = 'Code incorrect, veuillez réssayer';
      }
 
   }

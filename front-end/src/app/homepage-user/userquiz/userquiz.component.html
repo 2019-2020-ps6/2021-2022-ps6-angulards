@@ -19,9 +19,12 @@
   <div class="card">
     <div class="content">
       <h2 class="title">{{quiz.name}}</h2>
+      <div class="theme">
         <span>
-          <br>Theme: {{quiz.theme}}
+          <br >Theme: {{quiz.theme}}
         </span>
+      </div>
+
       <button routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="btn">Lancer Le quiz</button>
 
     </div>

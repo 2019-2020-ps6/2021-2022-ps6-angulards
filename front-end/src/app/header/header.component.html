@@ -28,9 +28,25 @@
 <!--    <li><a (click)="EnterStatCode()" *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage'&& this.location.path() != '/quiz-list' && this.location.path() != '/login'-->
 <!--          && this.location.path() != '/quiz-form' && this.location.path() != '/edit-quiz'"-->
 <!--           style="cursor: pointer">Stat</a></li>-->
-
+    <li><a (click)="EnterStatCode()" *ngIf="this.location.path()==='/userquiz'" class="posit" style="cursor: pointer" >Stat</a></li>
     <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/admin-login'&& this.location.path() != '/login'" (click)="LogOut()" style="cursor: pointer">Déconnexion</a></li>
   </ul>
+
+<!--  <form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput" class="input">-->
+<!--    <input formControlName ="statCode" id="statCode" name="statCode" placeholder="Code statistique" type="password">-->
+<!--    <input (click)="loginToStat()" type="submit" value="Entrez">-->
+
+<!--  </form>-->
+
+
+
+
 </nav>
-</html>
+  <div class="container__item">
+    <form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput" class="form">
+      <input formControlName ="statCode" type="password" class="form__field" id="statCode"   placeholder="Code statistique" />
+      <button (click)="loginToStat()" type="button" class="btn btn--primary btn--inside uppercase">Entrez</button>
+    </form>
+
+
 

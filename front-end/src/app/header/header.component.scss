@@ -186,7 +186,7 @@ a:hover {
 
 }
 .btn--inside {
-  height: 4.0rem;
+  height: 2.75rem;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.15);
 
 
@@ -200,10 +200,18 @@ a:hover {
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.15);
   border: 0;
   outline: 0;
-  padding: 22px 18px;
+  padding: 11px 9px;
 }
 .form{
   position: relative;
   transform: translate(35%,20%);
+
+}
+.error2{
+  position: relative;
+  transform: translate(40%,20%);
+  color: red;
+  font-size: 20px;
+  font-family: "Times New Roman";
 
 }

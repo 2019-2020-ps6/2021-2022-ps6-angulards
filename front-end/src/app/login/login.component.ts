@@ -46,14 +46,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['userquiz']);
           this.storeName(userName);
         }else {
-          alert('User Not Found');
+          const header = document.querySelector('h3');
+          header.innerText = 'Votre email ou mot de passe est incorrect, veuillez réssayer';
         }
       },
-      err => {
-        alert('Erreur de connextion');
-      });
-
-
+        err => {
+          const header = document.querySelector('h3');
+          header.innerText = 'Erreur de connextion';
+        });
   }
 
   // tslint:disable-next-line:typedef

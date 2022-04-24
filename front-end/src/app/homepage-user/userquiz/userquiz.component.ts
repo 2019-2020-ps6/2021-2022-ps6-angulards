@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Quiz} from '../../../models/quiz.model';
 import {Router} from '@angular/router';
 import {QuizService} from "../../../services/quiz.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-userquiz',
@@ -25,7 +26,7 @@ export class UserQuizComponent implements OnInit {
   quizPlayed: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
 
-  constructor(private router: Router, public quizService: QuizService) {
+  constructor(private router: Router, public quizService: QuizService, public location: Location) {
     this.userId = localStorage.getItem('application-user');
 
     this.quizService.quizzes$.subscribe((quizList) => {

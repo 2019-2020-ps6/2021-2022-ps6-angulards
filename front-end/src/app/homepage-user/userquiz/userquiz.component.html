@@ -25,7 +25,9 @@
         </span>
       </div>
 
-      <button routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="btn">Lancer Le quiz</button>
+      <button *ngIf="this.location.path() === '/userquiz'" routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="btn">Lancer Le quiz</button>
+      <button *ngIf="this.location.path() === '/stat'" routerLink="quiz-page/{{quiz.id}}" (click)="playQuiz()" class="btn">Afficher les stat</button>
+
 
     </div>
 

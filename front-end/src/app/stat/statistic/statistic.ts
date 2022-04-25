@@ -79,6 +79,7 @@ export class Statistic implements OnInit {
     this.http.get<User>(urlWithId)
       .subscribe(res => {
         this.user = res;
+        document.getElementById('userInfo').innerText =  this.user.firstName + this.user.lastName;
       });
   }
 
@@ -89,9 +90,8 @@ export class Statistic implements OnInit {
       .subscribe(res => {
         this.quiz = res;
         this.getResponsesOfUserPerQuestion();
-        console.log('quiz ' , this.quiz);
+        document.getElementById('quizName').innerText =  this.quiz.name + ' de thème ' + this.quiz.theme ;
       });
-    console.log('quizzz ' , this.quiz);
   }
 
   getResponsesOfUser(): void {
@@ -99,11 +99,9 @@ export class Statistic implements OnInit {
 
     this.http.get<Response[]>(urlWithId)
       .subscribe(res => {
-        console.log('res ' , res);
         this.responseOfUser = res;
         this.getAveragesStat();
       });
-    console.log('response of user ' , this.responseOfUser);
   }
 
   getAveragesStat(): void{
@@ -128,7 +126,6 @@ export class Statistic implements OnInit {
 
       this.http.get<Response[]>(urlWithId)
         .subscribe(res => {
-          console.log('res ' , res);
           this.responseOfUserPerQuestion = res;
           this.allTriesPerQuestionStatistics();
         });

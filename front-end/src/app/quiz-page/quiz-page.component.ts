@@ -20,23 +20,35 @@ export class QuizPageComponent implements OnInit {
   quiz: Quiz;
   question: Question;
   answer: Answer;
+  wrongAnswerScore = new Map<string, number>();
   elo = 0;
   indexQuiz = 0;
   selectedAnswer = new Map();
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
   scoreGame = 0;
+
+  // IF NOT EMOTIONS
   nextQuestionType = 'all'; // could be image or audio, image by default
   indexOfImageQuestion = [];
   indexOfAudioQuestion = [];
+
   lastAnswer = undefined;
+  // EXPRESSION HINT IF TWO WRONG SAME QUESTIONS
   nbWrongAnswerPerQuestion = 0;
-  nextQuestionElo = 0;
+
   // 0 -> 4 rep image
   // 1 -> 6 rep image
   // 2 -> 4 rep audio
   // 3 -> 6 rep audio
-  wrongAnswerScore = new Map<string, number>();
+  nextQuestionElo = 0;
+
+  // EMOTIONS INDEXES
+  indexOfFourthRepImages: number[] = [];
+  indexOfSixthRepImages: number[] = [];
+  indexOfFourthRepAudios: number[] = [];
+  indexOfSixthRepAudios: number[] = [];
+  nextQuestionNumberOfAnswers: number;
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
@@ -126,7 +138,11 @@ export class QuizPageComponent implements OnInit {
    */
   isStart(): boolean {
     if (this.indexQuiz === 0) {
-      this.orderQuestionByType();
+      if (this.isEmotion()) {
+        this.orderQuestionByNumberOfAnswers();
+      } else {
+        this.orderQuestionByType();
+      }
       return true;
     }
   }
@@ -135,11 +151,41 @@ export class QuizPageComponent implements OnInit {
    * Last page of the quiz
    */
   isEnd(): boolean {
-    const lastImageQuestionIndex = Math.max.apply(null, this.indexOfImageQuestion);
-    const lastAudioQuestionIndex = Math.max.apply(null, this.indexOfAudioQuestion);
-    return ((this.nextQuestionType === 'image' && (lastImageQuestionIndex === this.indexQuiz))
-      || (this.nextQuestionType === 'audio' && (lastAudioQuestionIndex === this.indexQuiz))
-      || (this.indexQuiz === this.getQuestionsLength()));
+    if (this.isEmotion()) {
+      const fourthRepImages = Math.max.apply(null, this.indexOfFourthRepImages);
+      const sixRepImages = Math.max.apply(null, this.indexOfSixthRepImages);
+      const fourRepAudios = Math.max.apply(null, this.indexOfFourthRepAudios);
+      const sixRepAudios = Math.max.apply(null, this.indexOfSixthRepAudios);
+      if (this.nextQuestionType === 'image' && this.nextQuestionNumberOfAnswers === 4 && fourthRepImages === this.indexQuiz) {
+        console.log('4 rep images');
+        return true;
+      }
+      if (this.nextQuestionType === 'image' && this.nextQuestionNumberOfAnswers === 6 && sixRepImages === this.indexQuiz) {
+        console.log('6 rep images');
+        return true;
+      }
+      if (this.nextQuestionType === 'audio' && this.nextQuestionNumberOfAnswers === 4 && fourRepAudios === this.indexQuiz) {
+        console.log('4 rep audios');
+        return true;
+      }
+      if (this.nextQuestionType === 'audio' && this.nextQuestionNumberOfAnswers === 6 && sixRepAudios === this.indexQuiz) {
+        console.log('6 rep audios');
+        return true;
+      }
+    } else {
+      const lastImageQuestionIndex = Math.max.apply(null, this.indexOfImageQuestion);
+      const lastAudioQuestionIndex = Math.max.apply(null, this.indexOfAudioQuestion);
+      if (this.nextQuestionType === 'image' && (lastImageQuestionIndex === this.indexQuiz)) {
+        return true;
+      }
+      if (this.nextQuestionType === 'audio' && (lastAudioQuestionIndex === this.indexQuiz)) {
+        return true;
+      }
+      if (this.indexQuiz === this.getQuestionsLength()) {
+        return true;
+      }
+      return false;
+    }
   }
 
   /**
@@ -176,15 +222,33 @@ export class QuizPageComponent implements OnInit {
   private selectImageOrAudioQuestion(): void {
     let questionPicked = false;
     let newIndex = this.indexQuiz;
+    let waitForpick = 0;
     do {
       if (this.quiz.questions[newIndex++] == null) {
         questionPicked = true;
       } else {
-        if ((this.nextQuestionType === 'audio' && this.isAudioQuestion(newIndex))
+
+        if (this.nextQuestionType === 'audio' && this.isAudioQuestion(newIndex)
           || this.nextQuestionType === 'image' && this.isImageQuestion(newIndex)) {
-          questionPicked = true;
-          this.indexQuiz = newIndex;
+
+          if (this.nextQuestionNumberOfAnswers === 4 && this.getWrongAnswerNextQuestion(newIndex).length <= 3) {
+            questionPicked = true;
+            this.indexQuiz = newIndex;
+          }
+          if (this.nextQuestionNumberOfAnswers === 6 && this.getWrongAnswerNextQuestion(newIndex).length > 3) {
+            questionPicked = true;
+            this.indexQuiz = newIndex;
+          }
+
         }
+        if (!this.isImageQuestion(newIndex) && !this.isAudioQuestion(newIndex)) {
+          console.log('err ' + this.indexQuiz);
+          this.finished();
+        }
+      }
+      waitForpick++;
+      if (waitForpick >= 100) {
+        console.log('ERRRROOOORRRR');
       }
     } while (!questionPicked);
   }
@@ -198,18 +262,22 @@ export class QuizPageComponent implements OnInit {
     if (this.nextQuestionElo <= 1) {
       // next question 4 rep image
       this.nextQuestionType = 'image';
+      this.nextQuestionNumberOfAnswers = 4;
       console.log('niveau 1');
     } else if (this.nextQuestionElo <= 2) {
       // next question 6 rep image
-      this.nextQuestionType = 'audio';
+      this.nextQuestionType = 'image';
+      this.nextQuestionNumberOfAnswers = 6;
       console.log('niveau 2');
     } else if (this.nextQuestionElo <= 3) {
       // next question audio 4 rep
       this.nextQuestionType = 'audio';
+      this.nextQuestionNumberOfAnswers = 4;
       console.log('niveau 3');
     } else {
       // next question audio 6 rep
       this.nextQuestionType = 'audio';
+      this.nextQuestionNumberOfAnswers = 6;
       console.log('niveau 4');
     }
     // next question video or error
@@ -263,6 +331,17 @@ export class QuizPageComponent implements OnInit {
    */
   private getWrongAnswer(): Array<Answer> {
     return this.quiz.questions[this.indexQuiz].answers.filter(x => !x.isCorrect);
+  }
+
+  /**
+   * Get wrong answers of the current question
+   * return: Array of wrong answer(s)
+   */
+  private getWrongAnswerNextQuestion(index): Array<Answer> {
+    if (this.quiz.questions[index] === undefined) {
+      return 0;
+    }
+    return this.quiz.questions[index].answers.filter(x => !x.isCorrect);
   }
 
   /**
@@ -337,14 +416,30 @@ export class QuizPageComponent implements OnInit {
     return this.quiz.questions[i] != null && this.quiz.questions[i].image != null && this.quiz.questions[i].audio == null;
   }
 
+  /**
+   * Système d'elo
+   * Question suivante adapté
+   * Images ou Audios
+   * 4 rep ou 6 rep
+   * @private
+   */
   private isEmotion(): boolean {
     return this.quiz.theme.toLocaleLowerCase().includes('motion');
   }
 
+  /**
+   * On supprime simplement les mauvaises réponses
+   * @private
+   */
   private isPicto(): boolean {
     return this.quiz.theme.toLocaleLowerCase().startsWith('picto');
   }
 
+  /**
+   * Si deux mauvaises réponses sur une même question
+   * Afficher un indice
+   * @private
+   */
   private isExpression(): boolean {
     return this.quiz.theme.toLocaleLowerCase().includes('express');
   }
@@ -364,8 +459,32 @@ export class QuizPageComponent implements OnInit {
     }
   }
 
-  private numberOfWrongAnswer(): number {
-    return this.getWrongAnswer().length;
+  /**
+   * Emotion need to filter by answer quantity
+   */
+  private orderQuestionByNumberOfAnswers(): void {
+    const j = this.getQuestionsLength() + 1;
+    for (let i = 0; i <= j; i++) {
+      if (this.getWrongAnswerNextQuestion(i).length <= 3 && this.isImageQuestion(i)) {
+        this.indexOfFourthRepImages.push(i);
+      }
+      if (this.getWrongAnswerNextQuestion(i).length > 3 && this.isImageQuestion(i)) {
+        this.indexOfSixthRepImages.push(i);
+      }
+      if (this.getWrongAnswerNextQuestion(i).length <= 3 && this.isAudioQuestion(i)) {
+        this.indexOfFourthRepAudios.push(i);
+      }
+      if (this.getWrongAnswerNextQuestion(i).length > 3 && this.isAudioQuestion(i)) {
+        this.indexOfSixthRepAudios.push(i);
+      }
+    }
+  }
+
+  private numberOfAnswer(i): number {
+    if (this.quiz === undefined || this.quiz.questions[i] === undefined) {
+      return 0;
+    }
+    return this.quiz.questions[i].answers.length;
   }
 
 }

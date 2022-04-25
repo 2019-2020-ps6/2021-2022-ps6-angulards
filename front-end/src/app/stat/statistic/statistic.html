@@ -42,10 +42,10 @@
   Détails sur chaque question du quiz :
     <ul *ngFor="let question of this.quiz.questions">
       Réponse juste à la question : {{question.label}}
-      <ng-container *ngIf="question.audio === ''">
+      <ng-container *ngIf="question.image !== ''">
       <img src="{{question.image}}" alt="Image non chargée" width="50px" height="50px">
       </ng-container>
-      <ng-container *ngIf="question.image === ''">
+      <ng-container *ngIf="question.audio !== ''">
       <source src="{{question.audio}}" alt="Audio non chargé"/>
       </ng-container>
       <li>

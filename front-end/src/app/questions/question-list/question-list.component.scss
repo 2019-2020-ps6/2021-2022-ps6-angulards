@@ -1,5 +1,17 @@
 @import '../../../styles/card.scss';
 
 .question-list {
-    display: flex;
+  grid-template-columns: 9.375rem 9.375rem 9.375rem;
+  grid-template-rows: auto auto auto;
+  grid-gap: 18.875rem;
+  mso-grid-top: 37.5rem;
+  display: grid;
+  row-gap: 3.125rem;
+  justify-content: space-between;
+  margin-right: 25.25rem;
+  margin-left: 9.375rem;
+  margin-top: 1.5rem;
+
+
+
 }

@@ -171,13 +171,6 @@
   },
   {
     "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/kqJFYxv.png",
-    "indice": "Regarde l'objet uniquement",
-    "quizId": 1650561544437,
-    "id": 1650563025106
-  },
-  {
-    "label": "Que dois-je faire ?",
     "image": "https://i.imgur.com/vlDFGUj.png",
     "indice": "Il s'agit d'un robinet",
     "quizId": 1650561544437,

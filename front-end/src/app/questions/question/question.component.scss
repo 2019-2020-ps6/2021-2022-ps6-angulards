@@ -6,14 +6,24 @@
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
-  width: fit-content;
   position: relative;
   padding: 20px;
+  display: inline-list-item;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
+  height: 433.66px;
+  width: 300px;
+
+
 }
 
 .TitleText{
   color: black;
 }
+.wrapper2{
+  margin-top: -50px;
+  justify-content: space-evenly;
+  display: inline-block;
+}
+

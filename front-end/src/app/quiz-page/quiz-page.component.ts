@@ -198,12 +198,19 @@ export class QuizPageComponent implements OnInit {
     if (this.nextQuestionElo <= 1) {
       // next question 4 rep image
       this.nextQuestionType = 'image';
+      console.log('niveau 1');
     } else if (this.nextQuestionElo <= 2) {
       // next question 6 rep image
       this.nextQuestionType = 'audio';
+      console.log('niveau 2');
     } else if (this.nextQuestionElo <= 3) {
-      // next question audio
+      // next question audio 4 rep
       this.nextQuestionType = 'audio';
+      console.log('niveau 3');
+    } else {
+      // next question audio 6 rep
+      this.nextQuestionType = 'audio';
+      console.log('niveau 4');
     }
     // next question video or error
   }

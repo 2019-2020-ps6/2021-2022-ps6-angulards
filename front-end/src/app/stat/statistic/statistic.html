@@ -41,7 +41,13 @@
   <br>
   Détails sur chaque question du quiz :
     <ul *ngFor="let question of this.quiz.questions">
-      Réponse juste à la question : {{question.label}} <img src="{{question.image}}" alt="{{question.image}}" width="50px" height="50px">
+      Réponse juste à la question : {{question.label}}
+      <ng-container *ngIf="question.audio === ''">
+      <img src="{{question.image}}" alt="Image non chargée" width="50px" height="50px">
+      </ng-container>
+      <ng-container *ngIf="question.image === ''">
+      <source src="{{question.audio}}" alt="Audio non chargé"/>
+      </ng-container>
       <li>
         {{this.allTriesRightAnswerPerQuestionCount.get(question.id)}} fois sur {{this.allTriesPerQuestionCount.get(question.id)}}
       </li>

@@ -1978,5 +1978,65 @@
     "isCorrect": false,
     "questionId": 1650895036149,
     "id": 1650895036153
+  },
+  {
+    "value": "ennuie",
+    "isCorrect": false,
+    "questionId": 1650915198533,
+    "id": 1650915198534
+  },
+  {
+    "value": "tristesse",
+    "isCorrect": true,
+    "questionId": 1650915198533,
+    "id": 1650915198534
+  },
+  {
+    "value": "anxiété",
+    "isCorrect": false,
+    "questionId": 1650915198533,
+    "id": 1650915198535
+  },
+  {
+    "value": "distrait ",
+    "isCorrect": false,
+    "questionId": 1650915198533,
+    "id": 1650915198536
+  },
+  {
+    "value": "enthousiasme",
+    "isCorrect": false,
+    "questionId": 1650915259172,
+    "id": 1650915259173
+  },
+  {
+    "value": "colère",
+    "isCorrect": false,
+    "questionId": 1650915259172,
+    "id": 1650915259173
+  },
+  {
+    "value": "peur",
+    "isCorrect": false,
+    "questionId": 1650915259172,
+    "id": 1650915259174
+  },
+  {
+    "value": "surprise",
+    "isCorrect": true,
+    "questionId": 1650915259172,
+    "id": 1650915259175
+  },
+  {
+    "value": "tristesse ",
+    "isCorrect": false,
+    "questionId": 1650915259172,
+    "id": 1650915259176
+  },
+  {
+    "value": "joie",
+    "isCorrect": false,
+    "questionId": 1650915259172,
+    "id": 1650915259177
   }
 ]

@@ -111,9 +111,7 @@ export class QuizPageComponent implements OnInit {
    * TO DO: change data structure to make previous question working
    */
   nextQuestion(): void {
-    const userId = localStorage.getItem('application-user');
-    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
-    this.wrongAnswerScore.set(userId, 0);
+    this.sendStatistics();
     if (this.isPicto()) {
       this.indexQuiz++;
       console.log('pictogram next question');
@@ -131,6 +129,12 @@ export class QuizPageComponent implements OnInit {
       this.selectImageOrAudioQuestion(); // then change question
       console.log('expresssion next question');
     }
+  }
+
+  private sendStatistics() {
+    const userId = localStorage.getItem('application-user');
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
+    this.wrongAnswerScore.set(userId, 0);
   }
 
   /**
@@ -193,6 +197,7 @@ export class QuizPageComponent implements OnInit {
    */
   finished(): void {
     console.log((this.scoreGame) / (this.getQuestionsLength() + 1));
+    this.sendStatistics();
     this.endForScore = true;
   }
 
@@ -339,7 +344,7 @@ export class QuizPageComponent implements OnInit {
    */
   private getWrongAnswerNextQuestion(index): Array<Answer> {
     if (this.quiz.questions[index] === undefined) {
-      return 0;
+      return [];
     }
     return this.quiz.questions[index].answers.filter(x => !x.isCorrect);
   }

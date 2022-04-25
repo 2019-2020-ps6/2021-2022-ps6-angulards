@@ -18,11 +18,13 @@ export class HeaderComponent implements OnInit {
    private code: string;
    public statCodeForm!: FormGroup;
    public quizList: Quiz[] = [];
+   isUserAdmin: boolean;
 
 
   // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, public location: Location, public quizService: QuizService, private router: Router, private formBuilder: FormBuilder) {
     console.log(this.location.path());
+    this.getUserById();
 
     this.quizService.quizzes$.subscribe((quizList) => {
        this.quizList = quizList;
@@ -68,5 +70,19 @@ export class HeaderComponent implements OnInit {
       const header = document.querySelector('h3');
       header.innerText = 'Code incorrect, veuillez réssayer';
     }
+  }
+
+  getUserById(): void{
+      const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
+
+      this.http.get<User>(urlWithId)
+        .subscribe(res => {
+          this.isCurrentUserAdmin(res.admin);
+        });
+  }
+
+  isCurrentUserAdmin(userAdmin: boolean): void{
+    this.isUserAdmin = userAdmin;
+    console.log(this.isUserAdmin);
   }
 }

@@ -20,6 +20,8 @@
   <ul>
     <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'&& this.location.path() != '/admin-login' && this.location.path() != '/quiz-list'&& this.location.path() != '/quiz-form' && !this.location.path().includes('edit-quiz')"
            [routerLink]="['/userquiz']">Accueil</a></li>
+    <li><a *ngIf="this.isUserAdmin === true && this.location.path().includes('quizzes')"
+           [routerLink]="['/quiz-list']">Accueil</a></li>
     <li><a *ngIf="this.location.path().includes('edit-quiz')  || this.location.path() === '/quiz-form'"
            [routerLink]="['/quiz-list']">Accueil</a></li>
     <li><a *ngIf="this.location.path().includes('login')  || this.location.path().includes('register')"

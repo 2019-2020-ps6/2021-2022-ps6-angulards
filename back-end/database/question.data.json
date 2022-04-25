@@ -171,59 +171,10 @@
   },
   {
     "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/kqJFYxv.png",
-    "indice": "Regarde l'objet uniquement",
-    "quizId": 1650561544437,
-    "id": 1650563025106
-  },
-  {
-    "label": "Que dois-je faire ?",
     "image": "https://i.imgur.com/vlDFGUj.png",
     "indice": "Il s'agit d'un robinet",
     "quizId": 1650561544437,
     "id": 1650563168267
-  },
-  {
-    "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/6Z9CNT9.png",
-    "indice": "Il n'y a pas d'aliments encore",
-    "quizId": 1650561544437,
-    "id": 1650563435870
-  },
-  {
-    "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/sT32UWM.png",
-    "indice": "L'assiette est sale, le repas est fini",
-    "quizId": 1650561544437,
-    "id": 1650563613904
-  },
-  {
-    "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/WPvp3WP.png",
-    "indice": "Dentifrice !!",
-    "quizId": 1650561544437,
-    "id": 1650563885807
-  },
-  {
-    "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/OEM6J2a.png",
-    "indice": "Un chiffon humide :)",
-    "quizId": 1650561544437,
-    "id": 1650564606252
-  },
-  {
-    "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/JMPpDap.png",
-    "indice": "Après les cours, souvent...",
-    "quizId": 1650561544437,
-    "id": 1650565367471
-  },
-  {
-    "label": "Que dois-je faire ?",
-    "image": "https://i.imgur.com/3O0GHUj.png",
-    "indice": "Une activité très sympathique",
-    "quizId": 1650561544437,
-    "id": 1650565657676
   },
   {
     "label": "Que dois-je faire ?",
@@ -377,38 +328,6 @@
     "id": 1650893417538
   },
   {
-    "label": "Quelle est l'émotion exprimée ?",
-    "image": "https://i.imgur.com/0Nl87W9.png",
-    "quizId": 1650875065079,
-    "id": 1650894070176
-  },
-  {
-    "label": "Quelle est l'émotion exprimée ?",
-    "image": "https://i.imgur.com/iq6j5o1.png",
-    "quizId": 1650875065079,
-    "id": 1650894181248
-  },
-  {
-    "label": "Quelle est l'émotion exprimée ?",
-    "image": "https://i.imgur.com/DiN1A4Q.png",
-    "quizId": 1650875065079,
-    "id": 1650894220415
-  },
-  {
-    "label": "Quelle est l'émotion exprimée ?",
-    "image": "https://i.imgur.com/XAewP3i.png",
-    "indice": "Première phrase",
-    "quizId": 1650875065079,
-    "id": 1650894292227
-  },
-  {
-    "label": "Quelle est l'émotion exprimée ?",
-    "image": "https://i.imgur.com/vsTQV0D.png",
-    "indice": "synonyme de content",
-    "quizId": 1650875065079,
-    "id": 1650894386525
-  },
-  {
     "label": "La personne est ?",
     "audio": "https://www.mboxdrive.com/emo1.m4a",
     "quizId": 1650727517045,
@@ -433,45 +352,10 @@
     "id": 1650895036149
   },
   {
-    "label": "Quel est le sentiment exprimé ?",
-    "audio": "https://www.mboxdrive.com/emo5.m4a",
-    "quizId": 1650727517045,
-    "id": 1650915198533
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
-    "audio": "https://www.mboxdrive.com/emo6.m4a",
-    "quizId": 1650727517045,
-    "id": 1650915259172
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
-    "image": "https://i.imgur.com/Sqhuk6z.png",
-    "quizId": 1650727517045,
-    "id": 1650915660789
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
-    "image": "https://i.imgur.com/mDZzhkI.png",
-    "quizId": 1650727517045,
-    "id": 1650915687310
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
-    "image": "https://i.imgur.com/x94F2Ey.png",
-    "quizId": 1650727517045,
-    "id": 1650915740739
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
-    "image": "https://i.imgur.com/J40imVP.png",
-    "quizId": 1650727517045,
-    "id": 1650915780077
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
-    "audio": "https://www.mboxdrive.com/emo4.m4a",
-    "quizId": 1650727517045,
-    "id": 1650915830739
+    "label": "Quelle expression est véhiculée par cette image ?",
+    "image": "https://www.pourquoidocteur.fr/media/article/ggl1200_enfant-grognon-(cp---sophie-walster)-1578499251.jpg",
+    "indice": "Position des bras, regard",
+    "quizId": 1650875065079,
+    "id": 1650920614820
   }
 ]

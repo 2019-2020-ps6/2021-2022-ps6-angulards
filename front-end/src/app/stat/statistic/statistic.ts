@@ -79,7 +79,7 @@ export class Statistic implements OnInit {
     this.http.get<User>(urlWithId)
       .subscribe(res => {
         this.user = res;
-        document.getElementById('userInfo').innerText =  this.user.firstName + this.user.lastName;
+        document.getElementById('userInfo').innerText =  this.user.firstName + ' ' + this.user.lastName;
       });
   }
 

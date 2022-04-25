@@ -1980,207 +1980,27 @@
     "id": 1650895036153
   },
   {
-    "value": "ennuie",
-    "isCorrect": false,
-    "questionId": 1650915198533,
-    "id": 1650915198534
-  },
-  {
-    "value": "tristesse",
+    "value": "Contrarié",
     "isCorrect": true,
-    "questionId": 1650915198533,
-    "id": 1650915198534
+    "questionId": 1650920614820,
+    "id": 1650920614822
   },
   {
-    "value": "anxiété",
+    "value": "Heureux",
     "isCorrect": false,
-    "questionId": 1650915198533,
-    "id": 1650915198535
+    "questionId": 1650920614820,
+    "id": 1650920614823
   },
   {
-    "value": "distrait ",
+    "value": "Indifférent",
     "isCorrect": false,
-    "questionId": 1650915198533,
-    "id": 1650915198536
+    "questionId": 1650920614820,
+    "id": 1650920614825
   },
   {
-    "value": "enthousiasme",
+    "value": "Furieux",
     "isCorrect": false,
-    "questionId": 1650915259172,
-    "id": 1650915259173
-  },
-  {
-    "value": "colère",
-    "isCorrect": false,
-    "questionId": 1650915259172,
-    "id": 1650915259173
-  },
-  {
-    "value": "peur",
-    "isCorrect": false,
-    "questionId": 1650915259172,
-    "id": 1650915259174
-  },
-  {
-    "value": "surprise",
-    "isCorrect": true,
-    "questionId": 1650915259172,
-    "id": 1650915259175
-  },
-  {
-    "value": "tristesse ",
-    "isCorrect": false,
-    "questionId": 1650915259172,
-    "id": 1650915259176
-  },
-  {
-    "value": "joie",
-    "isCorrect": false,
-    "questionId": 1650915259172,
-    "id": 1650915259177
-  },
-  {
-    "value": "Être optimiste",
-    "isCorrect": true,
-    "questionId": 1650915660789,
-    "id": 1650915660789
-  },
-  {
-    "value": "Être triste",
-    "isCorrect": false,
-    "questionId": 1650915660789,
-    "id": 1650915660790
-  },
-  {
-    "value": "Être heureux",
-    "isCorrect": false,
-    "questionId": 1650915660789,
-    "id": 1650915660792
-  },
-  {
-    "value": "Être timide",
-    "isCorrect": false,
-    "questionId": 1650915660789,
-    "id": 1650915660792
-  },
-  {
-    "value": " Être terrorisé",
-    "isCorrect": true,
-    "questionId": 1650915687310,
-    "id": 1650915687311
-  },
-  {
-    "value": "Être heureux",
-    "isCorrect": false,
-    "questionId": 1650915687310,
-    "id": 1650915687312
-  },
-  {
-    "value": " Être optimiste",
-    "isCorrect": false,
-    "questionId": 1650915687310,
-    "id": 1650915687312
-  },
-  {
-    "value": "Avoir peur",
-    "isCorrect": false,
-    "questionId": 1650915687310,
-    "id": 1650915687313
-  },
-  {
-    "value": "Être surpris",
-    "isCorrect": true,
-    "questionId": 1650915740739,
-    "id": 1650915740739
-  },
-  {
-    "value": "Avoir peur",
-    "isCorrect": false,
-    "questionId": 1650915740739,
-    "id": 1650915740740
-  },
-  {
-    "value": "Être énervé",
-    "isCorrect": false,
-    "questionId": 1650915740739,
-    "id": 1650915740740
-  },
-  {
-    "value": "Être heureux",
-    "isCorrect": false,
-    "questionId": 1650915740739,
-    "id": 1650915740741
-  },
-  {
-    "value": "Être dégouté",
-    "isCorrect": false,
-    "questionId": 1650915740739,
-    "id": 1650915740741
-  },
-  {
-    "value": " Être confiant",
-    "isCorrect": false,
-    "questionId": 1650915740739,
-    "id": 1650915740742
-  },
-  {
-    "value": "Être énervé",
-    "isCorrect": true,
-    "questionId": 1650915780077,
-    "id": 1650915780078
-  },
-  {
-    "value": "Être heureux",
-    "isCorrect": false,
-    "questionId": 1650915780077,
-    "id": 1650915780078
-  },
-  {
-    "value": "Être triste",
-    "isCorrect": false,
-    "questionId": 1650915780077,
-    "id": 1650915780079
-  },
-  {
-    "value": "Avoir peur",
-    "isCorrect": false,
-    "questionId": 1650915780077,
-    "id": 1650915780079
-  },
-  {
-    "value": " Être surpris",
-    "isCorrect": false,
-    "questionId": 1650915780077,
-    "id": 1650915780080
-  },
-  {
-    "value": "Être fâché",
-    "isCorrect": false,
-    "questionId": 1650915780077,
-    "id": 1650915780081
-  },
-  {
-    "value": "tristesse",
-    "isCorrect": true,
-    "questionId": 1650915830739,
-    "id": 1650915830739
-  },
-  {
-    "value": "anxiété",
-    "isCorrect": false,
-    "questionId": 1650915830739,
-    "id": 1650915830740
-  },
-  {
-    "value": "ennuie",
-    "isCorrect": false,
-    "questionId": 1650915830739,
-    "id": 1650915830741
-  },
-  {
-    "value": "distrait",
-    "isCorrect": false,
-    "questionId": 1650915830739,
-    "id": 1650915830742
+    "questionId": 1650920614820,
+    "id": 1650920614827
   }
 ]

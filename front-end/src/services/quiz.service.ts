@@ -100,6 +100,8 @@ export class QuizService {
     console.log('post done');
   }
 
+
+
   /*
   Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
   addQuestion(quiz: Quiz, question: Question) {

@@ -36,7 +36,7 @@ export class AdminLoginComponent implements OnInit {
       .subscribe(res => {
         const admin = Array.from(res).find((a: any) => {
           userName = a.id;
-          return a.email === this.adminloginForm.value.firstName && a.password === this.adminloginForm.value.password
+          return a.email === this.adminloginForm.value.email && a.password === this.adminloginForm.value.password
             && this.adminloginForm.value.adminCode === this.adminCod;
 
         });
@@ -45,11 +45,12 @@ export class AdminLoginComponent implements OnInit {
             this.router.navigate(['quiz-list']);
             this.storeName(userName);
           }else {
-            alert('User Not Found');
-          }
+          const header = document.querySelector('h3');
+          header.innerText = 'Votre email ou mot de passe est incorrect, veuillez réssayer';          }
         },
         err => {
-          alert('Erreur de connextion');
+          const header = document.querySelector('h3');
+          header.innerText = 'Erreur de connextion';
         });
 
 

@@ -2,13 +2,14 @@
   <div id="formContent">
     <!-- Tabs Titles -->
     <h2 class="active"> Page de connexion </h2>
-    <h3 class ="error"></h3>
 
 
     <!-- Login Form -->
     <form [formGroup]="loginForm">
       <input formControlName ="email" class="fadeIn second" id="email" name="email" placeholder="E-mail" type="text">
       <input formControlName ="password" class="fadeIn third" id="password" name="login" placeholder="Mot de passe" type="password">
+      <h3 class ="error"></h3>
+
       <input (click)="login()" class="fadeIn fourth" type="submit2" value="Commencer à jouer">
       <!-- edit the router link to the right one when done -->
     </form>

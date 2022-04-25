@@ -443,5 +443,35 @@
     "audio": "https://www.mboxdrive.com/emo6.m4a",
     "quizId": 1650727517045,
     "id": 1650915259172
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/Sqhuk6z.png",
+    "quizId": 1650727517045,
+    "id": 1650915660789
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/mDZzhkI.png",
+    "quizId": 1650727517045,
+    "id": 1650915687310
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/x94F2Ey.png",
+    "quizId": 1650727517045,
+    "id": 1650915740739
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/J40imVP.png",
+    "quizId": 1650727517045,
+    "id": 1650915780077
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "audio": "https://www.mboxdrive.com/emo4.m4a",
+    "quizId": 1650727517045,
+    "id": 1650915830739
   }
 ]

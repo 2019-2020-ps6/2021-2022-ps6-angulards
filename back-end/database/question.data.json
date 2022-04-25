@@ -382,5 +382,37 @@
     "indice": "Un sentiment négatif",
     "quizId": 1650727517045,
     "id": 1650893417538
+  },
+  {
+    "label": "Quelle est l'émotion exprimée ?",
+    "image": "https://i.imgur.com/0Nl87W9.png",
+    "quizId": 1650875065079,
+    "id": 1650894070176
+  },
+  {
+    "label": "Quelle est l'émotion exprimée ?",
+    "image": "https://i.imgur.com/iq6j5o1.png",
+    "quizId": 1650875065079,
+    "id": 1650894181248
+  },
+  {
+    "label": "Quelle est l'émotion exprimée ?",
+    "image": "https://i.imgur.com/DiN1A4Q.png",
+    "quizId": 1650875065079,
+    "id": 1650894220415
+  },
+  {
+    "label": "Quelle est l'émotion exprimée ?",
+    "image": "https://i.imgur.com/XAewP3i.png",
+    "indice": "Première phrase",
+    "quizId": 1650875065079,
+    "id": 1650894292227
+  },
+  {
+    "label": "Quelle est l'émotion exprimée ?",
+    "image": "https://i.imgur.com/vsTQV0D.png",
+    "indice": "synonyme de content",
+    "quizId": 1650875065079,
+    "id": 1650894386525
   }
 ]

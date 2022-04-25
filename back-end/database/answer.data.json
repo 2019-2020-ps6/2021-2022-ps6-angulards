@@ -1714,5 +1714,149 @@
     "isCorrect": false,
     "questionId": 1650893417538,
     "id": 1650893417541
+  },
+  {
+    "value": "Enthousiasme",
+    "isCorrect": true,
+    "questionId": 1650894070176,
+    "id": 1650894070177
+  },
+  {
+    "value": "Tristesse",
+    "isCorrect": false,
+    "questionId": 1650894070176,
+    "id": 1650894070178
+  },
+  {
+    "value": "Peur",
+    "isCorrect": false,
+    "questionId": 1650894070176,
+    "id": 1650894070179
+  },
+  {
+    "value": "Amusement",
+    "isCorrect": false,
+    "questionId": 1650894070176,
+    "id": 1650894070179
+  },
+  {
+    "value": "Sarcasme",
+    "isCorrect": false,
+    "questionId": 1650894070176,
+    "id": 1650894070180
+  },
+  {
+    "value": "Aucune des réponses",
+    "isCorrect": false,
+    "questionId": 1650894070176,
+    "id": 1650894070180
+  },
+  {
+    "value": "Enthousiasme",
+    "isCorrect": false,
+    "questionId": 1650894181248,
+    "id": 1650894181249
+  },
+  {
+    "value": "Frustration",
+    "isCorrect": true,
+    "questionId": 1650894181248,
+    "id": 1650894181250
+  },
+  {
+    "value": "Tristesse",
+    "isCorrect": false,
+    "questionId": 1650894181248,
+    "id": 1650894181250
+  },
+  {
+    "value": "Enervement",
+    "isCorrect": false,
+    "questionId": 1650894181248,
+    "id": 1650894181251
+  },
+  {
+    "value": "Sacarsme",
+    "isCorrect": true,
+    "questionId": 1650894220415,
+    "id": 1650894220416
+  },
+  {
+    "value": "Joie",
+    "isCorrect": false,
+    "questionId": 1650894220415,
+    "id": 1650894220417
+  },
+  {
+    "value": "Tristesse",
+    "isCorrect": false,
+    "questionId": 1650894220415,
+    "id": 1650894220417
+  },
+  {
+    "value": "Indifférence",
+    "isCorrect": false,
+    "questionId": 1650894220415,
+    "id": 1650894220418
+  },
+  {
+    "value": "Surprise",
+    "isCorrect": false,
+    "questionId": 1650894292227,
+    "id": 1650894292227
+  },
+  {
+    "value": "Tristesse",
+    "isCorrect": false,
+    "questionId": 1650894292227,
+    "id": 1650894292228
+  },
+  {
+    "value": "Enervement",
+    "isCorrect": true,
+    "questionId": 1650894292227,
+    "id": 1650894292229
+  },
+  {
+    "value": "Joie",
+    "isCorrect": false,
+    "questionId": 1650894292227,
+    "id": 1650894292229
+  },
+  {
+    "value": "Peur",
+    "isCorrect": false,
+    "questionId": 1650894386525,
+    "id": 1650894386525
+  },
+  {
+    "value": "Joie",
+    "isCorrect": true,
+    "questionId": 1650894386525,
+    "id": 1650894386526
+  },
+  {
+    "value": "Colère",
+    "isCorrect": false,
+    "questionId": 1650894386525,
+    "id": 1650894386526
+  },
+  {
+    "value": "Dégout",
+    "isCorrect": false,
+    "questionId": 1650894386525,
+    "id": 1650894386527
+  },
+  {
+    "value": "Tristesse",
+    "isCorrect": false,
+    "questionId": 1650894386525,
+    "id": 1650894386527
+  },
+  {
+    "value": "Surprise",
+    "isCorrect": false,
+    "questionId": 1650894386525,
+    "id": 1650894386528
   }
 ]

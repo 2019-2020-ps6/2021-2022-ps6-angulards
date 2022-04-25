@@ -1858,5 +1858,125 @@
     "isCorrect": false,
     "questionId": 1650894386525,
     "id": 1650894386528
+  },
+  {
+    "value": "énervée",
+    "isCorrect": false,
+    "questionId": 1650894886347,
+    "id": 1650894886348
+  },
+  {
+    "value": "Joyeuse",
+    "isCorrect": false,
+    "questionId": 1650894886347,
+    "id": 1650894886349
+  },
+  {
+    "value": "Surprise",
+    "isCorrect": false,
+    "questionId": 1650894886347,
+    "id": 1650894886350
+  },
+  {
+    "value": "Frustrée",
+    "isCorrect": true,
+    "questionId": 1650894886347,
+    "id": 1650894886350
+  },
+  {
+    "value": "Vexé",
+    "isCorrect": false,
+    "questionId": 1650894930315,
+    "id": 1650894930316
+  },
+  {
+    "value": "Surpris",
+    "isCorrect": false,
+    "questionId": 1650894930315,
+    "id": 1650894930317
+  },
+  {
+    "value": "Joyeux",
+    "isCorrect": false,
+    "questionId": 1650894930315,
+    "id": 1650894930317
+  },
+  {
+    "value": "Indifférent",
+    "isCorrect": true,
+    "questionId": 1650894930315,
+    "id": 1650894930318
+  },
+  {
+    "value": "Heureux",
+    "isCorrect": false,
+    "questionId": 1650894982767,
+    "id": 1650894982767
+  },
+  {
+    "value": "Terrorisé",
+    "isCorrect": false,
+    "questionId": 1650894982767,
+    "id": 1650894982768
+  },
+  {
+    "value": "Énervé",
+    "isCorrect": false,
+    "questionId": 1650894982767,
+    "id": 1650894982769
+  },
+  {
+    "value": "Anxieux ",
+    "isCorrect": false,
+    "questionId": 1650894982767,
+    "id": 1650894982769
+  },
+  {
+    "value": "Triste",
+    "isCorrect": false,
+    "questionId": 1650894982767,
+    "id": 1650894982770
+  },
+  {
+    "value": "Enthousiaste",
+    "isCorrect": true,
+    "questionId": 1650894982767,
+    "id": 1650894982770
+  },
+  {
+    "value": "Peur",
+    "isCorrect": false,
+    "questionId": 1650895036149,
+    "id": 1650895036150
+  },
+  {
+    "value": "Triste",
+    "isCorrect": false,
+    "questionId": 1650895036149,
+    "id": 1650895036151
+  },
+  {
+    "value": "Colère",
+    "isCorrect": true,
+    "questionId": 1650895036149,
+    "id": 1650895036151
+  },
+  {
+    "value": "Anxieux",
+    "isCorrect": false,
+    "questionId": 1650895036149,
+    "id": 1650895036152
+  },
+  {
+    "value": "Stressé",
+    "isCorrect": false,
+    "questionId": 1650895036149,
+    "id": 1650895036153
+  },
+  {
+    "value": "Timide",
+    "isCorrect": false,
+    "questionId": 1650895036149,
+    "id": 1650895036153
   }
 ]

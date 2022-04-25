@@ -340,5 +340,47 @@
     "indice": "La bulle autour à une signification",
     "quizId": 1650727517045,
     "id": 1650876104194
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/FYyUDva.png",
+    "indice": "Il s'agit d'un sentiment positif",
+    "quizId": 1650727517045,
+    "id": 1650893023151
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/2pmacxm.png ",
+    "indice": "Il s'agit d'un sentiment négatif",
+    "quizId": 1650727517045,
+    "id": 1650893100949
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/1RWKSPU.png",
+    "indice": "Il n'y a pas d'indice pour cette fois. Le papillon n'est pas là.",
+    "quizId": 1650727517045,
+    "id": 1650893198731
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/i4IJk4v.png",
+    "indice": "Un sentiment qui est aussi un trait de personnalité",
+    "quizId": 1650727517045,
+    "id": 1650893274117
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/x94F2Ey.png",
+    "indice": "Bouh ! Oh non j'ai été...",
+    "quizId": 1650727517045,
+    "id": 1650893354092
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/J40imVP.png",
+    "indice": "Un sentiment négatif",
+    "quizId": 1650727517045,
+    "id": 1650893417538
   }
 ]

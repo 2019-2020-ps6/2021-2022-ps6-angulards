@@ -1528,5 +1528,191 @@
     "isCorrect": true,
     "questionId": 1650876104194,
     "id": 1650876104196
+  },
+  {
+    "value": "Se réjouir",
+    "isCorrect": true,
+    "questionId": 1650893023151,
+    "id": 1650893023153
+  },
+  {
+    "value": "Être triste",
+    "isCorrect": false,
+    "questionId": 1650893023151,
+    "id": 1650893023154
+  },
+  {
+    "value": "Avoir peur",
+    "isCorrect": false,
+    "questionId": 1650893023151,
+    "id": 1650893023154
+  },
+  {
+    "value": "Être timide",
+    "isCorrect": false,
+    "questionId": 1650893023151,
+    "id": 1650893023155
+  },
+  {
+    "value": "Être en colère",
+    "isCorrect": false,
+    "questionId": 1650893023151,
+    "id": 1650893023156
+  },
+  {
+    "value": "Être fatigué",
+    "isCorrect": false,
+    "questionId": 1650893023151,
+    "id": 1650893023157
+  },
+  {
+    "value": "Être heureux",
+    "isCorrect": false,
+    "questionId": 1650893100949,
+    "id": 1650893100950
+  },
+  {
+    "value": "Être triste",
+    "isCorrect": true,
+    "questionId": 1650893100949,
+    "id": 1650893100951
+  },
+  {
+    "value": "Être timide",
+    "isCorrect": false,
+    "questionId": 1650893100949,
+    "id": 1650893100952
+  },
+  {
+    "value": "Avoir peur",
+    "isCorrect": false,
+    "questionId": 1650893100949,
+    "id": 1650893100953
+  },
+  {
+    "value": "Ëtre apeuré",
+    "isCorrect": false,
+    "questionId": 1650893100949,
+    "id": 1650893100953
+  },
+  {
+    "value": "Être endormie",
+    "isCorrect": false,
+    "questionId": 1650893100949,
+    "id": 1650893100954
+  },
+  {
+    "value": "Être heureux",
+    "isCorrect": false,
+    "questionId": 1650893198731,
+    "id": 1650893198732
+  },
+  {
+    "value": "Être triste",
+    "isCorrect": false,
+    "questionId": 1650893198731,
+    "id": 1650893198732
+  },
+  {
+    "value": "Être timide",
+    "isCorrect": false,
+    "questionId": 1650893198731,
+    "id": 1650893198733
+  },
+  {
+    "value": "Avoir peur",
+    "isCorrect": true,
+    "questionId": 1650893198731,
+    "id": 1650893198733
+  },
+  {
+    "value": "Être épanoui",
+    "isCorrect": false,
+    "questionId": 1650893198731,
+    "id": 1650893198734
+  },
+  {
+    "value": "Être énervé",
+    "isCorrect": false,
+    "questionId": 1650893198731,
+    "id": 1650893198734
+  },
+  {
+    "value": "Être heureux",
+    "isCorrect": false,
+    "questionId": 1650893274117,
+    "id": 1650893274117
+  },
+  {
+    "value": "Avoir peur",
+    "isCorrect": false,
+    "questionId": 1650893354092,
+    "id": 1650893354093
+  },
+  {
+    "value": "Être énervé",
+    "isCorrect": false,
+    "questionId": 1650893354092,
+    "id": 1650893354093
+  },
+  {
+    "value": "Être heureux",
+    "isCorrect": false,
+    "questionId": 1650893354092,
+    "id": 1650893354094
+  },
+  {
+    "value": "Être surpris",
+    "isCorrect": true,
+    "questionId": 1650893354092,
+    "id": 1650893354094
+  },
+  {
+    "value": "Être dégouté",
+    "isCorrect": false,
+    "questionId": 1650893354092,
+    "id": 1650893354095
+  },
+  {
+    "value": "Être confiant",
+    "isCorrect": false,
+    "questionId": 1650893354092,
+    "id": 1650893354096
+  },
+  {
+    "value": "Être énervé",
+    "isCorrect": true,
+    "questionId": 1650893417538,
+    "id": 1650893417538
+  },
+  {
+    "value": "Être heureux",
+    "isCorrect": false,
+    "questionId": 1650893417538,
+    "id": 1650893417539
+  },
+  {
+    "value": "Être triste",
+    "isCorrect": false,
+    "questionId": 1650893417538,
+    "id": 1650893417539
+  },
+  {
+    "value": "Avoir peur",
+    "isCorrect": false,
+    "questionId": 1650893417538,
+    "id": 1650893417540
+  },
+  {
+    "value": "Être surpris",
+    "isCorrect": false,
+    "questionId": 1650893417538,
+    "id": 1650893417540
+  },
+  {
+    "value": "Être fâché",
+    "isCorrect": false,
+    "questionId": 1650893417538,
+    "id": 1650893417541
   }
 ]

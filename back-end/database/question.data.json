@@ -244,5 +244,101 @@
     "image": "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg",
     "quizId": 1650358749859,
     "id": 1650617042602
+  },
+  {
+    "label": "Que dois-je faire ?",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "quizId": 1650358749859,
+    "id": 1650722817641
+  },
+  {
+    "label": "Image1",
+    "image": "https://imgur.com/QBSW4CU",
+    "quizId": 1650358749859,
+    "id": 1650722874974
+  },
+  {
+    "label": "Que dois-je faire ?",
+    "image": "https://imgur.com/QBSW4CU",
+    "indice": "La bonne réponse c'est 1",
+    "quizId": 1650723116831,
+    "id": 1650723294040
+  },
+  {
+    "label": "Que dois-je faire ?",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "indice": "La bonne réponse c'est 2",
+    "quizId": 1650723116831,
+    "id": 1650723306553
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/EDx0UB5.png",
+    "indice": "Regarde attentivement",
+    "quizId": 1650727517045,
+    "id": 1650875336814
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/lkEdrQ8.png",
+    "indice": "Ohhhhh",
+    "quizId": 1650727517045,
+    "id": 1650875396353
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/ruTl6P3.png",
+    "indice": "Les traits du visage sont tirés vers le bas",
+    "quizId": 1650727517045,
+    "id": 1650875492809
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/EviHSdu.png ",
+    "indice": "Les yeux sont fermés",
+    "quizId": 1650727517045,
+    "id": 1650875546590
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/WkLVDSo.png",
+    "indice": "Il ne sait pas... vraiment...",
+    "quizId": 1650727517045,
+    "id": 1650875612312
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/rJuLqGg.png",
+    "indice": "Quand tu manges un aliment que tu n'aimes pas ?",
+    "quizId": 1650727517045,
+    "id": 1650875694846
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/TZF7aLx.png",
+    "indice": "Il ne fait pas attention à son action",
+    "quizId": 1650727517045,
+    "id": 1650875783509
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/4z8YtyY.png",
+    "indice": "C'est un sentiment plutôt négatif",
+    "quizId": 1650727517045,
+    "id": 1650875863417
+  },
+  {
+    "label": "Quel est le sentiment exprimé ?",
+    "image": "https://i.imgur.com/mDZzhkI.png",
+    "indice": "Il y a deux réponses proches, une plus forte que l'autre",
+    "quizId": 1650727517045,
+    "id": 1650875968856
+  },
+  {
+    "label": "Quel est le sentiment exprimé",
+    "image": "https://i.imgur.com/Sqhuk6z.png",
+    "indice": "La bulle autour à une signification",
+    "quizId": 1650727517045,
+    "id": 1650876104194
   }
 ]

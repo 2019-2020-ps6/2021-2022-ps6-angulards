@@ -364,4 +364,8 @@ export class QuizPageComponent implements OnInit {
     }
   }
 
+  private numberOfWrongAnswer(): number {
+    return this.getWrongAnswer().length;
+  }
+
 }

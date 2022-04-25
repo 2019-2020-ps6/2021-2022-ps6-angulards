@@ -42,9 +42,9 @@
 
 
 </nav>
-  <h3  *ngIf="this.location.path()==='/userquiz'" class ="error2"></h3>
   <div class="container__item">
     <form [formGroup]="statCodeForm" *ngIf="showStatcCodeInput" class="form">
+      <h3  *ngIf="this.location.path()==='/userquiz'" class ="error2"></h3>
       <input *ngIf="this.location.path()==='/userquiz'" formControlName ="statCode" type="password" class="form__field" id="statCode"   placeholder="Code statistique" />
       <button  *ngIf="this.location.path()==='/userquiz'" (click)="loginToStat()" type="button" class="btn btn--primary btn--inside uppercase">Entrez</button>
     </form>

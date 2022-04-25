@@ -50,8 +50,8 @@ export class HeaderComponent implements OnInit {
 
   loginToStat(): void {
       this.userId = localStorage.getItem('application-user');
-     const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
-     this.http.get<User>(urlWithId)
+      const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
+      this.http.get<User>(urlWithId)
        .subscribe(res => {
          this.checkAccessStat(res.statcode);
        });

@@ -364,13 +364,6 @@
   },
   {
     "label": "Quel est le sentiment exprimé ?",
-    "image": "https://i.imgur.com/i4IJk4v.png",
-    "indice": "Un sentiment qui est aussi un trait de personnalité",
-    "quizId": 1650727517045,
-    "id": 1650893274117
-  },
-  {
-    "label": "Quel est le sentiment exprimé ?",
     "image": "https://i.imgur.com/x94F2Ey.png",
     "indice": "Bouh ! Oh non j'ai été...",
     "quizId": 1650727517045,

@@ -37,7 +37,7 @@ export class UserFormComponent implements OnInit {
     }
     else {
       this.userService.addUser(userToCreate);
-      this.router.navigate(['/login']).then();
+      this.router.navigate(['/welcomepage']).then();
     }
   }
 

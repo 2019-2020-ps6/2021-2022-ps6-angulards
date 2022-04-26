@@ -357,5 +357,19 @@
     "indice": "Position des bras, regard",
     "quizId": 1650875065079,
     "id": 1650920614820
+  },
+  {
+    "label": "Quelle expression est véhiculée par cette image ?",
+    "image": "https://www.affairesdegars.com/photos/imgs/frl2127711057.jpg",
+    "indice": "Voir le sourire",
+    "quizId": 1650875065079,
+    "id": 1650924271063
+  },
+  {
+    "label": "Quelle expression est véhiculée par cette image ?",
+    "image": "https://thumbs.dreamstime.com/b/femme-choqu%C3%A9e-offre-sp%C3%A9ciale-surprise-submerg%C3%A9-incroyable-portrait-d-une-dame-d%C3%A9bord%C3%A9e-couvrant-la-bouche-ouverte-isol%C3%A9e-sur-207914712.jpg",
+    "indice": "Voir les yeux",
+    "quizId": 1650875065079,
+    "id": 1650924366955
   }
 ]

@@ -55,7 +55,7 @@
   <!-- Page navigation -->
   <div class="page-switcher-container">
     <div class="previous-question">
-      <i (click)="this.indexQuiz = this.indexQuiz - 1; displayResult = DISPLAY_NO_ANSWER" *ngIf="!isStart()"
+      <i (click)="previousQuestion()" *ngIf="!isStart()"
               class="fas fa-arrow-alt-circle-left previous2"  ><font size="+1">Précédent</font>
 
       </i>

@@ -62,10 +62,13 @@
     </div>
 
     <div class="next-question">
-      <i (click)="nextQuestion()" *ngIf="!isEnd() && displayResult !== DISPLAY_WRONG_ANSWER"
-         class='fas fa-arrow-alt-circle-right next2 '><font size="+1">Suivant</font>
-      </i>
-      <i (click)="finished()" *ngIf="isEnd()" class="fas fa-arrow-alt-circle-right  next2"><font size="+1">fin </font></i>
+      <div *ngIf="isEnd(); then end else next"></div>
+      <ng-template #end>
+        <i (click)="finished()" class="fas fa-arrow-alt-circle-right  next2"><font size="+1">fin </font></i>
+      </ng-template>
+      <ng-template #next>
+        <i (click)="nextQuestion()" *ngIf="displayResult !== DISPLAY_WRONG_ANSWER" class='fas fa-arrow-alt-circle-right next2 '><font size="+1">Suivant</font></i>
+      </ng-template>
     </div>
   </div>
 </div>

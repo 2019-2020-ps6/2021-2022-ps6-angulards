@@ -9,6 +9,8 @@ import {Response} from '../../../models/response.model';
 import {Quiz} from '../../../models/quiz.model';
 import {QuizService} from '../../../services/quiz.service';
 import {User} from '../../../models/user.model';
+import {UserService} from '../../../services/user.service';
+import {StatisticsServices} from '../../../services/statistics.services';
 
 @Component({
   selector: 'app-statistic',
@@ -22,11 +24,9 @@ export class Statistic implements OnInit {
   userId: string;
   user: User;
 
-  response;
-  // change users in url to get it from quizzes or better create Response package in back
+  responses;
   responseURL = 'http://localhost:9428/api/gamesession/response';
 
-  public quizList: Quiz[] = [];
   id: string;
   quiz: Quiz;
 
@@ -41,25 +41,38 @@ export class Statistic implements OnInit {
   showDetail: boolean;
 
   ngOnInit(): void {
-    this.getUserById();
 
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, public quizService: QuizService) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient,
+              public quizService: QuizService,  public userService: UserService, public statService: StatisticsServices) {
+    this.userService.getUserById();
     this.id = this.route.snapshot.paramMap.get('id');
+    this.quizService.getQuizById(this.id);
+
+    this.userService.user$.subscribe((user) => {
+      this.user = user;
+    });
+
+    this.quizService.quiz$.subscribe((quiz) => {
+      this.quiz = quiz;
+      this.getResponsesOfUserPerQuestion();
+    });
+
     this.userId = localStorage.getItem('application-user');
     this.showDetail = false;
     this.getNumberWrongAnswer();
-    this.getQuizById();
     this.getResponsesOfUser();
-
-    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.quizList = quizzes;
-    });
 
     this.averageWrongAnswers = 0;
     this.averageRightAnswers = 0;
   }
+
+  getUserById(): void{
+    this.userService.getUserById();
+
+  }
+
 
   showDetails(): void{
     this.showDetail = !this.showDetail;
@@ -69,28 +82,7 @@ export class Statistic implements OnInit {
 
     this.http.get<Response[]>(this.responseURL)
       .subscribe(res => {
-        this.response = res;
-      });
-  }
-
-  getUserById(): void {
-    const urlWithId = 'http://localhost:9428/api/users/' + this.userId;
-
-    this.http.get<User>(urlWithId)
-      .subscribe(res => {
-        this.user = res;
-        document.getElementById('userInfo').innerText =  this.user.firstName + ' ' + this.user.lastName;
-      });
-  }
-
-  getQuizById(): void {
-    const urlWithId = 'http://localhost:9428/api/quizzes/' + this.id;
-
-    this.http.get<Quiz>(urlWithId)
-      .subscribe(res => {
-        this.quiz = res;
-        this.getResponsesOfUserPerQuestion();
-        document.getElementById('quizName').innerText =  this.quiz.name + ' de thème ' + this.quiz.theme ;
+        this.responses = res;
       });
   }
 
@@ -121,6 +113,7 @@ export class Statistic implements OnInit {
   }
 
   getResponsesOfUserPerQuestion(): void {
+    console.log('quiz in function', this.quiz);
     this.quiz.questions.forEach(question => {
       const urlWithId = 'http://localhost:9428/api/gamesession/response/' + this.id + '/' + this.userId + '/' + question.id;
 

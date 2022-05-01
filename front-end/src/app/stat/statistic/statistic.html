@@ -1,12 +1,12 @@
 
 <br><br>
 <div>
-  Statistique de <strong id="userInfo">  </strong> :
+  Statistique de <strong > {{this.user.firstName}} {{this.user.lastName}} </strong> :
 </div>
 
 <br>
 
-<span>Pour le quiz <span id="quizName">  </span> : </span>
+<span>Pour le quiz <span >{{this.quiz.name}} de thème '{{this.quiz.theme}}'  </span> : </span>
 
 <div>
   <ng-container *ngIf="this.averageRightAnswers>=0 && this.averageRightAnswers <= 30">

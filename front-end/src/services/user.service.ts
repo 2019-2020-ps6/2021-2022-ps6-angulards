@@ -66,7 +66,6 @@ export class UserService {
 
     this.http.get<User>(urlWithId)
       .subscribe(user => {
-        console.log('user in service', user);
         this.user$.next(user);
       });
   }

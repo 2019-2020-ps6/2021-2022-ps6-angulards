@@ -50,7 +50,6 @@ export class QuizService {
 
     this.http.get<Quiz>(urlWithId)
       .subscribe(quiz => {
-        console.log('quiz in service', quiz);
         this.quiz$.next(quiz);
       });
   }

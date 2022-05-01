@@ -29,9 +29,9 @@ export class UserService {
 
   userId: string;
 
-  private user: User = UserMock;
+  private user: User[] = UserMock;
 
-  public user$: BehaviorSubject<User> = new BehaviorSubject(this.user);
+  public user$: BehaviorSubject<User> = new BehaviorSubject(this.user[0]);
 
   constructor(private http: HttpClient) {
     this.userId = localStorage.getItem('application-user');

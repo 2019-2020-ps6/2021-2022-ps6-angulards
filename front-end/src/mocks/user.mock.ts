@@ -8,5 +8,15 @@ export const UserMock: { firstName: string; lastName: string; password: string; 
     password: 'mdp',
     admin: false,
 
+  },
+  {
+
+    id: 'userMock2',
+    email: 'emailMock',
+    firstName: 'UserFirstName',
+    lastName: 'UserLastName',
+    password: 'mdp',
+    admin: false,
+
   }
   ];

@@ -100,6 +100,7 @@ export class QuizPageComponent implements OnInit {
    */
   nextQuestion(): void {
     this.sendStatistics();
+    this.displayResult = this.DISPLAY_NO_ANSWER;
     if (this.isPicto()) {
       this.indexQuiz++;
       console.log('pictogram next question');

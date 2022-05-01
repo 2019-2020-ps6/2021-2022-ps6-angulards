@@ -63,11 +63,8 @@
 
     <div class="next-question">
       <i (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
-              *ngIf="!isEnd() && displayResult === DISPLAY_NO_ANSWER" class='fas fa-arrow-alt-circle-right next2 '
+              *ngIf="!isEnd() && (displayResult === DISPLAY_NO_ANSWER || displayResult === DISPLAY_RIGHT_ANSWER)" class='fas fa-arrow-alt-circle-right next2 '
       ><font size="+1">Suivant</font>
-      </i>
-      <i (click)="nextQuestion(); displayResult = DISPLAY_NO_ANSWER"
-              *ngIf="!isEnd() && displayResult === DISPLAY_RIGHT_ANSWER" class="fas fa-arrow-alt-circle-right  next2" ><font size="+1">Suivant</font>
       </i>
       <i (click)="finished()" *ngIf="isEnd()" class="fas fa-arrow-alt-circle-right  next2"><font size="+1">fin </font></i>
     </div>

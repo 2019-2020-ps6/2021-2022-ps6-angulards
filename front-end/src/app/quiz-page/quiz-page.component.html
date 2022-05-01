@@ -2,7 +2,7 @@
 
   <!-- Answers -->
   <div id="formContent">
-    <div *ngIf="getQuestionsLength() == -1">
+    <div *ngIf="getQuestionsLength() === -1">
       <h4>Il n'y a pas encore de questions !</h4>
     </div>
 
@@ -56,9 +56,7 @@
   <div class="page-switcher-container">
     <div class="previous-question">
       <i (click)="previousQuestion()" *ngIf="!isStart()"
-              class="fas fa-arrow-alt-circle-left previous2"  ><font size="+1">Précédent</font>
-
-      </i>
+              class="fas fa-arrow-alt-circle-left previous2"  ><font size="+1">Précédent</font></i>
     </div>
 
     <div class="next-question">

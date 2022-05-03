@@ -361,7 +361,7 @@ export class QuizPageComponent implements OnInit {
    * 4 rep ou 6 rep
    * @private
    */
-  private isEmotion(): boolean {
+  isEmotion(): boolean {
     return this.quiz.theme.toLocaleLowerCase().includes('motion');
   }
 
@@ -369,7 +369,7 @@ export class QuizPageComponent implements OnInit {
    * On supprime simplement les mauvaises réponses
    * @private
    */
-  private isPicto(): boolean {
+  isPicto(): boolean {
     return this.quiz.theme.toLocaleLowerCase().startsWith('picto');
   }
 
@@ -378,7 +378,7 @@ export class QuizPageComponent implements OnInit {
    * Afficher un indice
    * @private
    */
-  private isExpression(): boolean {
+  isExpression(): boolean {
     return this.quiz.theme.toLocaleLowerCase().includes('express');
   }
 

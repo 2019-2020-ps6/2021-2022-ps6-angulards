@@ -6,6 +6,7 @@ import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {Response} from '../models/response.model';
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,20 @@ export class QuizService {
   private httpOptions = httpOptionsBase;
   // private httpOptionsFormData = httpOptionsFormData;
 
+  public quiz$: BehaviorSubject<Quiz>
+    = new BehaviorSubject(this.quizzes[0]);
+
   constructor(private http: HttpClient) {
     this.retrieveQuizzes();
+  }
+
+  getQuizById(id: string): void {
+    const urlWithId = this.quizUrl + '/' +  id;
+
+    this.http.get<Quiz>(urlWithId)
+      .subscribe(quiz => {
+        this.quiz$.next(quiz);
+      });
   }
 
   retrieveQuizzes(): void {

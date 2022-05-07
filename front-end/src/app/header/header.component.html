@@ -18,14 +18,16 @@
   </label>
   <label class="logo">Angulards</label>
   <ul>
-    <li><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'&& this.location.path() != '/admin-login' && this.location.path() != '/quiz-list'&& this.location.path() != '/quiz-form' && !this.location.path().includes('edit-quiz')"
-           [routerLink]="['/userquiz']">Accueil</a></li>
-    <li><a *ngIf="this.isUserAdmin === true && this.location.path().includes('quizzes')"
-           [routerLink]="['/quiz-list']">Accueil</a></li>
-    <li><a *ngIf="this.location.path().includes('edit-quiz')  || this.location.path() === '/quiz-form'"
-           [routerLink]="['/quiz-list']">Accueil</a></li>
-    <li><a *ngIf="this.location.path().includes('login')  || this.location.path().includes('register')"
-           [routerLink]="['/welcomepage']">Accueil</a></li>
+<!--    <div class = "close">-->
+    <li class="close"><a *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage' && this.location.path() != '/login'&& this.location.path() != '/admin-login' && this.location.path() != '/quiz-list'&& this.location.path() != '/quiz-form' && !this.location.path().includes('edit-quiz')"
+           [routerLink]="['/userquiz']" class ="close">Accueil</a></li>
+    <li class="close"><a *ngIf="this.isUserAdmin === true && this.location.path().includes('quizzes')"
+           [routerLink]="['/quiz-list']"class ="close">Accueil</a></li>
+    <li class="close"><a *ngIf="this.location.path().includes('edit-quiz')  || this.location.path() === '/quiz-form'"
+           [routerLink]="['/quiz-list']"class ="close">Accueil</a></li>
+    <li class="close"><a *ngIf="this.location.path().includes('login')  || this.location.path().includes('register')"
+           [routerLink]="['/welcomepage']"class ="close">Accueil</a></li>
+<!--    </div>-->
 
 <!--    <li><a (click)="EnterStatCode()" *ngIf="this.location.path() != '/register'  && this.location.path() != '/welcomepage'&& this.location.path() != '/quiz-list' && this.location.path() != '/login'-->
 <!--          && this.location.path() != '/quiz-form' && this.location.path() != '/edit-quiz'"-->

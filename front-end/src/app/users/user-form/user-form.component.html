@@ -16,15 +16,17 @@
         <input class="fadeIn second" type="text" id="lastName" placeholder="Nom" [formControlName]="'lastName'">
       </label>
       <label for="statcode" *ngIf="!isAdminSignup()">
-        <input class="fadeIn second" type="text" id="statcode" placeholder="Code Statistique" [formControlName]="'statcode'">
+        <input class="fadeIn second" type="password" id="statcode" placeholder="Code Statistique" [formControlName]="'statcode'">
       </label>
       <label for="admincode" *ngIf="isAdminSignup()">
         <input type="text" id="admincode" placeholder="Code Admin">
       </label>
       <label for="password">
-        <input class="fadeIn second" type="text" id="password" placeholder="Mot de passe" [formControlName]="'password'">
+        <input class="fadeIn second" type="password" id="password" placeholder="Mot de passe" [formControlName]="'password'">
       </label>
       <br>
+      <h1 class ="error2"></h1>
+
       <input type="submit" class="fadeIn fourth" (click)="addUser() " value="S'inscrire">
 <!--      <button type="button" class="button-card" (click)="showUser()">SHOW USER</button>-->
     </form>

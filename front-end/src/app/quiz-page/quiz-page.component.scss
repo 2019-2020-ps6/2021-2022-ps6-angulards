@@ -378,6 +378,14 @@ a:hover {
 .round {
   border-radius: 50%;
 }
+
+.disabled {
+  background: gray;
+  color: white !important;
+  --hover: white !important;
+  cursor: initial !important;
+}
+
 .next2{
   font-size:30px;
 

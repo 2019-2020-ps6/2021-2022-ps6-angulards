@@ -33,7 +33,8 @@
       <div class="answer-box-container">
         <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
           <div class="inputGroup" *ngIf="ans">
-            <button (click)="takeActionOnClick(ans)" class="fill">{{ans.value}}</button>
+            <!-- [class.my_class] = "step === 'step1'" -->
+            <button (click)="takeActionOnClick(ans)" class="fill" [class.disabled]="hasCorrectlyAnswered === true && !ans.isCorrect">{{ans.value}}</button>
           </div>
         </div>
       </div>

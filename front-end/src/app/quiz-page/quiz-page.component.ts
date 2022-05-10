@@ -228,7 +228,8 @@ export class QuizPageComponent implements OnInit {
 
   private sendStatistics(): void {
     const userId = localStorage.getItem('application-user');
-    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId), this.isQuestionAnswered);
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId,
+      this.wrongAnswerScore.get(userId), this.isQuestionAnswered);
     this.wrongAnswerScore.set(userId, 0);
   }
   /**

@@ -24,6 +24,9 @@ export class QuizPageComponent implements OnInit {
   indexQuiz = 0;
   id: string;
   displayResult = this.DISPLAY_NO_ANSWER;
+  // Check if the question was skipped
+  isQuestionAnswered: boolean;
+
   // IF NOT EMOTIONS
   nextQuestionType = 'all'; // could be image or audio, image by default
   indexOfImageQuestion = [];
@@ -49,6 +52,7 @@ export class QuizPageComponent implements OnInit {
   private scoreGame = 0;
 
   constructor(private route: ActivatedRoute, public quizService: QuizService, private router: Router) {
+    this.isQuestionAnswered = false;
     this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
       this.quiz = quiz;
     });
@@ -77,6 +81,7 @@ export class QuizPageComponent implements OnInit {
    * @param answer answer clicked by the user
    */
   takeActionOnClick(answer): void {
+    this.isQuestionAnswered = true;
     this.getCorrectAnswer().includes(answer) ? this.onRightAnswer() : this.onWrongAnswer(answer);
     this.manageQuestionScore(answer);
   }
@@ -100,6 +105,7 @@ export class QuizPageComponent implements OnInit {
    */
   nextQuestion(): void {
     this.sendStatistics();
+    this.isQuestionAnswered = false;
     if (this.isPicto()) {
       this.indexQuiz++;
       console.log('pictogram next question');
@@ -219,7 +225,7 @@ export class QuizPageComponent implements OnInit {
 
   private sendStatistics(): void {
     const userId = localStorage.getItem('application-user');
-    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId));
+    this.quizService.addResponseScore(this.quiz.id, this.quiz.questions[this.indexQuiz].id, userId, this.wrongAnswerScore.get(userId), this.isQuestionAnswered);
     this.wrongAnswerScore.set(userId, 0);
   }
   /**

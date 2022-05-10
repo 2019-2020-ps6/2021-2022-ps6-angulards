@@ -18,8 +18,8 @@
       </div>
 
       <div *ngIf="isImage()"><img alt="Image de la question : {{quiz.questions[indexQuiz].label}}"
-                                   class="img-container"
-                                   src="{{quiz.questions[indexQuiz].image}}"
+                                  class="img-container"
+                                  src="{{quiz.questions[indexQuiz].image}}"
       ></div>
 
       <div *ngIf="isAudio()">
@@ -34,7 +34,8 @@
         <div *ngFor="let ans of quiz.questions[indexQuiz].answers;">
           <div class="inputGroup" *ngIf="ans">
             <!-- [class.my_class] = "step === 'step1'" -->
-            <button (click)="takeActionOnClick(ans)" class="fill" [class.disabled]="hasCorrectlyAnswered === true && !ans.isCorrect">{{ans.value}}</button>
+            <button (click)="takeActionOnClick(ans)" class="fill"
+                    [class.disabled]="hasCorrectlyAnswered === true && !ans.isCorrect">{{ans.value}}</button>
           </div>
         </div>
       </div>
@@ -60,7 +61,7 @@
     <div class="page-switcher-container">
       <div class="previous-question">
         <i (click)="previousQuestion()" *ngIf="!isStart() && !isPicto()"
-                class="fas fa-arrow-alt-circle-left previous2"  ><font size="+1">Précédent</font></i>
+           class="fas fa-arrow-alt-circle-left previous2"><font size="+1">Précédent</font></i>
       </div>
 
       <div class="next-question">
@@ -69,7 +70,8 @@
           <i (click)="finished()" class="fas fa-arrow-alt-circle-right  next2"><font size="+1">fin </font></i>
         </ng-template>
         <ng-template #next>
-          <i (click)="nextQuestion()" *ngIf="displayResult !== DISPLAY_WRONG_ANSWER" class='fas fa-arrow-alt-circle-right next2 '><font size="+1">Suivant</font></i>
+          <i (click)="nextQuestion()" *ngIf="displayResult !== DISPLAY_WRONG_ANSWER"
+             class='fas fa-arrow-alt-circle-right next2 '><font size="+1">Suivant</font></i>
         </ng-template>
       </div>
     </div>

@@ -380,10 +380,9 @@ a:hover {
 }
 
 .disabled {
-  background: gray;
-  color: white !important;
-  --hover: white !important;
+  // filter: blur(2px) !important;
   cursor: initial !important;
+  filter: contrast(0.2) !important;
 }
 
 .next2{

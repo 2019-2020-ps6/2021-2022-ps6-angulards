@@ -100,12 +100,13 @@ export class StatisticComponent implements OnInit {
   getAveragesStat(): void{
     let i;
     console.log('response of user ', this.responseOfUser);
-    for (i = 0; i < this.responseOfUser.length ; i++){
-      if (this.responseOfUser[i].wrongAnswerCount === 0){
-        this.averageRightAnswers++;
-      }
-      else{
-        this.averageWrongAnswers += this.responseOfUser[i].wrongAnswerCount;
+    for (i = 0; i < this.responseOfUser.length ; i++) {
+      if (this.responseOfUser[i].isQuestionAnswered) {
+        if (this.responseOfUser[i].wrongAnswerCount === 0) {
+          this.averageRightAnswers++;
+        } else {
+          this.averageWrongAnswers += this.responseOfUser[i].wrongAnswerCount;
+        }
       }
     }
 
@@ -118,15 +119,22 @@ export class StatisticComponent implements OnInit {
   }
 
   allTriesPerQuestionStatistics(): void{
-    this.responseOfUserPerQuestion.forEach(res => {
-      if (!this.allTriesPerQuestionCount.has(res.questionId)) {
-        this.allTriesRightAnswerPerQuestionCount.set(res.questionId, 0);
-        this.allTriesPerQuestionCount.set(res.questionId, 0);
+    
+    let i;
+    for (i = 0; i < this.responseOfUserPerQuestion.length ; i++) {
+      if (this.responseOfUserPerQuestion[i].isQuestionAnswered) {
+        if (!this.allTriesPerQuestionCount.has(this.responseOfUserPerQuestion[i].questionId)) {
+          this.allTriesRightAnswerPerQuestionCount.set(this.responseOfUserPerQuestion[i].questionId, 0);
+          this.allTriesPerQuestionCount.set(this.responseOfUserPerQuestion[i].questionId, 0);
+        }
+        this.allTriesPerQuestionCount.set(this.responseOfUserPerQuestion[i].questionId, this.allTriesPerQuestionCount.get(this.responseOfUserPerQuestion[i].questionId) + 1);
+        if (this.responseOfUserPerQuestion[i].wrongAnswerCount === 0) {
+          this.allTriesRightAnswerPerQuestionCount.set(this.responseOfUserPerQuestion[i].questionId, this.allTriesRightAnswerPerQuestionCount.get(this.responseOfUserPerQuestion[i].questionId) + 1);
+        }
       }
-      this.allTriesPerQuestionCount.set(res.questionId, this.allTriesPerQuestionCount.get(res.questionId) + 1);
-      if (res.wrongAnswerCount === 0) {
-        this.allTriesRightAnswerPerQuestionCount.set(res.questionId, this.allTriesRightAnswerPerQuestionCount.get(res.questionId) + 1);
-      }
-    });
+    }
+
+
+
   }
 }

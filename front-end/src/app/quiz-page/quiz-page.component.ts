@@ -43,6 +43,7 @@ export class QuizPageComponent implements OnInit {
   indexOfFourthRepAudios: number[] = [];
   indexOfSixthRepAudios: number[] = [];
   nextQuestionNumberOfAnswers: number;
+  hasCorrectlyAnswered: boolean;
   private lastAnswer = undefined;
   private readonly ANSWERS_NEEDED_TO_CHANGE_LEVEL = 4;
   private elo = 0;
@@ -100,6 +101,7 @@ export class QuizPageComponent implements OnInit {
    */
   nextQuestion(): void {
     this.sendStatistics();
+    this.hasCorrectlyAnswered = undefined;
     this.displayResult = this.DISPLAY_NO_ANSWER;
     if (this.isPicto()) {
       this.indexQuiz++;
@@ -294,6 +296,7 @@ export class QuizPageComponent implements OnInit {
    * @private
    */
   private onRightAnswer(): void {
+    this.hasCorrectlyAnswered = true; // to prevent wrong answer after
     this.elo++; // for pictogram game mode
     this.indexQuestionsAnswered.push(this.indexQuiz); // store the index of the current question for emotion
     this.scoreGame++; // for stats
@@ -310,18 +313,20 @@ export class QuizPageComponent implements OnInit {
    * @private
    */
   private onWrongAnswer(answer): void {
-    if (this.isPicto()) {
-      this.removeWrongAnswer(answer, 0);
-      this.elo--;
+    if (this.hasCorrectlyAnswered !== true) {
+      if (this.isPicto()) {
+        this.removeWrongAnswer(answer, 0);
+        this.elo--;
+      }
+      if (this.isExpression()) {
+        this.nbWrongAnswerPerQuestion++;
+        this.DISPLAY_HINT = this.nbWrongAnswerPerQuestion >= 2;
+      }
+      if (this.isEmotion()) {
+        this.lastAnswer = false;
+      }
+      this.displayResult = this.DISPLAY_WRONG_ANSWER;
     }
-    if (this.isExpression()) {
-      this.nbWrongAnswerPerQuestion++;
-      this.DISPLAY_HINT = this.nbWrongAnswerPerQuestion >= 2;
-    }
-    if (this.isEmotion()) {
-      this.lastAnswer = false;
-    }
-    this.displayResult = this.DISPLAY_WRONG_ANSWER;
   }
 
   /**

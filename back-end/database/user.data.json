@@ -88,5 +88,32 @@
     "password": "sd",
     "admin": false,
     "id": 1651952751501
+  },
+  {
+    "email": "emilederain@gmail.com",
+    "firstName": "Emile",
+    "lastName": "DERAIN",
+    "statcode": "",
+    "password": "12345",
+    "admin": false,
+    "id": 1652171759491
+  },
+  {
+    "email": "emilederain@gmail.com",
+    "firstName": "emile",
+    "lastName": "DERAIN",
+    "statcode": "12345",
+    "password": "12345",
+    "admin": false,
+    "id": 1652173180661
+  },
+  {
+    "email": "emilederainbis@gmail.com",
+    "firstName": "Emile",
+    "lastName": "DERAIN",
+    "statcode": "12345",
+    "password": "12345",
+    "admin": false,
+    "id": 1652173252986
   }
 ]

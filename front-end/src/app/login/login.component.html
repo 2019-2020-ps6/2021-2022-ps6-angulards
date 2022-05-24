@@ -6,9 +6,12 @@
 
     <!-- Login Form -->
     <form [formGroup]="loginForm">
-      <input formControlName ="email" class="fadeIn second" id="email" name="email" placeholder="E-mail" type="text">
+      <input formControlName ="email" class="fadeIn second" id="email" name="email" placeholder="E-mail" type="text"
+             pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
+             oninvalid="this.setCustomValidity('Enter User Name Here')">
       <input formControlName ="password" class="fadeIn third" id="password" name="login" placeholder="Mot de passe" type="password">
       <h3 class ="error"></h3>
+      <h2></h2>
 
       <input (click)="login()" class="fadeIn fourth" type="submit" value="Commencer à jouer">
       <!-- edit the router link to the right one when done -->

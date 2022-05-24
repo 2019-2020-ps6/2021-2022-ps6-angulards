@@ -264,7 +264,7 @@ p {
 
 .fill {
   --color: #3286BB;
-  --hover: #64e75f;
+  --hover: #44b5ff;
   height: 50px;
   width: 100%;
   text-align: center;
@@ -378,6 +378,13 @@ a:hover {
 .round {
   border-radius: 50%;
 }
+
+.disabled {
+  // filter: blur(2px) !important;
+  cursor: initial !important;
+  filter: contrast(0.2) !important;
+}
+
 .next2{
   font-size:30px;
 

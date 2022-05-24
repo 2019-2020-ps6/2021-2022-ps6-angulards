@@ -35,10 +35,15 @@ export class UserFormComponent implements OnInit {
     if (userToCreate.admin && !this.adminCodeCorrect()) {
       alert('Mauvais code Administrateur');
     }
+    if (!userToCreate.email.includes('@') || !userToCreate.email.includes('.com') ){
+      const header = document.querySelector('h1');
+      header.innerText = 'Adresse électronique non valide, veuillez réssayer';
+    }
     else {
       this.userService.addUser(userToCreate);
-      this.router.navigate(['/welcomepage']).then();
+      this.router.navigate(['/login']).then();
     }
+
   }
 
   // For debugging purposes
@@ -59,4 +64,6 @@ export class UserFormComponent implements OnInit {
     // console.log(adminField.value === this.adminCode);
     return adminField.value === this.adminCode;
   }
+
+
 }

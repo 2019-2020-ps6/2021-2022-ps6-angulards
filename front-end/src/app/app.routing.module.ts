@@ -8,7 +8,7 @@ import {LoginComponent} from './login/login.component';
 import {UserQuizListComponent} from './homepage-user/userquiz-list/userquiz-list.component';
 import {QuizFormComponent} from './quizzes/quiz-form/quiz-form.component';
 import {QuizPageComponent} from './quiz-page/quiz-page.component';
-import {Statistic} from './stat/statistic/statistic';
+import {StatisticComponent} from './stat/statistic/statistic.component';
 import {AdminLoginComponent} from './adminspace/login/admin-login.component';
 import {StatHomePage} from './stat/statistic-homepage/statistic-homepage.component';
 
@@ -22,7 +22,7 @@ const routes: Routes = [
     {path: 'userquiz', component: UserQuizListComponent},
     {path: 'quiz-form', component: QuizFormComponent},
     {path: 'quizzes/:id', component: QuizPageComponent},
-    {path: 'stat/:id', component: Statistic},
+    {path: 'stat/:id', component: StatisticComponent},
     {path: 'stat', component: StatHomePage},
     {path: 'admin-login', component: AdminLoginComponent},
 ];

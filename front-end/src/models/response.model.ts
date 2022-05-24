@@ -3,4 +3,5 @@ export interface Response {
   questionId: string;
   userId: string;
   wrongAnswerCount: number;
+  isQuestionAnswered: boolean;
 }
